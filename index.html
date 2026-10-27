@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Infra Canvas – Infrastrukturdiagramme</title>
+<style>
+:root{--ink:#182536;--muted:#7a8797;--line:#e3eaf1;--blue:#2563eb;--panel:#fff;--body:#f5f8fc;--radius:15px}
+*{box-sizing:border-box}html,body{margin:0;height:100%;font:14px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--body)}button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.4}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #96baff;outline-offset:2px}
+.app{height:100vh;min-height:640px;display:grid;grid-template-rows:68px minmax(0,1fr)}
+header{background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:20px;padding:0 24px;justify-content:space-between;z-index:2}
+.brand{display:flex;align-items:center;gap:11px;white-space:nowrap}.brand-mark{width:37px;height:37px;display:grid;place-items:center;border-radius:11px;background:#173a69;color:#fff}.brand strong{display:block;font-size:15px;letter-spacing:-.025em}.brand small{color:var(--muted);display:block;font-size:11px;margin-top:-3px;letter-spacing:.025em}
+.document-name{flex:1;max-width:360px;margin:0 auto;border:1px solid transparent;border-radius:8px;background:transparent;padding:8px 10px;font-size:15px;font-weight:650;text-align:center;color:var(--ink);min-width:80px}.document-name:hover,.document-name:focus{background:#f6f9ff;border-color:#dce6f7;outline:0}
+.actions{display:flex;gap:7px;align-items:center}.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;white-space:nowrap;background:#fff;border:1px solid var(--line);border-radius:10px;color:#435368;min-height:36px;padding:0 12px;font-weight:600;font-size:12px}.btn:hover:not(:disabled){background:#f2f6fc;border-color:#cbd9ea}.btn.primary{background:#1e4a85;border:1px solid #1e4a85;color:#fff}.btn.primary:hover{background:#173a69}.btn.active{background:#e8f1ff;border-color:#a5c6ff;color:#1752ac}.btn.icononly{width:36px;padding:0}.btn.danger{color:#b42339;background:#fff;border-color:#f2d3d7}.btn.danger:hover{background:#fff2f2}
+.workspace{display:grid;grid-template-columns:235px minmax(0,1fr) 267px;min-height:0}
+.sidebar,.inspector{background:#fff;overflow:auto;padding:25px 17px}.sidebar{border-right:1px solid var(--line)}.inspector{border-left:1px solid var(--line)}
+.kicker{font-size:10px;text-transform:uppercase;letter-spacing:.16em;color:#8692a2;font-weight:800;margin:0 7px 11px}.side-desc{font-size:12px;line-height:1.6;color:#8190a1;margin:0 7px 19px}
+.palette{display:grid;gap:8px}.palette-item{border:1px solid #e7edf4;border-radius:12px;padding:10px 11px;display:flex;align-items:center;gap:11px;background:#fff;touch-action:none;user-select:none;cursor:grab;transition:border-color .15s,background .15s,box-shadow .15s}.palette-item:hover{background:#f8fbff;border-color:#bcd1ed;box-shadow:0 5px 15px #1b3c7010}.palette-item:active{cursor:grabbing}.palette-item strong{font-size:12px;font-weight:650}.palette-item small{font-size:10px;color:#8894a5;display:block;line-height:1.4}.mini-icon{width:34px;height:34px;flex:0 0 34px;display:grid;place-items:center;border-radius:10px;color:var(--accent);background:var(--tint)}.mini-icon svg{width:19px;height:19px}
+.divider{height:1px;background:var(--line);margin:23px 0}.help{background:#f5f8fc;border:1px solid #e9eff7;padding:13px;border-radius:12px;color:#7a889a;font-size:11px;line-height:1.65}.help strong{color:#45586f;font-size:12px;display:block;margin-bottom:4px}.shortcut{padding:1px 5px;border-radius:4px;border:1px solid #d7e0eb;background:#fff;color:#66768c;white-space:nowrap;font-size:10px}
+.center{min-width:0;min-height:0;display:flex;flex-direction:column;overflow:hidden}.tools{height:57px;min-height:57px;display:flex;align-items:center;justify-content:space-between;padding:0 19px;border-bottom:1px solid var(--line);background:#fbfdff;gap:10px}.toolgroup{display:flex;gap:7px;align-items:center}.tool-sep{width:1px;height:24px;background:#dde5ef;margin:0 4px}.boardtag{font-weight:700;font-size:12px;color:#6d8098;white-space:nowrap}
+.stage{flex:1;min-height:0;position:relative;overflow:auto;background:#edf3fa;display:flex;align-items:flex-start;justify-content:flex-start;padding:23px}.boardwrap{margin:0 auto;width:100%;min-width:780px;max-width:1580px;aspect-ratio:1200/760;position:relative;background:#fff;border-radius:17px;box-shadow:0 16px 52px #2c52751b,0 2px 10px #2c52750a;overflow:hidden}.board{display:block;width:100%;height:100%;touch-action:none;user-select:none}.stage-footer{position:absolute;left:35px;bottom:32px;pointer-events:none;background:#fffffff0;border:1px solid #e9eff7;border-radius:8px;padding:6px 10px;font-size:10px;color:#8c99a8;box-shadow:0 2px 9px #1b3c7010}
+.inspector h2{margin:0 5px 7px;font-size:17px;letter-spacing:-.035em}.inspector .inspector-description{margin:0 5px 24px;font-size:12px;color:#8290a2}.field{display:block;margin-bottom:16px}.field-label{font-size:11px;font-weight:700;color:#64758a;display:block;margin:0 0 6px}.field input,.field select{border:1px solid #dce5f0;border-radius:9px;padding:10px 11px;width:100%;background:#fff;color:#304358;min-width:0;font-size:13px}.field input:focus,.field select:focus{border-color:#7faeef;box-shadow:0 0 0 3px #e6f1ff;outline:0}.inspector-actions{display:grid;gap:9px;margin-top:22px}.empty-inspector{margin-top:65px;text-align:center;color:#8190a2;padding:5px}.empty-inspector svg{color:#a8bbcf;margin-bottom:12px}.empty-inspector strong{display:block;color:#50647c;font-size:14px;margin-bottom:7px}.empty-inspector p{line-height:1.65;font-size:12px}.pill{font-size:10px;padding:3px 7px;border-radius:6px;background:#edf4ff;color:#5577a4;font-weight:700}.selection-meta{display:flex;align-items:center;justify-content:space-between;margin:0 5px 20px}.status{font-size:11px;color:#8291a3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.floating-ghost{position:fixed;z-index:1000;pointer-events:none;opacity:.88;transform:translate(-50%,-50%);box-shadow:0 10px 30px #22364b3f;width:166px;background:#fff;border:1px solid #a6c6ee;border-radius:12px;padding:13px;font-size:13px;font-weight:700;text-align:center}.toast{position:fixed;bottom:21px;left:50%;transform:translateX(-50%);background:#24364d;color:#fff;padding:10px 16px;border-radius:9px;box-shadow:0 10px 30px #15243430;font-size:12px;z-index:12;pointer-events:none;opacity:0;transition:opacity .15s}.toast.show{opacity:1}
+@media(max-width:1150px){.workspace{grid-template-columns:185px minmax(0,1fr) 230px}.sidebar,.inspector{padding:20px 12px}.brand small{display:none}header{padding:0 14px;gap:10px}.actions{gap:4px}.actions .btn{padding:0 8px}.boardtag{display:none}}
+@media(max-width:850px){.app{height:auto;min-height:100vh;display:block}header{min-height:65px;flex-wrap:wrap;padding:10px 12px}.brand{flex:1}.document-name{order:3;flex-basis:100%;max-width:none}.workspace{display:flex;flex-direction:column}.sidebar{order:1;padding:13px;border:0;border-bottom:1px solid var(--line)}.sidebar .kicker,.sidebar .side-desc,.sidebar .divider,.sidebar .help{display:none}.palette{display:flex;gap:7px;overflow-x:auto}.palette-item{padding:7px 9px;flex:0 0 132px;gap:6px}.palette-item small{display:none}.center{order:2;min-height:580px}.stage{justify-content:flex-start;padding:14px}.boardwrap{min-width:780px}.stage-footer{display:none}.tools{padding:0 10px;overflow-x:auto}.inspector{order:3;border:0;border-top:1px solid var(--line);min-height:220px;padding:20px}.empty-inspector{margin-top:20px}}
+@media print{header,.sidebar,.inspector,.tools,.stage-footer{display:none}.app,.workspace,.center,.stage{display:block;height:auto;min-height:0;padding:0}.boardwrap{width:100%;box-shadow:none;border-radius:0}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="brand"><div class="brand-mark"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="2.5" y="3.5" width="8" height="6" rx="1.6"/><rect x="13.5" y="3.5" width="8" height="6" rx="1.6"/><rect x="8" y="15" width="8" height="6" rx="1.6"/><path d="M6.5 9.5v2.3h11V9.5M12 11.8V15"/></svg></div><div><strong>Infra Canvas</strong><small>Infrastruktur einfach visualisieren.</small></div></div>
+    <input id="docTitle" class="document-name" aria-label="Diagrammtitel" value="Beispiel-Infrastruktur" maxlength="70">
+    <div class="actions"><button class="btn" id="importBtn" title="Diagramm aus JSON laden">Öffnen</button><button class="btn" id="jsonBtn" title="Diagramm als editierbare JSON-Datei speichern">JSON</button><button class="btn" id="svgBtn" title="Vektorgrafik exportieren">SVG</button><button class="btn primary" id="pngBtn" title="Bild als PNG exportieren">PNG ↓</button></div>
+  </header>
+  <main class="workspace">
+    <aside class="sidebar">
+      <h2 class="kicker">Bausteine</h2><p class="side-desc">Auf die Zeichenfläche ziehen oder antippen, um einen Baustein hinzuzufügen.</p>
+      <div class="palette" id="palette"></div>
+      <div class="divider"></div>
+      <h2 class="kicker">Bedienung</h2>
+      <div class="help"><strong>So funktioniert's</strong>Bausteine positionieren, <b>VM/LXC</b> in Hosts ziehen und <b>Subnetze</b> als Bereiche anlegen. Ein Subnetz an der Titelleiste verschieben oder an der Ecke vergrößern. <b>Verbinden</b> erstellt Leitungen.<br><br><span class="shortcut">Entf</span> Löschen &nbsp; <span class="shortcut">Esc</span> Abbrechen<br><span class="shortcut">Strg Z</span> Rückgängig</div>
+    </aside>
+    <section class="center" aria-label="Diagrammeditor">
+      <div class="tools">
+        <div class="toolgroup"><button class="btn" id="connectBtn" title="Zwei Bausteine durch Anklicken verbinden">⤳ &nbsp;Verbinden</button><button class="btn icononly" id="undoBtn" title="Rückgängig (Strg+Z)">↶</button><button class="btn icononly" id="redoBtn" title="Wiederherstellen (Strg+Y)">↷</button><span class="tool-sep"></span><button class="btn" id="addSiteBtn" title="Neuen Standort anlegen">＋ Standort</button><button class="btn" id="addSubnetBtn" title="Neues Subnetz anlegen">＋ Subnetz</button><button class="btn" id="newBtn" title="Leeres Diagramm erstellen">Neu</button><button class="btn" id="resetBtn" title="Neutrale Demo wiederherstellen">Demo</button></div>
+        <div class="toolgroup"><span id="status" class="status">Alle Änderungen werden lokal gespeichert</span></div>
+      </div>
+      <div class="stage" id="stage"><div class="boardwrap"><svg id="board" class="board" viewBox="0 0 1200 760" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Editierbares Infrastrukturdiagramm"></svg></div><div class="stage-footer" id="stageFooter">Ziehen, auswählen, verbinden · 100 % lokal</div></div>
+    </section>
+    <aside class="inspector" id="inspector"></aside>
+  </main>
+</div>
+<input type="file" id="fileInput" accept="application/json,.json" hidden>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(()=>{'use strict';
+const NS='http://www.w3.org/2000/svg', BASE_W=1200, SITE_W=540, SITE_H=623, NW=204,NH=74,KEY='infra-canvas-public-v3';
+const TYPES={
+  server:{label:'Server / Hypervisor',hint:'Host / Virtualisierung',icon:'server',color:'#3468b4',tint:'#eaf1ff'},
+  vm:{label:'Virtuelle Maschine',hint:'VM / Gast',icon:'vm',color:'#6954af',tint:'#f0ebfb'},
+  lxc:{label:'LXC-Container',hint:'Container',icon:'container',color:'#5b61bf',tint:'#eeefff'},
+  firewall:{label:'Firewall',hint:'Paketfilter / Gateway',icon:'shield',color:'#d47c3c',tint:'#fff0e4'},
+  router:{label:'Router / Switch',hint:'Netzwerk',icon:'router',color:'#248b95',tint:'#e4f8f7'},
+  app:{label:'Anwendung',hint:'Dienst / Web-App',icon:'app',color:'#258b75',tint:'#e5f7f0'},
+  db:{label:'Storage / DB',hint:'Datenbank / NAS',icon:'database',color:'#b66c7e',tint:'#fff0f4'}
+};
+const THEMES=[
+{fill:'#f7faff',stroke:'#cfe0f7',accent:'#326cb4',tag:'#e6f0ff'},
+{fill:'#f6fcfb',stroke:'#cae7e1',accent:'#268777',tag:'#dcf4ed'},
+{fill:'#fcf9ff',stroke:'#e4daf5',accent:'#865eb3',tag:'#f2eaff'},
+{fill:'#fffaf5',stroke:'#f2dfc6',accent:'#af7a35',tag:'#fff0dd'},
+{fill:'#f9fbff',stroke:'#dae2f0',accent:'#647ba3',tag:'#eaf0fa'},
+{fill:'#fff8f9',stroke:'#f0dbe3',accent:'#b96d88',tag:'#fcebf1'}];
+const DEFAULT_SITES=[{id:'site-a',name:'Standort A',sub:'Beispielstandort'},{id:'site-b',name:'Standort B',sub:'Weiterer Beispielstandort'}];
+const $=s=>document.querySelector(s);
+const E=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const uid=()=>Math.random().toString(36).slice(2,9);
+const clone=o=>JSON.parse(JSON.stringify(o));
+function blank(){return {version:3,title:'Neues Diagramm',sites:[{id:'site-a',name:'Standort A',sub:''}],subnets:[],nodes:[],links:[]};}
+function starter(){return {version:3,title:'Beispiel-Infrastruktur',sites:clone(DEFAULT_SITES),subnets:[
+ {id:'sn-a',site:'site-a',name:'Management',cidr:'10.10.10.0/24',x:22,y:130,w:492,h:265},
+ {id:'sn-b',site:'site-b',name:'Internes Netz',cidr:'10.20.20.0/24',x:22,y:130,w:492,h:265}
+],nodes:[
+ {id:'n1',kind:'server',name:'Hypervisor A',detail:'Virtualisierung',site:'site-a',subnetId:'sn-a',x:50,y:205},
+ {id:'n2',kind:'vm',name:'VM 01',detail:'Beispieldienst',site:'site-a',subnetId:'sn-a',x:80,y:220,parentId:'n1'},
+ {id:'n3',kind:'lxc',name:'Container 01',detail:'Beispielcontainer',site:'site-a',subnetId:'sn-a',x:80,y:260,parentId:'n1'},
+ {id:'n4',kind:'firewall',name:'Firewall A',detail:'Gateway',site:'site-a',subnetId:'sn-a',x:295,y:204},
+ {id:'n5',kind:'router',name:'Router B',detail:'Gateway',site:'site-b',subnetId:'sn-b',x:68,y:205},
+ {id:'n6',kind:'app',name:'Service B',detail:'Beispieldienst',site:'site-b',subnetId:'sn-b',x:291,y:205}
+],links:[
+ {id:'l1',from:'n1',to:'n4',style:'standard',label:''},
+ {id:'l2',from:'n5',to:'n6',style:'standard',label:''},
+ {id:'l3',from:'n4',to:'n5',style:'vpn',label:'Tunnel'}
+]};}
+function nodeSize(n,doc=state){
+ const count=n.kind==='server'?doc.nodes.filter(c=>c.parentId===n.id&&(c.kind==='vm'||c.kind==='lxc')).length:0;
+ return {w:count?236:NW,h:count?85+count*49:NH};
+}
+function rects(doc=state){
+ let currentY=98;const out=[];
+ for(let i=0;i<doc.sites.length;i+=2){
+  const pair=doc.sites.slice(i,i+2);let rowHeight=SITE_H;
+  for(const st of pair){let needed=SITE_H;
+   for(const sn of (doc.subnets||[])){if(sn.site===st.id)needed=Math.max(needed,sn.y+sn.h+25);}
+   for(const n of doc.nodes){if(n.site!==st.id||n.parentId)continue;
+    const d=nodeSize(n,doc);needed=Math.max(needed,n.y+d.h+22);
+   }
+   rowHeight=Math.max(rowHeight,needed);
+  }
+  for(let j=0;j<pair.length;j++)out.push({...pair[j],...THEMES[(i+j)%THEMES.length],x:38+j*584,y:currentY,w:SITE_W,h:rowHeight});
+  currentY+=rowHeight+20;
+ }
+ return out;
+}
+function boardSize(doc=state){const layouts=rects(doc),rows=Math.ceil(doc.sites.length/2);return{w:doc.sites.length===1?620:BASE_W,h:Math.max(760,layouts.length?Math.max(...layouts.map(r=>r.y+r.h))+39:760)};}
+function siteFor(id,doc=state){return rects(doc).find(s=>s.id===id);}
+function valid(raw){
+ if(!raw||!Array.isArray(raw.nodes)||!Array.isArray(raw.links))throw Error('Kein gültiges Infra-Canvas-Diagramm.');
+ const inputSites=Array.isArray(raw.sites)&&raw.sites.length?raw.sites:DEFAULT_SITES;
+ const sites=[],siteIDs=new Set();for(const st of inputSites.slice(0,18)){if(!st||typeof st!=='object')continue;const id=String(st.id||uid()).slice(0,40);if(siteIDs.has(id))continue;sites.push({id,name:String(st.name||'Standort').slice(0,36),sub:String(st.sub||'').slice(0,44)});siteIDs.add(id);}
+ if(!sites.length)sites.push(clone(DEFAULT_SITES[0]));
+ const doc={version:3,title:String(raw.title||'Neues Diagramm').slice(0,70),sites,subnets:[],nodes:[],links:[]};
+ const legacy=Number(raw.version)===1;
+ const subnetIDs=new Set();
+ if(Array.isArray(raw.subnets))for(const sn of raw.subnets.slice(0,160)){
+  if(!sn||typeof sn!=='object')continue;const id=String(sn.id||uid()).slice(0,40);if(subnetIDs.has(id))continue;
+  const site=siteIDs.has(String(sn.site))?String(sn.site):sites[0].id;
+  const x=Number(sn.x),y=Number(sn.y),w=Number(sn.w),h=Number(sn.h);
+  doc.subnets.push({id,site,name:String(sn.name||'Subnetz').slice(0,40),cidr:String(sn.cidr||'').slice(0,44),
+   x:clamp(Number.isFinite(x)?x:22,12,265),y:clamp(Number.isFinite(y)?y:112,82,3000),
+   w:clamp(Number.isFinite(w)?w:490,265,SITE_W-24),h:clamp(Number.isFinite(h)?h:240,165,1500)});
+  const net=doc.subnets.at(-1);net.x=clamp(net.x,12,SITE_W-net.w-12);subnetIDs.add(id);
+ }
+ const ids=new Set();
+ for(const o of raw.nodes.slice(0,500)){
+  if(!o||typeof o!=='object')continue;const id=String(o.id||uid()).slice(0,40);if(ids.has(id))continue;ids.add(id);
+  const site=siteIDs.has(String(o.site))?String(o.site):sites[0].id;
+  const ix=sites.findIndex(st=>st.id===site),ox=38+(ix%2)*584,oy=98+Math.floor(ix/2)*643;
+  const x=Number(o.x),y=Number(o.y);
+  const subnet=doc.subnets.find(sn=>sn.id===String(o.subnetId)&&sn.site===site);
+  doc.nodes.push({id,kind:TYPES[o.kind]?o.kind:'app',name:String(o.name||'Baustein').slice(0,44),detail:String(o.detail||'').slice(0,55),site,subnetId:subnet?.id||null,
+   x:clamp((Number.isFinite(x)?x:(legacy?ox:0)+30)-(legacy?ox:0),15,SITE_W-NW-15),
+   y:clamp((Number.isFinite(y)?y:(legacy?oy:0)+100)-(legacy?oy:0),88,3000),
+   parentId:typeof o.parentId==='string'?o.parentId:null});
+ }
+ for(const n of doc.nodes){const host=doc.nodes.find(h=>h.id===n.parentId);if(!host||host.kind!=='server'||!['vm','lxc'].includes(n.kind)||host.site!==n.site||host.id===n.id)n.parentId=null;else n.subnetId=host.subnetId||null;}
+ for(const o of raw.links.slice(0,800)){if(!o||!ids.has(String(o.from))||!ids.has(String(o.to))||o.from===o.to)continue;doc.links.push({id:String(o.id||uid()).slice(0,40),from:String(o.from),to:String(o.to),style:o.style==='vpn'?'vpn':'standard',label:String(o.label||'').slice(0,45)});}
+ return doc;
+}
+let state;try{state=valid(JSON.parse(localStorage.getItem(KEY)||'null'));}catch{state=valid(starter());}
+let selection=null, mode='select', linkFrom=null, drag=null, subnetDrag=null, undo=[],redo=[],fieldSnapshot=null,toaster;
+const persist=()=>{try{localStorage.setItem(KEY,JSON.stringify(state));}catch{};$('#status').textContent='Lokal gespeichert';};
+const snapshot=()=>JSON.stringify(state);
+function history(before){const now=before??snapshot();if(undo.at(-1)!==now)undo.push(now);if(undo.length>60)undo.shift();redo=[];}
+function mutate(fn,{record=true,refresh=true}={}){if(record)history();fn();persist();if(refresh)render();else renderBoard();}
+function rewind(direction){const src=direction==='undo'?undo:redo,dest=direction==='undo'?redo:undo;if(!src.length)return;dest.push(snapshot());state=JSON.parse(src.pop());selection=null;mode='select';linkFrom=null;persist();render();}
+const iconShapes={
+server:'<rect x="3" y="3" width="18" height="7" rx="1.5"/><rect x="3" y="14" width="18" height="7" rx="1.5"/><path d="M7 6.5h.1M7 17.5h.1M11 6.5h7M11 17.5h7"/>',
+vm:'<rect x="3" y="3.5" width="18" height="13" rx="2"/><path d="M8 20.5h8M12 16.5v4M7 8h10M7 11h5"/>',
+container:'<path d="M4 7.5 12 3l8 4.5v9L12 21l-8-4.5zM4 7.5l8 4.6 8-4.6M12 12.1V21"/>',
+shield:'<path d="M12 2.5 20 6v5.8c0 4.4-2.8 7.6-8 9.7-5.2-2.1-8-5.3-8-9.7V6z"/><path d="m8.7 12 2.2 2.2 4.6-4.8"/>',
+router:'<rect x="2.5" y="10.5" width="19" height="9" rx="2"/><path d="M7 10.5V5m10 5.5V5M5.8 15h.2m3 0h.2M14 15h4M4 3.5l3 1.5 3-1.5M14 3.5 17 5l3-1.5"/>',
+app:'<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9.5h18M7 7h.1M10 7h.1M8.5 14l2.5 2.5 4.8-5"/>',
+database:'<ellipse cx="12" cy="5.5" rx="8" ry="3"/><path d="M4 5.5v13c0 1.7 3.6 3 8 3s8-1.3 8-3v-13M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/>'};
+function icon(k,c,sz=22){return `<svg xmlns="${NS}" width="${sz}" height="${sz}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${iconShapes[TYPES[k]?.icon||'app']}</svg>`;}
+function svgIcon(k,c){return `<g fill="none" stroke="${c}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" transform="translate(0 0)">${iconShapes[TYPES[k]?.icon||'app']}</g>`;}
+function textShort(s,n){s=String(s||'');return s.length>n?s.slice(0,n-1)+'…':s;}
+function nodeRect(n){
+ if(drag?.id===n.id&&drag.moved&&drag.preview)return{...drag.preview,...nodeSize(n)};
+ if(n.parentId){const host=state.nodes.find(h=>h.id===n.parentId);
+  if(host){const members=state.nodes.filter(c=>c.parentId===host.id&&(c.kind==='vm'||c.kind==='lxc'));const i=members.findIndex(c=>c.id===n.id),r=nodeRect(host);return{x:r.x+16,y:r.y+70+i*49,w:204,h:40};}
+ }
+ const s=siteFor(n.site);const d=nodeSize(n);
+ const preview=subnetDrag?.moved&&subnetDrag?.preview&&n.subnetId===subnetDrag.id&&subnetDrag.mode==='move'&&n.site===subnetDrag.site?{x:subnetDrag.preview.x-subnetDrag.ox,y:subnetDrag.preview.y-subnetDrag.oy}:{x:0,y:0};
+ return{x:(s?.x||38)+n.x+preview.x,y:(s?.y||98)+n.y+preview.y,...d};
+}
+function pnt(r,side){const x=r.x,y=r.y;if(side==='left')return{x,y:y+r.h/2};if(side==='right')return{x:x+r.w,y:y+r.h/2};if(side==='top')return{x:x+r.w/2,y};return{x:x+r.w/2,y:y+r.h};}
+function linkGeometry(a,b){
+ const A=nodeRect(a),B=nodeRect(b),dx=B.x+B.w/2-A.x-A.w/2,dy=B.y+B.h/2-A.y-A.h/2;let p1,p2,c1,c2;
+ if(Math.abs(dx)>Math.abs(dy)*1.1){p1=pnt(A,dx>0?'right':'left');p2=pnt(B,dx>0?'left':'right');let shift=Math.max(35,Math.abs(p2.x-p1.x)*.43),dir=dx>0?1:-1;c1={x:p1.x+dir*shift,y:p1.y};c2={x:p2.x-dir*shift,y:p2.y};}
+ else{p1=pnt(A,dy>0?'bottom':'top');p2=pnt(B,dy>0?'top':'bottom');let shift=Math.max(35,Math.abs(p2.y-p1.y)*.46),dir=dy>0?1:-1;c1={x:p1.x,y:p1.y+dir*shift};c2={x:p2.x,y:p2.y-dir*shift};}
+ const middle={x:(p1.x+3*c1.x+3*c2.x+p2.x)/8,y:(p1.y+3*c1.y+3*c2.y+p2.y)/8};return{d:`M ${p1.x} ${p1.y} C ${c1.x} ${c1.y} ${c2.x} ${c2.y} ${p2.x} ${p2.y}`,middle};
+}
+function boardMarkup(exporting=false){
+ const {w,h}=boardSize(),layouts=rects();
+ const defs=`<defs><pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1" fill="#dce6f0" opacity=".78"/></pattern><filter id="node-shadow" x="-18%" y="-35%" width="145%" height="190%"><feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#43698b" flood-opacity=".11"/></filter><filter id="site-shadow" x="-10%" y="-10%" width="125%" height="125%"><feDropShadow dx="0" dy="2" stdDeviation="5" flood-color="#728ca5" flood-opacity=".07"/></filter></defs>`;
+ let out=defs+`<rect width="${w}" height="${h}" fill="#ffffff"/><rect width="${w}" height="${h}" fill="url(#dots)"/>`;
+ out+=`<text x="45" y="48" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" fill="#253951" font-weight="700" font-size="22" letter-spacing="-.4">${E(textShort(state.title,65))}</text><text x="${w-42}" y="47" text-anchor="end" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" fill="#98a7b9" font-size="12">INFRASTRUCTURE MAP</text>`;
+ for(let s of layouts){const selected=!exporting&&selection?.type==='site'&&selection.id===s.id;
+ out+=`<g data-site="${E(s.id)}" style="cursor:pointer"><rect x="${s.x}" y="${s.y}" width="${s.w}" height="${s.h}" rx="19" fill="${s.fill}" stroke="${selected?'#4489e4':s.stroke}" stroke-width="${selected?3:1.4}" filter="url(#site-shadow)"/><rect x="${s.x+22}" y="${s.y+18}" width="6" height="32" rx="3" fill="${s.accent}"/><text x="${s.x+39}" y="${s.y+35}" font-size="19" font-weight="750" fill="#22354c" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif">${E(textShort(s.name,33))}</text><text x="${s.x+40}" y="${s.y+53}" font-size="11.5" fill="#8798ac" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif">${E(textShort(s.sub,38))}</text><rect x="${s.x+s.w-93}" y="${s.y+20}" width="69" height="26" rx="13" fill="${s.tag}"/><text x="${s.x+s.w-58.5}" y="${s.y+37.5}" font-size="10" font-weight="750" fill="${s.accent}" text-anchor="middle" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif">STANDORT</text></g>`;
+ }
+ for(const sn of state.subnets){
+  const site=siteFor(sn.site);if(!site)continue;
+  const preview=subnetDrag?.id===sn.id&&subnetDrag.moved?subnetDrag.preview:null;
+  const x=site.x+(preview?.x??sn.x),y=site.y+(preview?.y??sn.y),sw=preview?.w??sn.w,sh=preview?.h??sn.h;
+  const sel=!exporting&&selection?.type==='subnet'&&selection.id===sn.id;
+  out+=`<g data-subnet="${E(sn.id)}" style="cursor:pointer"><rect x="${x}" y="${y}" width="${sw}" height="${sh}" rx="15" fill="#e7f3f7" fill-opacity=".72" stroke="${sel?'#287eb5':'#9fcbd9'}" stroke-width="${sel?2.9:1.6}" stroke-dasharray="7 5"/><rect data-subnet-handle="${E(sn.id)}" x="${x}" y="${y}" width="${sw}" height="51" rx="15" fill="#e0eef4" fill-opacity=".92" style="cursor:grab"/><path d="M${x} ${y+41}h${sw}" stroke="#b9d8e1"/><circle cx="${x+23}" cy="${y+25}" r="7" fill="#4f9bb5"/><text x="${x+41}" y="${y+24}" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" font-size="14" font-weight="750" fill="#275772">${E(textShort(sn.name,33))}</text><text x="${x+41}" y="${y+39}" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" font-size="10.5" fill="#648aa0">${E(textShort(sn.cidr,43))}</text>`;
+  if(!exporting)out+=`<g data-subnet-resize="${E(sn.id)}" style="cursor:nwse-resize"><path d="M${x+sw-23} ${y+sh-9}l14 -14 M${x+sw-17} ${y+sh-9}l8 -8" fill="none" stroke="#4e8da9" stroke-width="2.6" stroke-linecap="round"/><rect x="${x+sw-30}" y="${y+sh-31}" width="31" height="32" fill="transparent"/></g>`;
+  out+='</g>';
+ }
+ for(const l of state.links){const a=state.nodes.find(n=>n.id===l.from),b=state.nodes.find(n=>n.id===l.to);if(!a||!b)continue;const g=linkGeometry(a,b),selected=!exporting&&selection?.type==='link'&&selection.id===l.id,col=selected?'#2563eb':l.style==='vpn'?'#357db4':'#94a9bf',label=String(l.label||'');out+=`<g data-link="${E(l.id)}" style="cursor:pointer"><path d="${g.d}" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/><path d="${g.d}" fill="none" stroke="${col}" stroke-width="${selected?3.7:2.4}" stroke-linecap="round" ${l.style==='vpn'?'stroke-dasharray="8 6"':''}/>`;if(!exporting)out+=`<path d="${g.d}" fill="none" stroke="transparent" stroke-width="18"/>`;if(label){const width=clamp(label.length*6.5+20,47,155);out+=`<rect x="${g.middle.x-width/2}" y="${g.middle.y-13}" rx="12" width="${width}" height="26" fill="#ffffff" stroke="${selected?'#79a6ee':'#dbe5ef'}" stroke-width="1.5"/><text x="${g.middle.x}" y="${g.middle.y+3.8}" text-anchor="middle" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" font-size="11" font-weight="700" fill="${col}">${E(textShort(label,21))}</text>`;}out+='</g>';}
+ // Hosts and normal nodes are drawn first; hosted guests always on top of their host panel.
+ for(const n of [...state.nodes.filter(n=>!n.parentId),...state.nodes.filter(n=>n.parentId)]){
+ const t=TYPES[n.kind]||TYPES.app,selected=!exporting&&selection?.type==='node'&&selection.id===n.id,r=nodeRect(n),count=n.kind==='server'?state.nodes.filter(c=>c.parentId===n.id).length:0;
+ if(n.parentId){out+=`<g data-node="${E(n.id)}" transform="translate(${r.x} ${r.y})" style="cursor:${mode==='connect'?'crosshair':'grab'}"><rect width="${r.w}" height="${r.h}" rx="8" fill="#fff" stroke="${selected?'#4489e4':'#dbe5ef'}" stroke-width="${selected?2.5:1.1}"/><rect x="8" y="7" width="27" height="27" rx="7" fill="${t.tint}"/><g transform="translate(10 9) scale(.92)">${svgIcon(n.kind,t.color)}</g><text x="43" y="18" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" font-size="12.4" font-weight="720" fill="#25374d">${E(textShort(n.name,23))}</text><text x="43" y="31" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" font-size="9.5" fill="#8a9aac">${E(textShort(n.detail||t.hint,27))}</text></g>`;continue;}
+ if(count){out+=`<g data-node="${E(n.id)}" transform="translate(${r.x} ${r.y})" style="cursor:${mode==='connect'?'crosshair':'grab'}"><rect width="${r.w}" height="${r.h}" rx="13" fill="#f0f5ff" stroke="${selected?'#4489e4':'#b4cce8'}" stroke-width="${selected?3:1.5}" filter="url(#node-shadow)"/><rect x="0" y="0" width="${r.w}" height="61" rx="13" fill="#ffffff"/><path d="M0 51 V61 H${r.w} V51" fill="#ffffff"/><rect x="12" y="12" width="40" height="40" rx="10" fill="${t.tint}"/><g transform="translate(20 20)">${svgIcon(n.kind,t.color)}</g><text x="62" y="30" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" font-size="14.2" font-weight="730" fill="#25374d">${E(textShort(n.name,17))}</text><text x="62" y="47" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" font-size="11" fill="#90a0b0">${count} ${count===1?'Gast':'Gäste'} · ${E(textShort(n.detail,12))}</text></g>`;continue;}
+ out+=`<g data-node="${E(n.id)}" transform="translate(${r.x} ${r.y})" style="cursor:${mode==='connect'?'crosshair':'grab'}"><rect width="${r.w}" height="${r.h}" rx="12" fill="#ffffff" stroke="${selected?'#4489e4':'#dae4ee'}" stroke-width="${selected?3:1.25}" filter="url(#node-shadow)"/><rect x="12" y="14" width="46" height="46" rx="11" fill="${t.tint}"/><g transform="translate(23 25)">${svgIcon(n.kind,t.color)}</g><text x="70" y="33" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" font-size="14.2" font-weight="730" fill="#25374d">${E(textShort(n.name,17))}</text><text x="70" y="51" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" font-size="11.5" fill="#90a0b0">${E(textShort(n.detail||t.hint,20))}</text>${!exporting&&mode==='connect'&&linkFrom===n.id?'<circle cx="195" cy="9" r="6" fill="#2563eb" stroke="white" stroke-width="2"/>':''}</g>`;
+ }
+ return out;
+}
+function renderBoard(){const svg=$('#board'),{w,h}=boardSize(),wrap=svg.parentElement;svg.setAttribute('viewBox',`0 0 ${w} ${h}`);wrap.style.aspectRatio=`${w}/${h}`;wrap.style.maxWidth=w+'px';wrap.style.minWidth=(w===620?620:780)+'px';svg.innerHTML=boardMarkup();}
+function render(){renderBoard();renderInspector();$('#docTitle').value=state.title;$('#connectBtn').classList.toggle('active',mode==='connect');$('#connectBtn').textContent=mode==='connect'?(linkFrom?'Ziel wählen · Esc':'Start wählen · Esc'):'⤳  Verbinden';$('#undoBtn').disabled=!undo.length;$('#redoBtn').disabled=!redo.length;$('#stageFooter').textContent=mode==='connect'?'Klicke zwei Bausteine an, um sie zu verbinden.':'Bausteine und Subnetze ziehen · 100 % lokal';}
+function fieldHTML(label,id,val,opts={}){if(opts.options)return `<label class="field"><span class="field-label">${E(label)}</span><select id="${id}">${opts.options.map(o=>`<option value="${E(o[0])}" ${o[0]===val?'selected':''}>${E(o[1])}</option>`).join('')}</select></label>`;return `<label class="field"><span class="field-label">${E(label)}</span><input id="${id}" type="text" value="${E(val)}" maxlength="${opts.limit||55}"></label>`;}
+function renderInspector(){const el=$('#inspector');if(!selection){el.innerHTML=`<div class="empty-inspector"><svg width="64" height="64" viewBox="0 0 64 64" fill="none"><rect x="8" y="12" width="48" height="37" rx="7" stroke="currentColor" stroke-width="2"/><rect x="17" y="22" width="13" height="9" rx="2" stroke="currentColor" stroke-width="2"/><rect x="36" y="32" width="11" height="9" rx="2" stroke="currentColor" stroke-width="2"/><path d="M30 26h12v6M32 51v5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><strong>Element auswählen</strong><p>Baustein, Verbindung oder Standort anklicken, um Eigenschaften zu bearbeiten. Standorte und Subnetze über die Symbolleiste hinzufügen.</p></div>`;return;}
+if(selection.type==='node'){
+ const n=state.nodes.find(o=>o.id===selection.id);if(!n){selection=null;renderInspector();return;}
+ const hosts=state.nodes.filter(h=>h.kind==='server'&&h.id!==n.id&&h.site===n.site),canNest=['vm','lxc'].includes(n.kind),host=state.nodes.find(h=>h.id===n.parentId);
+ let extra='';
+ if(canNest)extra=fieldHTML('Host','f-parent',n.parentId||'',{options:[['','Kein Host (frei im Standort)'],...hosts.map(h=>[h.id,h.name]) ]});
+ if(n.kind==='server'){const count=state.nodes.filter(c=>c.parentId===n.id).length;extra=`<div class="help"><strong>${count} ${count===1?'Gast':'Gäste'} im Host</strong>Ziehe VMs oder Container direkt auf diesen Host. Die Gäste werden darin gruppiert und beim Verschieben mitgenommen.</div>`;}
+ el.innerHTML=`<div class="selection-meta"><span class="pill">${n.parentId?'GAST':'BAUSTEIN'}</span><span class="status">${E(n.id.slice(0,10))}</span></div><h2>Eigenschaften</h2><p class="inspector-description">Name, Typ und Zuordnung bearbeiten.</p>${fieldHTML('Name','f-name',n.name,{limit:44})}${fieldHTML('Untertitel','f-detail',n.detail,{limit:55})}${fieldHTML('Typ','f-kind',n.kind,{options:Object.entries(TYPES).map(([k,v])=>[k,v.label])})}${fieldHTML('Standort','f-site',n.site,{options:state.sites.map(s=>[s.id,s.name])})}${n.parentId?'<p class="side-desc">Subnetz wird vom Host übernommen.</p>':fieldHTML('Subnetz','f-subnet',n.subnetId||'',{options:[['','Ohne Subnetz'],...state.subnets.filter(sn=>sn.site===n.site).map(sn=>[sn.id,sn.name+(sn.cidr?' · '+sn.cidr:'')])]})}${extra}<div class="inspector-actions"><button id="duplicate" class="btn">Duplizieren</button><button id="delete" class="btn danger">Baustein löschen</button></div>`;
+ wireText('#f-name',v=>n.name=v);wireText('#f-detail',v=>n.detail=v);
+ wireSelect('#f-kind',v=>{n.kind=v;if(!['vm','lxc'].includes(v))n.parentId=null;if(v!=='server')for(const c of state.nodes)if(c.parentId===n.id)c.parentId=null;});
+ wireSelect('#f-site',v=>{n.site=v;n.parentId=null;n.subnetId=null;clampLocal(n);for(const c of state.nodes)if(c.parentId===n.id){c.site=v;c.subnetId=null;}});
+ if(!n.parentId)wireSelect('#f-subnet',v=>{n.subnetId=v||null;for(const c of state.nodes)if(c.parentId===n.id)c.subnetId=n.subnetId;});
+ if(canNest)wireSelect('#f-parent',v=>{n.parentId=v||null;if(v){const h=state.nodes.find(o=>o.id===v);if(h){n.site=h.site;n.subnetId=h.subnetId||null;resolveOverlaps(h.id);}}});
+ $('#duplicate').onclick=()=>{mutate(()=>{const nn={...n,id:uid(),parentId:n.parentId||null,x:clamp(n.x+26,15,SITE_W-NW-15),y:n.y+26};state.nodes.push(nn);if(nn.parentId)resolveOverlaps(nn.parentId);selection={type:'node',id:nn.id};});};$('#delete').onclick=deleteSelected;
+}else if(selection.type==='link'){
+ const l=state.links.find(o=>o.id===selection.id);if(!l){selection=null;renderInspector();return;}const a=state.nodes.find(n=>n.id===l.from),b=state.nodes.find(n=>n.id===l.to);
+ el.innerHTML=`<div class="selection-meta"><span class="pill">VERBINDUNG</span></div><h2>Verbindung</h2><p class="inspector-description">${E(a?.name||'?')} ↔ ${E(b?.name||'?')}</p>${fieldHTML('Beschriftung','f-label',l.label,{limit:45})}${fieldHTML('Linienstil','f-style',l.style,{options:[['standard','Normal'],['vpn','VPN / Tunnel (gestrichelt)']]})}<div class="inspector-actions"><button id="delete" class="btn danger">Verbindung löschen</button></div>`;
+ wireText('#f-label',v=>l.label=v);wireSelect('#f-style',v=>l.style=v);$('#delete').onclick=deleteSelected;
+}else if(selection.type==='subnet'){
+ const sn=state.subnets.find(t=>t.id===selection.id);if(!sn){selection=null;renderInspector();return;}
+ const count=state.nodes.filter(n=>n.subnetId===sn.id).length;
+ el.innerHTML=`<div class="selection-meta"><span class="pill">SUBNETZ</span></div><h2>Subnetz bearbeiten</h2><p class="inspector-description">Eigener Netzwerkbereich innerhalb eines Standorts.</p>${fieldHTML('Name','f-name',sn.name,{limit:40})}${fieldHTML('CIDR / Beschreibung','f-cidr',sn.cidr,{limit:44})}${fieldHTML('Standort','f-site',sn.site,{options:state.sites.map(s=>[s.id,s.name])})}<p class="side-desc">${count} zugeordnete Bausteine · Ziehen an der Titelleiste, Größe unten rechts ändern.</p><div class="inspector-actions"><button id="deleteSubnet" class="btn danger">Subnetz entfernen</button></div><p class="side-desc">Beim Entfernen bleiben die enthaltenen Bausteine erhalten.</p>`;
+ wireText('#f-name',v=>sn.name=v);wireText('#f-cidr',v=>sn.cidr=v);
+ wireSelect('#f-site',v=>{sn.site=v;sn.x=clamp(sn.x,12,SITE_W-sn.w-12);for(const n of state.nodes)if(n.subnetId===sn.id)n.site=v;});
+ $('#deleteSubnet').onclick=()=>removeSubnet(sn.id);
+}else if(selection.type==='site'){
+ const site=state.sites.find(s=>s.id===selection.id);if(!site){selection=null;renderInspector();return;}
+ const count=state.nodes.filter(n=>n.site===site.id).length;
+ el.innerHTML=`<div class="selection-meta"><span class="pill">STANDORT</span></div><h2>Standort bearbeiten</h2><p class="inspector-description">Name, Beschreibung und Verwaltung des Standortes.</p>${fieldHTML('Name','f-name',site.name,{limit:36})}${fieldHTML('Beschreibung','f-detail',site.sub,{limit:44})}<p class="side-desc">${count} Bausteine an diesem Standort</p><div class="inspector-actions"><button id="deleteSite" class="btn danger" ${state.sites.length<=1?'disabled':''}>Standort entfernen</button></div>${state.sites.length<=1?'<p class="side-desc">Mindestens ein Standort muss bestehen bleiben.</p>':''}`;
+ wireText('#f-name',v=>site.name=v);wireText('#f-detail',v=>site.sub=v);$('#deleteSite').onclick=()=>removeSite(site.id);
+ }
+}
+function wireText(selector,setter){const el=$(selector);el.addEventListener('focus',()=>{fieldSnapshot=snapshot();});el.addEventListener('input',()=>{setter(el.value);persist();renderBoard();$('#docTitle').value=state.title;});el.addEventListener('blur',()=>{if(fieldSnapshot&&fieldSnapshot!==snapshot())history(fieldSnapshot);fieldSnapshot=null;render();});}
+function wireSelect(selector,setter){$(selector).addEventListener('change',e=>mutate(()=>setter(e.target.value)));}
+function deleteSelected(){if(!selection)return;if(selection.type==='site'){removeSite(selection.id);return;}if(selection.type==='node'){const n=state.nodes.find(o=>o.id===selection.id);const guests=state.nodes.filter(c=>c.parentId===n?.id).length;if(guests&&!confirm(`Host „${n.name}“ und seine ${guests} Gäste samt Verbindungen löschen? (Mit Strg+Z rückgängig.)`))return;}mutate(()=>{
+ if(selection.type==='node'){
+  const id=selection.id,children=state.nodes.filter(n=>n.parentId===id).map(n=>n.id),deleted=new Set([id,...children]);
+  state.nodes=state.nodes.filter(n=>!deleted.has(n.id));state.links=state.links.filter(l=>!deleted.has(l.from)&&!deleted.has(l.to));
+ }else if(selection.type==='link')state.links=state.links.filter(l=>l.id!==selection.id);
+ selection=null;
+});}
+function addSite(){if(state.sites.length>=18){toast('Maximal 18 Standorte.');return;}const value=prompt('Name des neuen Standorts:', 'Neuer Standort');if(value===null)return;const name=value.trim().slice(0,36);if(!name){toast('Bitte einen Namen angeben.');return;}mutate(()=>{const s={id:'site-'+uid(),name,sub:''};state.sites.push(s);selection={type:'site',id:s.id};});const st=siteFor(selection.id);const stage=$('#stage');if(st)stage.scrollTop=stage.scrollHeight;}
+function removeSite(id){const s=state.sites.find(t=>t.id===id);if(!s||state.sites.length<=1)return;const deleted=state.nodes.filter(n=>n.site===id),deletedIds=new Set(deleted.map(n=>n.id));
+ const msg=deleted.length?`Standort „${s.name}“ inklusive ${deleted.length} Bausteinen und ihren Verbindungen unwiderruflich aus dem Diagramm entfernen? (Mit Strg+Z rückgängig.)`:`Standort „${s.name}“ entfernen?`;
+ if(!confirm(msg))return;mutate(()=>{state.sites=state.sites.filter(t=>t.id!==id);state.subnets=state.subnets.filter(sn=>sn.site!==id);state.nodes=state.nodes.filter(n=>!deletedIds.has(n.id));state.links=state.links.filter(l=>!deletedIds.has(l.from)&&!deletedIds.has(l.to));selection=null;});}
+function addSubnet(){
+ const siteId=(selection?.type==='site'?selection.id:selection?.type==='node'?state.nodes.find(n=>n.id===selection.id)?.site:selection?.type==='subnet'?state.subnets.find(sn=>sn.id===selection.id)?.site:null)||state.sites[0]?.id;
+ if(!siteId)return;const current=state.subnets.filter(sn=>sn.site===siteId),y=120+current.length*275;
+ mutate(()=>{const sn={id:'sn-'+uid(),site:siteId,name:'Neues Subnetz',cidr:'',x:22,y,w:492,h:225};state.subnets.push(sn);selection={type:'subnet',id:sn.id};});
+}
+function removeSubnet(id){const sn=state.subnets.find(t=>t.id===id);if(!sn)return;
+ const count=state.nodes.filter(n=>n.subnetId===id).length;
+ if(!confirm(`Subnetz „${sn.name}“ entfernen? ${count?`${count} Baustein(e) bleiben ohne Subnetz erhalten.`:'Es enthält keine Bausteine.'}`))return;
+ mutate(()=>{state.subnets=state.subnets.filter(t=>t.id!==id);for(const n of state.nodes)if(n.subnetId===id)n.subnetId=null;selection=null;});
+}
+function subnetAt(pt,siteId){const site=siteFor(siteId);if(!site)return null;
+ const x=pt.x-site.x,y=pt.y-site.y;
+ return [...state.subnets].reverse().find(sn=>sn.site===siteId&&x>=sn.x&&x<=sn.x+sn.w&&y>=sn.y&&y<=sn.y+sn.h)||null;
+}
+function clampLocal(n){const d=nodeSize(n);n.x=clamp(n.x,15,SITE_W-d.w-15);n.y=clamp(n.y,88,3000);}
+function resolveOverlaps(hostId){
+ const host=state.nodes.find(n=>n.id===hostId);if(!host||host.kind!=='server')return;
+ const group=[host,...state.nodes.filter(n=>n.site===host.site&&!n.parentId&&n.id!==host.id)].sort((a,b)=>a.y-b.y);
+ // Respect horizontal lanes; move later cards down whenever the expanded host overlaps them.
+ for(let i=0;i<group.length;i++)for(let j=i+1;j<group.length;j++){
+  const a=group[i],b=group[j],ar={x:a.x,y:a.y,...nodeSize(a)},br={x:b.x,y:b.y,...nodeSize(b)};
+  if(br.x<ar.x+ar.w+9&&br.x+br.w+9>ar.x&&br.y<ar.y+ar.h+15&&br.y>=ar.y-5){b.y=ar.y+ar.h+17;}
+ }
+}
+function setMode(m){mode=m;linkFrom=null;render();}
+function connectClick(id){if(!linkFrom){linkFrom=id;render();return;}if(linkFrom===id){linkFrom=null;render();return;}const from=linkFrom;const exists=state.links.some(l=>(l.from===from&&l.to===id)||(l.from===id&&l.to===from));if(exists){toast('Diese Verbindung existiert bereits.');setMode('select');return;}mutate(()=>{const a=state.nodes.find(n=>n.id===from),b=state.nodes.find(n=>n.id===id),vpn=a.site!==b.site;const link={id:uid(),from,to:id,style:vpn?'vpn':'standard',label:vpn?'VPN / Tunnel':''};state.links.push(link);selection={type:'link',id:link.id};mode='select';linkFrom=null;});}
+function pos(event){const svg=$('#board'),p=svg.createSVGPoint();p.x=event.clientX;p.y=event.clientY;const ctm=svg.getScreenCTM();if(!ctm)return{x:0,y:0};return p.matrixTransform(ctm.inverse());}
+function getSite(pt){const layouts=rects();if(!layouts.length)return null;const inside=layouts.find(s=>pt.x>=s.x&&pt.x<=s.x+s.w&&pt.y>=s.y&&pt.y<=s.y+s.h);if(inside)return inside;return layouts.reduce((a,b)=>{const dist=s=>Math.hypot(Math.max(s.x-pt.x,0,pt.x-s.x-s.w),Math.max(s.y-pt.y,0,pt.y-s.y-s.h));return dist(a)<dist(b)?a:b;});}
+function hostAt(pt,excludeId){return state.nodes.filter(n=>n.kind==='server'&&n.id!==excludeId).find(h=>{const r=nodeRect(h);return pt.x>=r.x&&pt.x<=r.x+r.w&&pt.y>=r.y&&pt.y<=r.y+r.h;});}
+function createNode(kind,pt){const s=getSite(pt);if(!s){toast('Lege zuerst einen Standort an.');return;}
+ mutate(()=>{const n={id:uid(),kind,name:TYPES[kind].label.split(' / ')[0],detail:TYPES[kind].hint,site:s.id,subnetId:subnetAt(pt,s.id)?.id||null,x:pt.x-s.x-NW/2,y:pt.y-s.y-NH/2,parentId:null};clampLocal(n);
+ const host=['vm','lxc'].includes(kind)?hostAt(pt):null;if(host){n.parentId=host.id;n.site=host.site;n.subnetId=host.subnetId||null;}
+ state.nodes.push(n);if(n.parentId)resolveOverlaps(n.parentId);selection={type:'node',id:n.id};});}
+function findSpace(){const s=rects()[0];if(!s)return{x:60,y:205};const used=state.nodes.filter(n=>n.site===s.id&&!n.parentId).length;const x=s.x+40+(used%2)*246,y=s.y+104+Math.floor(used/2)*110;return{x,y};}
+function inCanvas(e){const b=$('#board').getBoundingClientRect();return e.clientX>=b.left&&e.clientX<=b.right&&e.clientY>=b.top&&e.clientY<=b.bottom;}
+function onPaletteDown(e,kind){if(e.button!==0)return;const origin={x:e.clientX,y:e.clientY};let moving=false,ghost=null;const target=e.currentTarget;target.setPointerCapture(e.pointerId);
+const move=ev=>{if(!moving&&Math.hypot(ev.clientX-origin.x,ev.clientY-origin.y)>7){moving=true;ghost=document.createElement('div');ghost.className='floating-ghost';ghost.textContent=TYPES[kind].label;document.body.appendChild(ghost);}if(ghost){ghost.style.left=ev.clientX+'px';ghost.style.top=ev.clientY+'px';}};
+const end=ev=>{target.removeEventListener('pointermove',move);target.removeEventListener('pointerup',end);target.removeEventListener('pointercancel',cancel);ghost?.remove();if(moving){if(inCanvas(ev))createNode(kind,pos(ev));else toast('Ziehe einen Baustein auf die Zeichenfläche.');}else{const p=findSpace(kind);createNode(kind,{x:p.x+NW/2,y:p.y+NH/2});}};
+const cancel=()=>{ghost?.remove();target.removeEventListener('pointermove',move);target.removeEventListener('pointerup',end);target.removeEventListener('pointercancel',cancel);};
+target.addEventListener('pointermove',move);target.addEventListener('pointerup',end);target.addEventListener('pointercancel',cancel);}
+function paletteInit(){const el=$('#palette');for(const [kind,t] of Object.entries(TYPES)){const tile=document.createElement('div');tile.className='palette-item';tile.tabIndex=0;tile.setAttribute('role','button');tile.setAttribute('aria-label',t.label+' hinzufügen');tile.innerHTML=`<span class="mini-icon" style="--accent:${t.color};--tint:${t.tint}">${icon(kind,t.color,19)}</span><span><strong>${E(t.label)}</strong><small>${E(t.hint)}</small></span>`;tile.addEventListener('pointerdown',e=>onPaletteDown(e,kind));tile.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();const p=findSpace(kind);createNode(kind,{x:p.x+NW/2,y:p.y+NH/2});}});el.appendChild(tile);}}
+function onBoardDown(e){if(e.button!==0)return;
+ const nEl=e.target.closest('[data-node]'),lEl=e.target.closest('[data-link]'),snEl=e.target.closest('[data-subnet]'),sEl=e.target.closest('[data-site]');
+ if(nEl){const id=nEl.getAttribute('data-node');if(mode==='connect'){connectClick(id);return;}selection={type:'node',id};renderInspector();renderBoard();const n=state.nodes.find(t=>t.id===id),pt=pos(e),r=nodeRect(n);drag={id,startPt:pt,ox:r.x,oy:r.y,before:snapshot(),moved:false,preview:null};$('#board').setPointerCapture(e.pointerId);
+ }else if(lEl){selection={type:'link',id:lEl.getAttribute('data-link')};render();}
+ else if(snEl){const id=snEl.getAttribute('data-subnet');selection={type:'subnet',id};const sn=state.subnets.find(t=>t.id===id),pt=pos(e);
+ const dragMode=e.target.closest('[data-subnet-resize]')?'resize':e.target.closest('[data-subnet-handle]')?'move':null;
+ if(dragMode&&sn){subnetDrag={id,site:sn.site,mode:dragMode,startPt:pt,ox:sn.x,oy:sn.y,ow:sn.w,oh:sn.h,before:snapshot(),moved:false,preview:null};$('#board').setPointerCapture(e.pointerId);}
+ render();
+ }else if(sEl){selection={type:'site',id:sEl.getAttribute('data-site')};render();}else{selection=null;render();}}
+function onBoardMove(e){
+ if(subnetDrag){const d=subnetDrag,pt=pos(e),dx=pt.x-d.startPt.x,dy=pt.y-d.startPt.y;
+  if(Math.abs(dx)+Math.abs(dy)>2)d.moved=true;
+  if(d.moved){if(d.mode==='move')d.preview={x:clamp(Math.round(d.ox+dx),12,SITE_W-d.ow-12),y:clamp(Math.round(d.oy+dy),80,3000),w:d.ow,h:d.oh};
+   else d.preview={x:d.ox,y:d.oy,w:clamp(Math.round(d.ow+dx),265,SITE_W-d.ox-12),h:clamp(Math.round(d.oh+dy),165,1500)};
+   renderBoard();}return;
+ }
+ if(!drag)return;const n=state.nodes.find(t=>t.id===drag.id);if(!n)return;const pt=pos(e),dx=pt.x-drag.startPt.x,dy=pt.y-drag.startPt.y;if(Math.abs(dx)+Math.abs(dy)>2)drag.moved=true;
+ if(drag.moved){drag.preview={x:Math.round(drag.ox+dx),y:Math.max(93,Math.round(drag.oy+dy))};renderBoard();}}
+function onBoardUp(e){
+ if(subnetDrag){const d=subnetDrag;subnetDrag=null;if(!d.moved){render();return;}
+  const sn=state.subnets.find(t=>t.id===d.id);if(!sn)return;
+  if(d.mode==='resize'){sn.w=d.preview.w;sn.h=d.preview.h;}
+  else{const dx=d.preview.x-d.ox,dy=d.preview.y-d.oy;sn.x=d.preview.x;sn.y=d.preview.y;
+   for(const n of state.nodes)if(n.subnetId===sn.id&&!n.parentId){n.x=clamp(n.x+dx,15,SITE_W-nodeSize(n).w-15);n.y=clamp(n.y+dy,88,3000);}
+  }
+  if(d.before!==snapshot()){history(d.before);persist();}render();return;
+ }
+ if(!drag)return;const d=drag;drag=null;const n=state.nodes.find(t=>t.id===d.id);if(!n||!d.moved){render();return;}
+ const p=pos(e),host=['vm','lxc'].includes(n.kind)?hostAt(p,n.id):null;
+ if(host){n.site=host.site;n.parentId=host.id;n.subnetId=host.subnetId||null;resolveOverlaps(host.id);}
+ else{const s=getSite(p);if(s){n.site=s.id;n.parentId=null;n.subnetId=subnetAt(p,s.id)?.id||null;const dims=nodeSize(n);n.x=clamp(Math.round(d.preview.x-s.x),15,SITE_W-dims.w-15);n.y=clamp(Math.round(d.preview.y-s.y),88,3000);if(n.kind==='server')for(const c of state.nodes)if(c.parentId===n.id){c.site=n.site;c.subnetId=n.subnetId;}}}
+ if(d.before!==snapshot()){history(d.before);persist();}render();}
+function download(blob,file){const u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=file;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),2000);}
+function filename(ext){const name=(state.title||'infrastruktur').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9äöüß]+/g,'-').replace(/^-|-$/g,'').slice(0,54)||'infrastruktur';return name+'.'+ext;}
+function exportSVG(){const{w,h}=boardSize();return `<svg xmlns="${NS}" xmlns:xlink="http://www.w3.org/1999/xlink" width="${Math.round(w*1.33)}" height="${Math.round(h*1.33)}" viewBox="0 0 ${w} ${h}">${boardMarkup(true)}</svg>`;}
+function exportPNG(){const blob=new Blob([exportSVG()],{type:'image/svg+xml;charset=utf-8'}),url=URL.createObjectURL(blob),img=new Image();img.onload=()=>{const canvas=document.createElement('canvas');const{w,h}=boardSize();canvas.width=w*2;canvas.height=h*2;const ctx=canvas.getContext('2d');ctx.drawImage(img,0,0,canvas.width,canvas.height);URL.revokeObjectURL(url);canvas.toBlob(b=>{if(b)download(b,filename('png'));else toast('PNG konnte nicht erstellt werden.');},'image/png');};img.onerror=()=>{URL.revokeObjectURL(url);toast('Der PNG-Export ist fehlgeschlagen.');};img.src=url;}
+function toast(msg){const el=$('#toast');el.textContent=msg;el.classList.add('show');clearTimeout(toaster);toaster=setTimeout(()=>el.classList.remove('show'),2800);}
+$('#board').addEventListener('pointerdown',onBoardDown);$('#board').addEventListener('pointermove',onBoardMove);$('#board').addEventListener('pointerup',onBoardUp);$('#board').addEventListener('pointercancel',()=>{if(drag){const d=drag;drag=null;state=JSON.parse(d.before);}if(subnetDrag){const d=subnetDrag;subnetDrag=null;state=JSON.parse(d.before);}render();});
+$('#addSiteBtn').onclick=addSite;$('#addSubnetBtn').onclick=addSubnet;$('#newBtn').onclick=()=>{if(confirm('Das aktuelle Diagramm durch ein leeres Diagramm ersetzen?')){history();state=blank();selection=null;mode='select';linkFrom=null;persist();render();}};$('#connectBtn').onclick=()=>setMode(mode==='connect'?'select':'connect');$('#undoBtn').onclick=()=>rewind('undo');$('#redoBtn').onclick=()=>rewind('redo');
+$('#resetBtn').onclick=()=>{if(confirm('Das aktuelle Diagramm durch die neutrale Demo ersetzen?')){history();state=valid(starter());selection=null;mode='select';linkFrom=null;persist();render();}};
+$('#docTitle').addEventListener('focus',e=>fieldSnapshot=snapshot());$('#docTitle').addEventListener('input',e=>{state.title=e.target.value;persist();renderBoard();});$('#docTitle').addEventListener('blur',()=>{if(fieldSnapshot&&fieldSnapshot!==snapshot())history(fieldSnapshot);fieldSnapshot=null;render();});
+$('#jsonBtn').onclick=()=>download(new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),filename('json'));
+$('#svgBtn').onclick=()=>download(new Blob([exportSVG()],{type:'image/svg+xml'}),filename('svg'));
+$('#pngBtn').onclick=exportPNG;
+$('#importBtn').onclick=()=>$('#fileInput').click();$('#fileInput').addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;try{const data=valid(JSON.parse(await f.text()));history();state=data;selection=null;mode='select';persist();render();toast('Diagramm geladen.');}catch(err){toast(err.message||'Datei konnte nicht geladen werden.');}e.target.value='';});
+window.addEventListener('keydown',e=>{const focused=document.activeElement,editing=focused?.matches('input,textarea,select,[contenteditable]');if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'&&!editing){e.preventDefault();rewind(e.shiftKey?'redo':'undo');}else if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='y'&&!editing){e.preventDefault();rewind('redo');}else if(e.key==='Escape'){if(mode==='connect')setMode('select');else{selection=null;render();}}else if((e.key==='Delete'||e.key==='Backspace')&&!editing&&selection){e.preventDefault();deleteSelected();}});
+paletteInit();render();
+})();
+</script>
+</body>
+</html>

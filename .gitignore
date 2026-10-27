@@ -1,0 +1,16 @@
+# Local/private infrastructure diagrams and image exports
+private/
+diagrams/
+exports/
+*.local.json
+*.private.json
+*.private.svg
+*.private.png
+
+# Editor and system files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
