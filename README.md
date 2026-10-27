@@ -9,9 +9,12 @@ A small, standalone infrastructure diagram editor. Just one HTML file — no bui
 - Create, rename, and delete multiple sites.
 - Create subnets as movable and resizable visual groups within a site. Store a subnet name and a CIDR/description label.
 - Drag hosts, VMs, containers, firewalls, routers, applications, and storage elements from the palette.
-- Nest VMs and containers into a host; move hosted guests with their host.
+- Nest VMs, containers, firewalls, routers, and switches into a host, and applications or storage/DB into a VM or container; nested elements move with their container.
+- Create one or more subnets inside a host (inspector: **＋ Subnetz im Host**) and drop VMs/containers into them. Each host subnet can name a firewall or router as its **gateway**.
+- Record how a hypervisor is reachable (**Erreichbar über**: a site or host subnet, plus an optional management IP).
 - Assign nodes to subnets by dropping them inside the visual group or choosing a subnet in the inspector.
 - Connect nodes, including dashed tunnel links; edit connection labels.
+- Zoom in and out (toolbar, Ctrl/⌘ + mouse wheel or pinch, Ctrl/⌘ + `+`/`-`/`0`); by default the board fits the visible area. Zooming scales only the content inside the board; drag the empty background to pan.
 - Undo/redo, auto-save in the browser, JSON import/export, and SVG/PNG image export.
 - Import diagrams from older Infra Canvas v1/v2 versions.
 
@@ -46,7 +49,7 @@ Edit `index.html` directly and reload the page. There is no bundler or dependenc
 Some design constraints are intentional:
 - A subnet is a **visual/documentation grouping**, not a live network scan, VLAN configuration, or CIDR validation engine.
 - Site and subnet positions are stored as part of the editable JSON document.
-- Only hosts can contain VMs or containers. Arbitrarily deep nesting is not supported.
+- Nesting follows fixed rules (`CONTAINS` in `index.html`): host → VM/LXC/firewall/router/switch, VM/LXC → application/storage. Guests of a host can be grouped into host subnets (`nets` on the host, `netId` on the guest). The layout inside containers is automatic; arbitrarily deep nesting is not supported.
 - The interface is optimized for desktop mouse/pointer interaction.
 
 Issues and pull requests are welcome; please keep the application dependency-free unless there's a compelling reason to change that goal.
