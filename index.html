@@ -10,7 +10,7 @@
 :root{--ink:#182536;--muted:#7a8797;--line:#e3eaf1;--blue:#2563eb;--panel:#fff;--body:#f5f8fc;--radius:15px}
 *{box-sizing:border-box}html,body{margin:0;height:100%;font:14px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--body)}button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.4}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #96baff;outline-offset:2px}
 .app{height:100vh;min-height:640px;display:grid;grid-template-rows:68px minmax(0,1fr)}
-header{background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:20px;padding:0 24px;justify-content:space-between;z-index:2}
+header{position:relative;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:20px;padding:0 24px;justify-content:space-between;z-index:2}
 .brand{display:flex;align-items:center;gap:11px;white-space:nowrap}.brand-mark{width:37px;height:37px;display:grid;place-items:center;border-radius:11px;background:#173a69;color:#fff}.brand strong{display:block;font-size:15px;letter-spacing:-.025em}.brand small{color:var(--muted);display:block;font-size:11px;margin-top:-3px;letter-spacing:.025em}
 .document-name{flex:1;max-width:360px;margin:0 auto;border:1px solid transparent;border-radius:8px;background:transparent;padding:8px 10px;font-size:15px;font-weight:650;text-align:center;color:var(--ink);min-width:80px}.document-name:hover,.document-name:focus{background:#f6f9ff;border-color:#dce6f7;outline:0}
 .actions{display:flex;gap:7px;align-items:center}.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;white-space:nowrap;background:#fff;border:1px solid var(--line);border-radius:10px;color:#435368;min-height:36px;padding:0 12px;font-weight:600;font-size:12px}.btn:hover:not(:disabled){background:#f2f6fc;border-color:#cbd9ea}.btn.primary{background:#1e4a85;border:1px solid #1e4a85;color:#fff}.btn.primary:hover{background:#173a69}.btn.active{background:#e8f1ff;border-color:#a5c6ff;color:#1752ac}.btn.icononly{width:36px;padding:0}.btn.danger{color:#b42339;background:#fff;border-color:#f2d3d7}.btn.danger:hover{background:#fff2f2}
@@ -21,9 +21,21 @@ header{background:#fff;border-bottom:1px solid var(--line);display:flex;align-it
 .divider{height:1px;background:var(--line);margin:23px 0}.help{background:#f5f8fc;border:1px solid #e9eff7;padding:13px;border-radius:12px;color:#7a889a;font-size:11px;line-height:1.65}.help strong{color:#45586f;font-size:12px;display:block;margin-bottom:4px}.shortcut{padding:1px 5px;border-radius:4px;border:1px solid #d7e0eb;background:#fff;color:#66768c;white-space:nowrap;font-size:10px}
 .center{position:relative;min-width:0;min-height:0;display:flex;flex-direction:column;overflow:hidden}.tools{height:57px;min-height:57px;display:flex;align-items:center;justify-content:space-between;padding:0 19px;border-bottom:1px solid var(--line);background:#fbfdff;gap:10px}.toolgroup{display:flex;gap:7px;align-items:center}.tool-sep{width:1px;height:24px;background:#dde5ef;margin:0 4px}.boardtag{font-weight:700;font-size:12px;color:#6d8098;white-space:nowrap}.zoom-level{min-width:58px;padding:0 6px;font-variant-numeric:tabular-nums}
 .stage{flex:1;min-height:0;position:relative;overflow:auto;background:#edf3fa;display:flex;align-items:flex-start;justify-content:flex-start;padding:23px}.boardwrap{margin:0 auto;flex:none;width:100%;min-width:780px;aspect-ratio:1200/760;position:relative;background:#fff;border-radius:17px;box-shadow:0 16px 52px #2c52751b,0 2px 10px #2c52750a;overflow:auto;display:flex}.board{display:block;flex:none;margin:auto;width:100%;height:100%;touch-action:none;user-select:none}.stage-footer{position:absolute;left:35px;bottom:32px;pointer-events:none;background:#fffffff0;border:1px solid #e9eff7;border-radius:8px;padding:6px 10px;font-size:10px;color:#8c99a8;box-shadow:0 2px 9px #1b3c7010}
-.inspector h2{margin:0 5px 7px;font-size:17px;letter-spacing:-.035em}.inspector .inspector-description{margin:0 5px 24px;font-size:12px;color:#8290a2}.field{display:block;margin-bottom:16px}.field-label{font-size:11px;font-weight:700;color:#64758a;display:block;margin:0 0 6px}.field input,.field select{border:1px solid #dce5f0;border-radius:9px;padding:10px 11px;width:100%;background:#fff;color:#304358;min-width:0;font-size:13px}.field input:focus,.field select:focus{border-color:#7faeef;box-shadow:0 0 0 3px #e6f1ff;outline:0}.inspector-actions{display:grid;gap:9px;margin-top:22px}.empty-inspector{margin-top:65px;text-align:center;color:#8190a2;padding:5px}.empty-inspector svg{color:#a8bbcf;margin-bottom:12px}.empty-inspector strong{display:block;color:#50647c;font-size:14px;margin-bottom:7px}.empty-inspector p{line-height:1.65;font-size:12px}.pill{font-size:10px;padding:3px 7px;border-radius:6px;background:#edf4ff;color:#5577a4;font-weight:700}.selection-meta{display:flex;align-items:center;justify-content:space-between;margin:0 5px 20px}.status{font-size:11px;color:#8291a3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.floating-ghost{position:fixed;z-index:1000;pointer-events:none;opacity:.88;transform:translate(-50%,-50%);box-shadow:0 10px 30px #22364b3f;width:166px;background:#fff;border:1px solid #a6c6ee;border-radius:12px;padding:13px;font-size:13px;font-weight:700;text-align:center}.toast{position:fixed;bottom:21px;left:50%;transform:translateX(-50%);background:#24364d;color:#fff;padding:10px 16px;border-radius:9px;box-shadow:0 10px 30px #15243430;font-size:12px;z-index:12;pointer-events:none;opacity:0;transition:opacity .15s}.toast.show{opacity:1}
+.inspector h2{margin:0 5px 7px;font-size:17px;letter-spacing:-.035em}.inspector .inspector-description{margin:0 5px 24px;font-size:12px;color:#8290a2}.field{display:block;margin-bottom:16px}.field-label{font-size:11px;font-weight:700;color:#64758a;display:block;margin:0 0 6px}.field input,.field select{border:1px solid #dce5f0;border-radius:9px;padding:10px 11px;width:100%;background:#fff;color:#304358;min-width:0;font-size:13px}.field input:focus,.field select:focus{border-color:#7faeef;box-shadow:0 0 0 3px #e6f1ff;outline:0}.inspector-actions{display:grid;gap:9px;margin-top:22px}.empty-inspector{margin-top:65px;text-align:center;color:#8190a2;padding:5px}.empty-inspector svg{color:#a8bbcf;margin-bottom:12px}.empty-inspector strong{display:block;color:#50647c;font-size:14px;margin-bottom:7px}.empty-inspector p{line-height:1.65;font-size:12px}.pill{font-size:10px;padding:3px 7px;border-radius:6px;background:#edf4ff;color:#5577a4;font-weight:700}.selection-meta{display:flex;align-items:center;justify-content:space-between;margin:0 5px 20px}.status{font-size:11px;color:#8291a3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.order-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}.ip-list{display:grid;gap:6px;margin-bottom:8px}.ip-row{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) 34px;gap:5px}.ip-row input{border:1px solid #dce5f0;border-radius:9px;padding:8px 9px;width:100%;min-width:0;background:#fff;color:#304358;font-size:12.5px}.ip-row input:focus{border-color:#7faeef;box-shadow:0 0 0 3px #e6f1ff;outline:0}.ip-remove{border:1px solid #f2d3d7;border-radius:9px;background:#fff;color:#b42339;padding:0}.ip-remove:hover{background:#fff2f2}
+.floating-ghost{position:fixed;z-index:1000;pointer-events:none;opacity:.88;transform:translate(-50%,-50%);box-shadow:0 10px 30px #22364b3f;width:166px;background:#fff;border:1px solid #a6c6ee;border-radius:12px;padding:13px;font-size:13px;font-weight:700;text-align:center}.toast{position:fixed;bottom:21px;left:50%;transform:translateX(-50%);background:#24364d;color:#fff;padding:10px 16px;border-radius:9px;box-shadow:0 10px 30px #15243430;font-size:12px;z-index:12;pointer-events:none;opacity:0;transition:opacity .15s}.toast.show{opacity:1}
 @media(max-width:1150px){.workspace{grid-template-columns:185px minmax(0,1fr) 230px}.sidebar,.inspector{padding:20px 12px}.brand small{display:none}header{padding:0 14px;gap:10px}.actions{gap:4px}.actions .btn{padding:0 8px}.boardtag{display:none}}
-@media(max-width:850px){.app{height:auto;min-height:100vh;display:block}header{min-height:65px;flex-wrap:wrap;padding:10px 12px}.brand{flex:1}.document-name{order:3;flex-basis:100%;max-width:none}.workspace{display:flex;flex-direction:column}.sidebar{order:1;padding:13px;border:0;border-bottom:1px solid var(--line)}.sidebar .kicker,.sidebar .side-desc,.sidebar .divider,.sidebar .help{display:none}.palette{display:flex;gap:7px;overflow-x:auto}.palette-item{padding:7px 9px;flex:0 0 132px;gap:6px}.palette-item small{display:none}.center{order:2;min-height:580px}.stage{justify-content:flex-start;padding:14px}.boardwrap{min-width:780px}.stage-footer{display:none}.tools{padding:0 10px;overflow-x:auto}.inspector{order:3;border:0;border-top:1px solid var(--line);min-height:220px;padding:20px}.empty-inspector{margin-top:20px}}
+.menu-toggle,.sheet-close,.actions .mobile-only{display:none}
+.board,.palette-item{-webkit-touch-callout:none;-webkit-user-select:none}
+.palette-item.lifted{border-color:#8fb4ea;background:#f2f7ff;box-shadow:0 8px 22px #1b3c7026}
+@media(pointer:coarse){.btn{min-height:44px}.btn.icononly{width:44px}.document-name,.field input,.field select{font-size:16px}.ip-row{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) 44px}.ip-remove{min-height:44px}}
+/* Smartphones: fixed app height, compact header with menu, palette strip, full-size stage and the inspector as a bottom sheet. */
+@media(max-width:850px){html,body{overflow:hidden}.app{height:100vh;height:100dvh;min-height:0;display:flex;flex-direction:column}
+header{flex:none;min-height:56px;padding:8px 10px;gap:8px}.brand>div:last-child{display:none}.brand-mark{width:34px;height:34px}.document-name{max-width:none;min-width:0;text-align:left;font-size:16px;padding:7px 8px}
+.menu-toggle{display:inline-flex;font-size:18px}.actions{display:none;position:absolute;top:calc(100% + 6px);right:10px;z-index:8;flex-direction:column;align-items:stretch;gap:6px;min-width:200px;padding:8px;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 18px 44px #1b3c7030}header.menu-open .actions{display:flex}.actions .btn{justify-content:flex-start;padding:0 14px}.actions .mobile-only{display:inline-flex}
+.workspace{flex:1;min-height:0;display:flex;flex-direction:column}.sidebar{flex:none;padding:8px 10px;border:0;border-bottom:1px solid var(--line);overflow:visible}.sidebar .kicker,.sidebar .side-desc,.sidebar .divider,.sidebar .help{display:none}.palette{display:flex;gap:7px;overflow-x:auto;scrollbar-width:none}.palette-item{padding:6px 9px;flex:0 0 136px;gap:7px}.palette-item small{display:none}.mini-icon{width:30px;height:30px;flex-basis:30px}
+.center{flex:1;min-height:0}.tools{height:52px;min-height:52px;padding:0 10px;overflow-x:auto}.tools #newBtn,.tools #resetBtn,.tools #status,.tools #status+.tool-sep{display:none}.stage{padding:10px}.boardwrap{margin:auto;min-width:0}.stage-footer{display:none}
+.inspector{position:fixed;left:0;right:0;bottom:0;z-index:6;max-height:55vh;max-height:55dvh;border:0;border-radius:18px 18px 0 0;box-shadow:0 -12px 40px #1b3c7030;padding:0 18px calc(20px + env(safe-area-inset-bottom));transform:translateY(105%);visibility:hidden;transition:transform .2s ease,visibility .2s}body.has-selection .inspector{transform:none;visibility:visible}body.dragging .inspector{transform:translateY(105%);visibility:hidden}
+.sheet-close{display:flex;position:sticky;top:0;z-index:1;align-items:center;justify-content:space-between;width:calc(100% + 36px);height:46px;margin:0 -18px 10px;padding:0 18px;border:0;border-bottom:1px solid var(--line);background:#fff;color:#6d8098;font-weight:700;font-size:12px}}
 @media print{header,.sidebar,.inspector,.tools,.stage-footer{display:none}.board{width:100%!important;height:100%!important}.app,.workspace,.center,.stage{display:block;height:auto;min-height:0;padding:0}.boardwrap{width:100%;box-shadow:none;border-radius:0}}
 </style>
 </head>
@@ -32,7 +44,8 @@ header{background:#fff;border-bottom:1px solid var(--line);display:flex;align-it
   <header>
     <div class="brand"><div class="brand-mark"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="2.5" y="3.5" width="8" height="6" rx="1.6"/><rect x="13.5" y="3.5" width="8" height="6" rx="1.6"/><rect x="8" y="15" width="8" height="6" rx="1.6"/><path d="M6.5 9.5v2.3h11V9.5M12 11.8V15"/></svg></div><div><strong>Infra Canvas</strong><small>Infrastruktur einfach visualisieren.</small></div></div>
     <input id="docTitle" class="document-name" aria-label="Diagrammtitel" value="Beispiel-Infrastruktur" maxlength="70">
-    <div class="actions"><button class="btn" id="importBtn" title="Diagramm aus JSON laden">Öffnen</button><button class="btn" id="jsonBtn" title="Diagramm als editierbare JSON-Datei speichern">JSON</button><button class="btn" id="svgBtn" title="Vektorgrafik exportieren">SVG</button><button class="btn primary" id="pngBtn" title="Bild als PNG exportieren">PNG ↓</button></div>
+    <div class="actions" id="headerActions"><button class="btn" id="importBtn" title="Diagramm aus JSON laden">Öffnen</button><button class="btn" id="jsonBtn" title="Diagramm als editierbare JSON-Datei speichern">JSON</button><button class="btn" id="svgBtn" title="Vektorgrafik exportieren">SVG</button><button class="btn primary" id="pngBtn" title="Bild als PNG exportieren">PNG ↓</button><button class="btn mobile-only" id="menuNewBtn">Neu</button><button class="btn mobile-only" id="menuDemoBtn">Demo</button></div>
+    <button class="btn icononly menu-toggle" id="menuBtn" aria-label="Menü" aria-expanded="false" aria-controls="headerActions">⋯</button>
   </header>
   <main class="workspace">
     <aside class="sidebar">
@@ -40,7 +53,7 @@ header{background:#fff;border-bottom:1px solid var(--line);display:flex;align-it
       <div class="palette" id="palette"></div>
       <div class="divider"></div>
       <h2 class="kicker">Bedienung</h2>
-      <div class="help"><strong>So funktioniert's</strong>Bausteine positionieren, <b>VM/LXC</b>, Firewalls, Router und Switches in Hosts (oder deren Subnetze), <b>Anwendungen</b> und <b>Storage</b> in VMs/LXC ziehen und <b>Subnetze</b> als Bereiche anlegen. Ein Subnetz an der Titelleiste verschieben oder an der Ecke vergrößern. <b>Verbinden</b> erstellt Leitungen.<br><br><span class="shortcut">Entf</span> Löschen &nbsp; <span class="shortcut">Esc</span> Abbrechen<br><span class="shortcut">Strg Z</span> Rückgängig<br><span class="shortcut">Strg</span> + Mausrad Zoomen<br>Leere Fläche ziehen: Ansicht verschieben</div>
+      <div class="help"><strong>So funktioniert's</strong>Bausteine positionieren, <b>VM/LXC</b>, Firewalls, Router und Switches in Hosts (oder deren Subnetze), <b>Anwendungen</b> und <b>Storage</b> in jedes Gerät ziehen und <b>Subnetze</b> als Bereiche anlegen. Ein Subnetz an der Titelleiste verschieben oder an der Ecke vergrößern. Einträge in einem Host oder einer VM lassen sich durch Ziehen umsortieren. Standorte unten rechts vergrößern, ausgewählte Hosts am rechten Rand verbreitern – breite Hosts zeigen ihre Einträge mehrspaltig. <b>Verbinden</b> erstellt Leitungen.<br><br><span class="shortcut">Entf</span> Löschen &nbsp; <span class="shortcut">Esc</span> Abbrechen<br><span class="shortcut">Strg Z</span> Rückgängig<br><span class="shortcut">Strg</span> + Mausrad Zoomen<br>Leere Fläche ziehen: Ansicht verschieben<br><br><b>Touch:</b> Antippen wählt aus, lange drücken verschiebt, zwei Finger zoomen.</div>
     </aside>
     <section class="center" aria-label="Diagrammeditor">
       <div class="tools">
@@ -49,7 +62,7 @@ header{background:#fff;border-bottom:1px solid var(--line);display:flex;align-it
       </div>
       <div class="stage" id="stage"><div class="boardwrap"><svg id="board" class="board" viewBox="0 0 1200 760" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Editierbares Infrastrukturdiagramm"></svg></div></div><div class="stage-footer" id="stageFooter">Ziehen, auswählen, verbinden · 100 % lokal</div>
     </section>
-    <aside class="inspector" id="inspector"></aside>
+    <aside class="inspector" aria-label="Eigenschaften"><button class="sheet-close" id="sheetClose" type="button" aria-label="Eigenschaften schließen"><span>Schließen</span><span aria-hidden="true">✕</span></button><div id="inspector"></div></aside>
   </main>
 </div>
 <input type="file" id="fileInput" accept="application/json,.json" hidden>
@@ -76,6 +89,7 @@ const THEMES=[
 {fill:'#fff8f9',stroke:'#f0dbe3',accent:'#b96d88',tag:'#fcebf1'}];
 const DEFAULT_SITES=[{id:'site-a',name:'Standort A',sub:'Beispielstandort'},{id:'site-b',name:'Standort B',sub:'Weiterer Beispielstandort'}];
 const $=s=>document.querySelector(s);
+const COARSE=matchMedia('(pointer:coarse)').matches,NARROW=matchMedia('(max-width:850px)');
 const E=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const uid=()=>Math.random().toString(36).slice(2,9);
@@ -98,8 +112,12 @@ function starter(){return {version:3,title:'Beispiel-Infrastruktur',sites:clone(
  {id:'l2',from:'n5',to:'n6',style:'standard',label:''},
  {id:'l3',from:'n4',to:'n5',style:'vpn',label:'Tunnel'}
 ]};}
-// Which kinds may be placed inside which container kinds (host > VM/LXC > application).
-const CONTAINS={server:['vm','lxc','firewall','router','switch'],vm:['app','db'],lxc:['app','db']};
+// Which kinds may be placed inside which container kinds: a host holds guests, every device can run applications and storage.
+const SERVICES=['app','db'];
+const plural=(n,one,many)=>`${n} ${n===1?one:many}`;
+// Content of a host: guests and directly hosted services, e.g. "3 Gäste · 1 Dienst".
+const hostContent=(id,doc=state)=>{const kids=doc.nodes.filter(c=>c.parentId===id),svc=kids.filter(c=>SERVICES.includes(c.kind)).length,guests=kids.length-svc;return[guests||!svc?plural(guests,'Gast','Gäste'):'',svc?plural(svc,'Dienst','Dienste'):''].filter(Boolean).join(' · ');};
+const CONTAINS={server:['vm','lxc','firewall','router','switch',...SERVICES],vm:SERVICES,lxc:SERVICES,firewall:SERVICES,router:SERVICES,switch:SERVICES};
 const canHold=(host,kind)=>!!CONTAINS[host?.kind]?.includes(kind);
 function depth(n,doc=state){let d=0;for(let p=n;p?.parentId&&d<5;d++)p=doc.nodes.find(h=>h.id===p.parentId);return d;}
 function descendants(id,doc=state){const out=[],queue=[id];while(queue.length){const cur=queue.shift();for(const c of doc.nodes)if(c.parentId===cur){out.push(c);queue.push(c.id);}}return out;}
@@ -110,47 +128,58 @@ const GATEWAY_KINDS=['firewall','router'];
 function gatewayOf(net,host,doc=state){const g=doc.nodes.find(o=>o.id===net.gatewayId);return g&&GATEWAY_KINDS.includes(g.kind)&&g.site===host.site?g:null;}
 // Management access of a hypervisor: one of its own host subnets or a subnet of its site.
 function mgmtNet(host,doc=state){const id=host.mgmtNetId;return id?(host.nets||[]).find(t=>t.id===id)||doc.subnets.find(sn=>sn.id===id&&sn.site===host.site)||null:null;}
+// IP addresses of a node (optional `ips`: [{addr,label}]); the board shows the first one plus a count, the tooltip all of them.
+const ipAddrs=n=>(n.ips||[]).map(a=>String(a.addr||'').trim()).filter(Boolean);
+function ipSummary(n){const a=ipAddrs(n);return a.length?a[0]+(a.length>1?` +${a.length-1}`:''):'';}
+function ipTitle(n){const a=(n.ips||[]).filter(t=>String(t.addr||'').trim());return a.length?`<title>${E([n.name,...a.map(t=>t.addr.trim()+(t.label?` (${t.label})`:''))].join('\n'))}</title>`:'';}
+const leafH=n=>NH+(ipSummary(n)?14:0);
+// Optional sizes: a site may have its own width/height (`w`, `h`), a top-level container card its own width (`w`).
+const CARD_W=236,COL_MIN=200,SITE_MIN=300;
+let siteDrag=null,widthDrag=null; // declared before valid() runs on startup
+const siteWidth=(id,doc=state)=>{const st=doc.sites.find(s=>s.id===id);return siteDrag?.moved&&siteDrag.id===id?siteDrag.preview.w:st?.w||SITE_W;};
+const cardW=n=>widthDrag?.moved&&widthDrag.id===n.id?widthDrag.w:Math.max(CARD_W,n.w||CARD_W);
 function mgmtLabel(host,doc=state){return host.kind==='server'?[mgmtNet(host,doc)?.name,host.mgmtIp].filter(Boolean).join(' · '):'';}
 function layout(n,doc=state,w=236){
  const kids=doc.nodes.filter(c=>c.parentId===n.id&&canHold(n,c.kind)),nets=n.kind==='server'?n.nets||[]:[],nested=!!n.parentId;
- const slots={},boxes=[],pad=nested?8:16,gap=nested?5:9,mgmt=mgmtLabel(n,doc);let y=nested?42:mgmt?84:70;
- const place=(c,x,cw)=>{const h=nested?32:CONTAINS[c.kind]&&doc.nodes.some(g=>g.parentId===c.id)?layout(c,doc,cw).h:40;slots[c.id]={x,y,w:cw,h};y+=h+gap;};
- for(const c of kids)if(!nets.some(t=>t.id===c.netId))place(c,pad,w-2*pad);
+ const slots={},boxes=[],pad=nested?8:16,gap=nested?5:9,mgmt=mgmtLabel(n,doc),info=[mgmt,ipSummary(n)].filter(Boolean).join(' · ');let y=nested?42:info?84:70;
+ // Entries are placed row by row; a wide card gets as many columns as fit (nested containers stay single-column).
+ const height=(c,cw)=>nested?32:CONTAINS[c.kind]&&doc.nodes.some(g=>g.parentId===c.id)?layout(c,doc,cw).h:40;
+ const placeAll=(list,x0,cw)=>{const k=nested?1:Math.max(1,Math.floor((cw+gap)/(COL_MIN+gap))),colW=(cw-(k-1)*gap)/k;
+  for(let i=0;i<list.length;i+=k){let rh=0;list.slice(i,i+k).forEach((c,j)=>{const h=height(c,colW);slots[c.id]={x:x0+j*(colW+gap),y,w:colW,h,cols:k};rh=Math.max(rh,h);});y+=rh+gap;}};
+ placeAll(kids.filter(c=>!nets.some(t=>t.id===c.netId)),pad,w-2*pad);
  for(const net of nets){const top=y,members=kids.filter(c=>c.netId===net.id),gateway=gatewayOf(net,n,doc);y+=gateway?44:32;
-  for(const c of members)place(c,22,w-44);
+  placeAll(members,22,w-44);
   if(!members.length)y+=45;
   boxes.push({net,gateway,x:10,y:top,w:w-20,h:y-1-top,empty:!members.length});y+=8;
  }
- return {slots,boxes,mgmt,expanded:kids.length+nets.length>0||!!mgmt,h:y+(nested?3:15)};
+ return {slots,boxes,mgmt,info,expanded:kids.length+nets.length>0||!!mgmt,h:y+(nested?3:15)};
 }
 // Size of a top-level node; nested nodes get their size from the parent's layout.
 function nodeSize(n,doc=state){
- if(!CONTAINS[n.kind])return {w:NW,h:NH};
- const L=layout(n,doc);return L.expanded?{w:236,h:L.h}:{w:NW,h:NH};
+ if(!CONTAINS[n.kind])return {w:NW,h:leafH(n)};
+ const w=cardW(n),L=layout(n,doc,w);return L.expanded?{w,h:L.h}:{w:NW,h:leafH(n)};
 }
 function hostNet(id,doc=state){for(const h of doc.nodes)for(const net of h.nets||[])if(net.id===id)return{host:h,net};return null;}
 function rects(doc=state){
  let currentY=98;const out=[];
+ // Two sites per row. A site without its own height stretches to the row height; one with `h` keeps it (content still enlarges it).
  for(let i=0;i<doc.sites.length;i+=2){
-  const pair=doc.sites.slice(i,i+2);let rowHeight=SITE_H;
-  for(const st of pair){let needed=SITE_H;
-   for(const sn of (doc.subnets||[])){if(sn.site===st.id)needed=Math.max(needed,sn.y+sn.h+25);}
-   for(const n of doc.nodes){if(n.site!==st.id||n.parentId)continue;
-    const d=nodeSize(n,doc);needed=Math.max(needed,n.y+d.h+22);
-   }
-   rowHeight=Math.max(rowHeight,needed);
-  }
-  for(let j=0;j<pair.length;j++)out.push({...pair[j],...THEMES[(i+j)%THEMES.length],x:38+j*584,y:currentY,w:SITE_W,h:rowHeight});
+  const dims=doc.sites.slice(i,i+2).map(st=>{const pv=siteDrag?.moved&&siteDrag.id===st.id?siteDrag.preview:null,own=pv?.h??st.h;let needed=own??SITE_H;
+   for(const sn of (doc.subnets||[]))if(sn.site===st.id)needed=Math.max(needed,sn.y+sn.h+25);
+   for(const n of doc.nodes){if(n.site!==st.id||n.parentId)continue;const d=nodeSize(n,doc);needed=Math.max(needed,n.y+d.h+22);}
+   return{st,w:siteWidth(st.id,doc),needed,fixed:own!=null};});
+  const rowHeight=Math.max(...dims.map(d=>d.needed));let x=38;
+  dims.forEach((d,j)=>{out.push({...d.st,...THEMES[(i+j)%THEMES.length],x,y:currentY,w:d.w,h:d.fixed?d.needed:rowHeight});x+=d.w+44;});
   currentY+=rowHeight+20;
  }
  return out;
 }
-function boardSize(doc=state){const layouts=rects(doc),rows=Math.ceil(doc.sites.length/2);return{w:doc.sites.length===1?620:BASE_W,h:Math.max(760,layouts.length?Math.max(...layouts.map(r=>r.y+r.h))+39:760)};}
+function boardSize(doc=state){const layouts=rects(doc);return{w:layouts.length===1?layouts[0].w+80:Math.max(BASE_W,...layouts.map(r=>r.x+r.w+38)),h:Math.max(760,layouts.length?Math.max(...layouts.map(r=>r.y+r.h))+39:760)};}
 function siteFor(id,doc=state){return rects(doc).find(s=>s.id===id);}
 function valid(raw){
  if(!raw||!Array.isArray(raw.nodes)||!Array.isArray(raw.links))throw Error('Kein gültiges Infra-Canvas-Diagramm.');
  const inputSites=Array.isArray(raw.sites)&&raw.sites.length?raw.sites:DEFAULT_SITES;
- const sites=[],siteIDs=new Set();for(const st of inputSites.slice(0,18)){if(!st||typeof st!=='object')continue;const id=String(st.id||uid()).slice(0,40);if(siteIDs.has(id))continue;sites.push({id,name:String(st.name||'Standort').slice(0,36),sub:String(st.sub||'').slice(0,44)});siteIDs.add(id);}
+ const sites=[],siteIDs=new Set();for(const st of inputSites.slice(0,18)){if(!st||typeof st!=='object')continue;const id=String(st.id||uid()).slice(0,40);if(siteIDs.has(id))continue;sites.push({id,name:String(st.name||'Standort').slice(0,36),sub:String(st.sub||'').slice(0,44)});const sw=Number(st.w),sh=Number(st.h);if(Number.isFinite(sw))sites.at(-1).w=clamp(Math.round(sw),SITE_MIN,1600);if(Number.isFinite(sh))sites.at(-1).h=clamp(Math.round(sh),SITE_MIN,4000);siteIDs.add(id);}
  if(!sites.length)sites.push(clone(DEFAULT_SITES[0]));
  const doc={version:3,title:String(raw.title||'Neues Diagramm').slice(0,70),sites,subnets:[],nodes:[],links:[]};
  const legacy=Number(raw.version)===1;
@@ -159,10 +188,11 @@ function valid(raw){
   if(!sn||typeof sn!=='object')continue;const id=String(sn.id||uid()).slice(0,40);if(subnetIDs.has(id))continue;
   const site=siteIDs.has(String(sn.site))?String(sn.site):sites[0].id;
   const x=Number(sn.x),y=Number(sn.y),w=Number(sn.w),h=Number(sn.h);
+  const sw=sites.find(st=>st.id===site).w||SITE_W;
   doc.subnets.push({id,site,name:String(sn.name||'Subnetz').slice(0,40),cidr:String(sn.cidr||'').slice(0,44),
-   x:clamp(Number.isFinite(x)?x:22,12,265),y:clamp(Number.isFinite(y)?y:112,82,3000),
-   w:clamp(Number.isFinite(w)?w:490,265,SITE_W-24),h:clamp(Number.isFinite(h)?h:240,165,1500)});
-  const net=doc.subnets.at(-1);net.x=clamp(net.x,12,SITE_W-net.w-12);subnetIDs.add(id);
+   x:clamp(Number.isFinite(x)?x:22,12,sw-277),y:clamp(Number.isFinite(y)?y:112,82,3000),
+   w:clamp(Number.isFinite(w)?w:490,265,sw-24),h:clamp(Number.isFinite(h)?h:240,165,1500)});
+  const net=doc.subnets.at(-1);net.x=clamp(net.x,12,sw-net.w-12);subnetIDs.add(id);
  }
  const ids=new Set(),netIDs=new Set();
  for(const o of raw.nodes.slice(0,500)){
@@ -172,10 +202,12 @@ function valid(raw){
   const x=Number(o.x),y=Number(o.y);
   const subnet=doc.subnets.find(sn=>sn.id===String(o.subnetId)&&sn.site===site);
   doc.nodes.push({id,kind:TYPES[o.kind]?o.kind:'app',name:String(o.name||'Baustein').slice(0,44),detail:String(o.detail||'').slice(0,55),site,subnetId:subnet?.id||null,
-   x:clamp((Number.isFinite(x)?x:(legacy?ox:0)+30)-(legacy?ox:0),15,SITE_W-NW-15),
+   x:clamp((Number.isFinite(x)?x:(legacy?ox:0)+30)-(legacy?ox:0),15,(sites[ix].w||SITE_W)-NW-15),
    y:clamp((Number.isFinite(y)?y:(legacy?oy:0)+100)-(legacy?oy:0),88,3000),
    parentId:typeof o.parentId==='string'?o.parentId:null,netId:typeof o.netId==='string'?o.netId:null});
   const h=doc.nodes.at(-1);
+  if(Number.isFinite(Number(o.w))&&CONTAINS[h.kind])h.w=clamp(Math.round(Number(o.w)),CARD_W,1600);
+  const ips=(Array.isArray(o.ips)?o.ips.slice(0,16):[]).map(a=>typeof a==='string'?{addr:a}:a).filter(a=>a&&typeof a==='object').map(a=>({addr:String(a.addr??'').trim().slice(0,45),label:String(a.label??'').trim().slice(0,24)})).filter(a=>a.addr||a.label);if(ips.length)h.ips=ips;
   if(h.kind==='server'){h.nets=(Array.isArray(o.nets)?o.nets.slice(0,20):[]).filter(t=>t&&typeof t==='object').map(t=>({id:String(t.id||'hn-'+uid()).slice(0,40),name:String(t.name||'Subnetz').slice(0,40),cidr:String(t.cidr||'').slice(0,44),gatewayId:typeof t.gatewayId==='string'?t.gatewayId:null})).filter(t=>!netIDs.has(t.id)&&netIDs.add(t.id));
    h.mgmtNetId=typeof o.mgmtNetId==='string'?o.mgmtNetId:null;h.mgmtIp=String(o.mgmtIp||'').slice(0,45);}
  }
@@ -214,9 +246,12 @@ function nodeRect(n){
  return{x:(s?.x||38)+n.x+preview.x,y:(s?.y||98)+n.y+preview.y,...d};
 }
 function pnt(r,side){const x=r.x,y=r.y;if(side==='left')return{x,y:y+r.h/2};if(side==='right')return{x:x+r.w,y:y+r.h/2};if(side==='top')return{x:x+r.w/2,y};return{x:x+r.w/2,y:y+r.h};}
+const rootOf=n=>{let r=n;for(let d=0;r?.parentId&&d<5;d++)r=state.nodes.find(h=>h.id===r.parentId)||r;return r;};
 function linkGeometry(a,b){
  const A=nodeRect(a),B=nodeRect(b),dx=B.x+B.w/2-A.x-A.w/2,dy=B.y+B.h/2-A.y-A.h/2;let p1,p2,c1,c2;
- if(Math.abs(dx)>Math.abs(dy)*1.1){p1=pnt(A,dx>0?'right':'left');p2=pnt(B,dx>0?'left':'right');let shift=Math.max(35,Math.abs(p2.x-p1.x)*.43),dir=dx>0?1:-1;c1={x:p1.x+dir*shift,y:p1.y};c2={x:p2.x-dir*shift,y:p2.y};}
+ const stacked=(a.parentId||b.parentId)&&rootOf(a)===rootOf(b)&&A.x<B.x+B.w&&B.x<A.x+A.w;
+ if(stacked){p1=pnt(A,'right');p2=pnt(B,'right');const out=Math.max(p1.x,p2.x)+Math.min(60,22+Math.abs(p2.y-p1.y)*.12);c1={x:out,y:p1.y};c2={x:out,y:p2.y};}
+ else if(Math.abs(dx)>Math.abs(dy)*1.1){p1=pnt(A,dx>0?'right':'left');p2=pnt(B,dx>0?'left':'right');let shift=Math.max(35,Math.abs(p2.x-p1.x)*.43),dir=dx>0?1:-1;c1={x:p1.x+dir*shift,y:p1.y};c2={x:p2.x-dir*shift,y:p2.y};}
  else{p1=pnt(A,dy>0?'bottom':'top');p2=pnt(B,dy>0?'top':'bottom');let shift=Math.max(35,Math.abs(p2.y-p1.y)*.46),dir=dy>0?1:-1;c1={x:p1.x,y:p1.y+dir*shift};c2={x:p2.x,y:p2.y-dir*shift};}
  const middle={x:(p1.x+3*c1.x+3*c2.x+p2.x)/8,y:(p1.y+3*c1.y+3*c2.y+p2.y)/8};return{d:`M ${p1.x} ${p1.y} C ${c1.x} ${c1.y} ${c2.x} ${c2.y} ${p2.x} ${p2.y}`,middle};
 }
@@ -234,58 +269,69 @@ function boardMarkup(exporting=false){
   const x=site.x+(preview?.x??sn.x),y=site.y+(preview?.y??sn.y),sw=preview?.w??sn.w,sh=preview?.h??sn.h;
   const sel=!exporting&&selection?.type==='subnet'&&selection.id===sn.id;
   out+=`<g data-subnet="${E(sn.id)}" style="cursor:pointer"><rect x="${x}" y="${y}" width="${sw}" height="${sh}" rx="15" fill="#e7f3f7" fill-opacity=".72" stroke="${sel?'#287eb5':'#9fcbd9'}" stroke-width="${sel?2.9:1.6}" stroke-dasharray="7 5"/><rect data-subnet-handle="${E(sn.id)}" x="${x}" y="${y}" width="${sw}" height="51" rx="15" fill="#e0eef4" fill-opacity=".92" style="cursor:grab"/><path d="M${x} ${y+41}h${sw}" stroke="#b9d8e1"/><circle cx="${x+23}" cy="${y+25}" r="7" fill="#4f9bb5"/><text x="${x+41}" y="${y+24}" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" font-size="14" font-weight="750" fill="#275772">${E(textShort(sn.name,33))}</text><text x="${x+41}" y="${y+39}" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" font-size="10.5" fill="#648aa0">${E(textShort(sn.cidr,43))}</text>`;
-  if(!exporting)out+=`<g data-subnet-resize="${E(sn.id)}" style="cursor:nwse-resize"><path d="M${x+sw-23} ${y+sh-9}l14 -14 M${x+sw-17} ${y+sh-9}l8 -8" fill="none" stroke="#4e8da9" stroke-width="2.6" stroke-linecap="round"/><rect x="${x+sw-30}" y="${y+sh-31}" width="31" height="32" fill="transparent"/></g>`;
+  if(!exporting)out+=`<g data-subnet-resize="${E(sn.id)}" style="cursor:nwse-resize"><path d="M${x+sw-23} ${y+sh-9}l14 -14 M${x+sw-17} ${y+sh-9}l8 -8" fill="none" stroke="#4e8da9" stroke-width="2.6" stroke-linecap="round"/><rect x="${x+sw-30}" y="${y+sh-31}" width="31" height="32" fill="transparent"/>${COARSE?`<rect x="${x+sw-56}" y="${y+sh-56}" width="62" height="62" fill="transparent"/>`:''}</g>`;
   out+='</g>';
  }
- for(const l of state.links){const a=state.nodes.find(n=>n.id===l.from),b=state.nodes.find(n=>n.id===l.to);if(!a||!b)continue;const g=linkGeometry(a,b),selected=!exporting&&selection?.type==='link'&&selection.id===l.id,col=selected?'#2563eb':l.style==='vpn'?'#357db4':'#94a9bf',label=String(l.label||'');out+=`<g data-link="${E(l.id)}" style="cursor:pointer"><path d="${g.d}" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/><path d="${g.d}" fill="none" stroke="${col}" stroke-width="${selected?3.7:2.4}" stroke-linecap="round" ${l.style==='vpn'?'stroke-dasharray="8 6"':''}/>`;if(!exporting)out+=`<path d="${g.d}" fill="none" stroke="transparent" stroke-width="18"/>`;if(label){const width=clamp(label.length*6.5+20,47,155);out+=`<rect x="${g.middle.x-width/2}" y="${g.middle.y-13}" rx="12" width="${width}" height="26" fill="#ffffff" stroke="${selected?'#79a6ee':'#dbe5ef'}" stroke-width="1.5"/><text x="${g.middle.x}" y="${g.middle.y+3.8}" text-anchor="middle" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" font-size="11" font-weight="700" fill="${col}">${E(textShort(label,21))}</text>`;}out+='</g>';}
+ // Links between free-standing cards run behind the cards; links to nested entries are drawn on top, or the container would hide them.
+ const linkMarkup=l=>{let out='';const a=state.nodes.find(n=>n.id===l.from),b=state.nodes.find(n=>n.id===l.to);if(!a||!b)return'';const g=linkGeometry(a,b),selected=!exporting&&selection?.type==='link'&&selection.id===l.id,col=selected?'#2563eb':l.style==='vpn'?'#357db4':'#94a9bf',label=String(l.label||'');out+=`<g data-link="${E(l.id)}" style="cursor:pointer"><path d="${g.d}" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/><path d="${g.d}" fill="none" stroke="${col}" stroke-width="${selected?3.7:2.4}" stroke-linecap="round" ${l.style==='vpn'?'stroke-dasharray="8 6"':''}/>`;if(!exporting)out+=`<path d="${g.d}" fill="none" stroke="transparent" stroke-width="${COARSE?34:18}"/>`;if(label){const width=clamp(label.length*6.5+20,47,155);out+=`<rect x="${g.middle.x-width/2}" y="${g.middle.y-13}" rx="12" width="${width}" height="26" fill="#ffffff" stroke="${selected?'#79a6ee':'#dbe5ef'}" stroke-width="1.5"/><text x="${g.middle.x}" y="${g.middle.y+3.8}" text-anchor="middle" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" font-size="11" font-weight="700" fill="${col}">${E(textShort(label,21))}</text>`;}return out+'</g>';};
+ const nestedLink=l=>state.nodes.some(n=>(n.id===l.from||n.id===l.to)&&n.parentId);
+ for(const l of state.links)if(!nestedLink(l))out+=linkMarkup(l);
  // Outer containers are drawn first, so nested elements always lie on top of their container.
  for(const n of [...state.nodes].sort((a,b)=>depth(a)-depth(b))){
  const t=TYPES[n.kind]||TYPES.app,selected=!exporting&&selection?.type==='node'&&selection.id===n.id,r=nodeRect(n),L=CONTAINS[n.kind]?layout(n,state,r.w):null,count=L?Object.keys(L.slots).length:0,nets=L?L.boxes.length:0;
  if(n.parentId){const small=!count&&r.h<40,tx=small?35:43;
-  out+=`<g data-node="${E(n.id)}" transform="translate(${r.x} ${r.y})" style="cursor:${mode==='connect'?'crosshair':'grab'}"><rect width="${r.w}" height="${r.h}" rx="8" fill="#fff" stroke="${selected?'#4489e4':'#dbe5ef'}" stroke-width="${selected?2.5:1.1}"/>${count?`<rect x="4" y="40" width="${r.w-8}" height="${r.h-44}" rx="6" fill="${t.tint}" fill-opacity=".7"/>`:''}${small?`<rect x="6" y="5.5" width="21" height="21" rx="6" fill="${t.tint}"/><g transform="translate(8.5 8) scale(.68)">`:`<rect x="8" y="7" width="27" height="27" rx="7" fill="${t.tint}"/><g transform="translate(10 9) scale(.92)">`}${svgIcon(n.kind,t.color)}</g><text x="${tx}" y="${small?14:18}" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" font-size="${small?11.4:12.4}" font-weight="720" fill="#25374d">${E(textShort(n.name,Math.floor((r.w-tx-6)/7)))}</text><text x="${tx}" y="${small?25:31}" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" font-size="${small?9:9.5}" fill="#8a9aac">${E(textShort(n.detail||t.hint,Math.floor((r.w-tx-6)/5.4)))}</text></g>`;continue;}
- if(L?.expanded){out+=`<g data-node="${E(n.id)}" transform="translate(${r.x} ${r.y})" style="cursor:${mode==='connect'?'crosshair':'grab'}"><rect width="${r.w}" height="${r.h}" rx="13" fill="#f0f5ff" stroke="${selected?'#4489e4':'#b4cce8'}" stroke-width="${selected?3:1.5}" filter="url(#node-shadow)"/><rect x="0" y="0" width="${r.w}" height="${L.mgmt?75:61}" rx="13" fill="#ffffff"/><path d="M0 ${L.mgmt?65:51} V${L.mgmt?75:61} H${r.w} V${L.mgmt?65:51}" fill="#ffffff"/><rect x="12" y="12" width="40" height="40" rx="10" fill="${t.tint}"/><g transform="translate(20 20)">${svgIcon(n.kind,t.color)}</g><text x="62" y="30" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" font-size="14.2" font-weight="730" fill="#25374d">${E(textShort(n.name,17))}</text><text x="62" y="47" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" font-size="11" fill="#90a0b0">${count} ${n.kind==='server'?(count===1?'Gast':'Gäste'):(count===1?'Dienst':'Dienste')} · ${nets?`${nets} ${nets===1?'Subnetz':'Subnetze'}`:E(textShort(n.detail,12))}</text>${L.mgmt?`<g transform="translate(62 54)" fill="none" stroke="#b08a2e" stroke-width="1.5" stroke-linecap="round"><circle cx="3.5" cy="4" r="2.7"/><path d="M6.2 4h5.6M10 4v2.4"/></g><text x="79" y="62" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" font-size="10.5" font-weight="650" fill="#8a7440">${E(textShort(L.mgmt,24))}</text>`:''}</g>`;
+  out+=`<g data-node="${E(n.id)}" transform="translate(${r.x} ${r.y})" style="cursor:${mode==='connect'?'crosshair':'grab'}">${ipTitle(n)}<rect width="${r.w}" height="${r.h}" rx="8" fill="#fff" stroke="${selected?'#4489e4':'#dbe5ef'}" stroke-width="${selected?2.5:1.1}"/>${count?`<rect x="4" y="40" width="${r.w-8}" height="${r.h-44}" rx="6" fill="${t.tint}" fill-opacity=".7"/>`:''}${small?`<rect x="6" y="5.5" width="21" height="21" rx="6" fill="${t.tint}"/><g transform="translate(8.5 8) scale(.68)">`:`<rect x="8" y="7" width="27" height="27" rx="7" fill="${t.tint}"/><g transform="translate(10 9) scale(.92)">`}${svgIcon(n.kind,t.color)}</g><text x="${tx}" y="${small?14:18}" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" font-size="${small?11.4:12.4}" font-weight="720" fill="#25374d">${E(textShort(n.name,Math.floor((r.w-tx-6)/7)))}</text><text x="${tx}" y="${small?25:31}" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" font-size="${small?9:9.5}" fill="#8a9aac">${E(textShort([ipSummary(n),n.detail||t.hint].filter(Boolean).join(' · '),Math.floor((r.w-tx-6)/5.4)))}</text></g>`;continue;}
+ if(L?.expanded){out+=`<g data-node="${E(n.id)}" transform="translate(${r.x} ${r.y})" style="cursor:${mode==='connect'?'crosshair':'grab'}">${ipTitle(n)}<rect width="${r.w}" height="${r.h}" rx="13" fill="#f0f5ff" stroke="${selected?'#4489e4':'#b4cce8'}" stroke-width="${selected?3:1.5}" filter="url(#node-shadow)"/><rect x="0" y="0" width="${r.w}" height="${L.info?75:61}" rx="13" fill="#ffffff"/><path d="M0 ${L.info?65:51} V${L.info?75:61} H${r.w} V${L.info?65:51}" fill="#ffffff"/><rect x="12" y="12" width="40" height="40" rx="10" fill="${t.tint}"/><g transform="translate(20 20)">${svgIcon(n.kind,t.color)}</g><text x="62" y="30" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" font-size="14.2" font-weight="730" fill="#25374d">${E(textShort(n.name,17))}</text><text x="62" y="47" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" font-size="11" fill="#90a0b0">${[n.kind==='server'?hostContent(n.id):plural(count,'Dienst','Dienste'),nets?plural(nets,'Subnetz','Subnetze'):E(textShort(n.detail,12))].filter(Boolean).join(' · ')}</text>${L.info?`${L.mgmt?`<g transform="translate(62 54)" fill="none" stroke="#b08a2e" stroke-width="1.5" stroke-linecap="round"><circle cx="3.5" cy="4" r="2.7"/><path d="M6.2 4h5.6M10 4v2.4"/></g>`:''}<text x="${L.mgmt?79:62}" y="62" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" font-size="10.5" font-weight="650" fill="${L.mgmt?'#8a7440':'#56789a'}">${E(textShort(L.info,L.mgmt?24:27))}</text>`:''}${!exporting&&selected?widthGrip(n,r):''}</g>`;
   for(const b of L.boxes){const x=r.x+b.x,y=r.y+b.y,sel=!exporting&&selection?.type==='hostnet'&&selection.id===b.net.id,gw=b.gateway,gwSel=!exporting&&gw&&selection?.type==='node'&&selection.id===gw.id,isMgmt=n.mgmtNetId===b.net.id;
    out+=`<g data-hostnet="${E(b.net.id)}" data-host="${E(n.id)}"><rect x="${x}" y="${y}" width="${b.w}" height="${b.h}" rx="10" fill="#e7f3f7" fill-opacity=".8" stroke="${sel?'#287eb5':gwSel?TYPES[gw.kind].color:'#9fcbd9'}" stroke-width="${sel||gwSel?2.4:1.2}" stroke-dasharray="5 4" pointer-events="none"/><rect x="${x}" y="${y}" width="${b.w}" height="${gw?38:26}" rx="10" fill="#e0eef4" style="cursor:pointer"/>${isMgmt?`<g transform="translate(${x+7} ${y+9})" fill="none" stroke="#b08a2e" stroke-width="1.5" stroke-linecap="round" pointer-events="none"><circle cx="3.5" cy="4" r="2.7"/><path d="M6.2 4h5.6M10 4v2.4"/></g>`:`<circle cx="${x+13}" cy="${y+13}" r="4.5" fill="#4f9bb5" pointer-events="none"/>`}${gw?`<text x="${x+24}" y="${y+31}" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" font-size="9.5" font-weight="650" fill="${TYPES[gw.kind].color}" pointer-events="none">via ${E(textShort(gw.name,28))}</text>`:''}<text x="${x+24}" y="${y+17}" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" font-size="11.5" font-weight="750" fill="#275772" pointer-events="none">${E(textShort(b.net.name,17))}</text><text x="${x+b.w-9}" y="${y+17}" text-anchor="end" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" font-size="9.5" fill="#648aa0" pointer-events="none">${E(textShort(b.net.cidr,18))}</text>`;
-   if(b.empty&&!exporting)out+=`<text x="${x+b.w/2}" y="${y+(gw?69:57)}" text-anchor="middle" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" font-size="10.5" fill="#7ea3b6" pointer-events="none">VM / LXC hierher ziehen</text>`;
+   if(b.empty&&!exporting)out+=`<text x="${x+b.w/2}" y="${y+(gw?69:57)}" text-anchor="middle" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" font-size="10.5" fill="#7ea3b6" pointer-events="none">Gäste hierher ziehen</text>`;
    out+='</g>';}
   continue;}
- out+=`<g data-node="${E(n.id)}" transform="translate(${r.x} ${r.y})" style="cursor:${mode==='connect'?'crosshair':'grab'}"><rect width="${r.w}" height="${r.h}" rx="12" fill="#ffffff" stroke="${selected?'#4489e4':'#dae4ee'}" stroke-width="${selected?3:1.25}" filter="url(#node-shadow)"/><rect x="12" y="14" width="46" height="46" rx="11" fill="${t.tint}"/><g transform="translate(23 25)">${svgIcon(n.kind,t.color)}</g><text x="70" y="33" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" font-size="14.2" font-weight="730" fill="#25374d">${E(textShort(n.name,17))}</text><text x="70" y="51" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" font-size="11.5" fill="#90a0b0">${E(textShort(n.detail||t.hint,20))}</text>${!exporting&&mode==='connect'&&linkFrom===n.id?'<circle cx="195" cy="9" r="6" fill="#2563eb" stroke="white" stroke-width="2"/>':''}</g>`;
+ out+=`<g data-node="${E(n.id)}" transform="translate(${r.x} ${r.y})" style="cursor:${mode==='connect'?'crosshair':'grab'}">${ipTitle(n)}<rect width="${r.w}" height="${r.h}" rx="12" fill="#ffffff" stroke="${selected?'#4489e4':'#dae4ee'}" stroke-width="${selected?3:1.25}" filter="url(#node-shadow)"/><rect x="12" y="14" width="46" height="46" rx="11" fill="${t.tint}"/><g transform="translate(23 25)">${svgIcon(n.kind,t.color)}</g><text x="70" y="33" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" font-size="14.2" font-weight="730" fill="#25374d">${E(textShort(n.name,17))}</text><text x="70" y="51" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" font-size="11.5" fill="#90a0b0">${E(textShort(n.detail||t.hint,20))}</text>${ipSummary(n)?`<text x="70" y="69" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" font-size="10.5" font-weight="650" fill="#56789a">${E(textShort(ipSummary(n),24))}</text>`:''}${!exporting&&mode==='connect'&&linkFrom===n.id?'<circle cx="195" cy="9" r="6" fill="#2563eb" stroke="white" stroke-width="2"/>':''}</g>`;
  }
+ for(const l of state.links)if(nestedLink(l))out+=linkMarkup(l);
+ if(!exporting)for(const s of layouts)out+=siteGrip(s);
  return out;
 }
 // Fit the board into the visible stage: as large as width and height allow (max. 2x), but tall diagrams never below 1:1 – those scroll.
+// On narrow screens the card fills the whole stage and the diagram is fitted inside it, so zooming uses the full screen.
 // The user's zoom only scales the content inside the card; a zoomed-in board scrolls within it.
 function fitBoard(){const stage=$('#stage'),wrap=$('#board').parentElement,{w,h}=boardSize(),cs=getComputedStyle(stage);
- const byW=(stage.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight))/w,byH=(stage.clientHeight-parseFloat(cs.paddingTop)-parseFloat(cs.paddingBottom))/h;
- const fit=clamp(Math.min(byW,byH),Math.min(1,byW),2),scale=fit*zoom,svg=$('#board');
- wrap.style.width=Math.floor(w*fit)+'px';wrap.style.minWidth=(w===620?620:780)+'px';
- const cw=wrap.clientWidth,ch=wrap.clientHeight;svg.style.width=zoom===1?'':cw*zoom+'px';svg.style.height=zoom===1?'':ch*zoom+'px';
+ const iw=stage.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight),ih=stage.clientHeight-parseFloat(cs.paddingTop)-parseFloat(cs.paddingBottom),byW=iw/w,byH=ih/h;let fit;
+ if(NARROW.matches){fit=Math.min(byW,byH);wrap.style.aspectRatio='auto';wrap.style.minWidth='0';wrap.style.width=Math.floor(iw)+'px';wrap.style.height=Math.floor(ih)+'px';}
+ else{fit=clamp(Math.min(byW,byH),Math.min(1,byW),2);wrap.style.aspectRatio=`${w}/${h}`;wrap.style.height='';wrap.style.width=Math.floor(w*fit)+'px';wrap.style.minWidth=(w===620?620:780)+'px';}
+ const scale=fit*zoom,svg=$('#board'),cw=wrap.clientWidth,ch=wrap.clientHeight;svg.style.width=zoom===1?'':cw*zoom+'px';svg.style.height=zoom===1?'':ch*zoom+'px';
  $('#zoomResetBtn').textContent=Math.round(scale*100)+' %';$('#zoomOutBtn').disabled=zoom<=.25;$('#zoomInBtn').disabled=zoom>=4;}
 // Change the zoom; with an anchor (screen point) the board point under it stays in place.
 function setZoom(z,anchor){const svg=$('#board'),wrap=svg.parentElement,before=svg.getBoundingClientRect();zoom=clamp(z,.25,4);fitBoard();
  if(anchor){const after=svg.getBoundingClientRect();wrap.scrollLeft+=after.left+(anchor.x-before.left)/before.width*after.width-anchor.x;wrap.scrollTop+=after.top+(anchor.y-before.top)/before.height*after.height-anchor.y;}}
-function renderBoard(){const svg=$('#board'),{w,h}=boardSize(),wrap=svg.parentElement;svg.setAttribute('viewBox',`0 0 ${w} ${h}`);wrap.style.aspectRatio=`${w}/${h}`;fitBoard();svg.innerHTML=boardMarkup();}
+function renderBoard(){const svg=$('#board'),{w,h}=boardSize(),wrap=svg.parentElement;svg.setAttribute('viewBox',`0 0 ${w} ${h}`);fitBoard();svg.innerHTML=boardMarkup()+dropMarker();}
 function render(){renderBoard();renderInspector();$('#docTitle').value=state.title;$('#connectBtn').classList.toggle('active',mode==='connect');$('#connectBtn').textContent=mode==='connect'?(linkFrom?'Ziel wählen · Esc':'Start wählen · Esc'):'⤳  Verbinden';$('#undoBtn').disabled=!undo.length;$('#redoBtn').disabled=!redo.length;$('#stageFooter').textContent=mode==='connect'?'Klicke zwei Bausteine an, um sie zu verbinden.':'Bausteine und Subnetze ziehen · 100 % lokal';}
+function ipFieldsHTML(n){const ips=n.ips||[];return `<div class="field"><span class="field-label">IP-Adressen</span>${ips.length?`<div class="ip-list">${ips.map((a,i)=>`<div class="ip-row"><input id="f-ip-${i}" type="text" value="${E(a.addr)}" maxlength="45" placeholder="10.0.0.5/24" aria-label="IP-Adresse ${i+1}" spellcheck="false" autocapitalize="off" autocomplete="off"><input id="f-iplabel-${i}" type="text" value="${E(a.label)}" maxlength="24" placeholder="Bezeichnung" aria-label="Bezeichnung der IP-Adresse ${i+1}" autocomplete="off"><button type="button" class="ip-remove" data-ip="${i}" title="Entfernen" aria-label="IP-Adresse ${i+1} entfernen">✕</button></div>`).join('')}</div>`:''}${ips.length<16?'<button type="button" id="addIp" class="btn">＋ IP-Adresse</button>':''}</div>`;}
+function wireIpFields(n){(n.ips||[]).forEach((a,i)=>{wireText('#f-ip-'+i,v=>{a.addr=v;resolveOverlaps(n.id);});wireText('#f-iplabel-'+i,v=>a.label=v);});
+ for(const b of document.querySelectorAll('#inspector .ip-remove'))b.onclick=()=>mutate(()=>{n.ips.splice(Number(b.dataset.ip),1);if(!n.ips.length)delete n.ips;resolveOverlaps(n.id);});
+ const add=$('#addIp');if(add)add.onclick=()=>{mutate(()=>{(n.ips||=[]).push({addr:'',label:''});});$('#f-ip-'+(n.ips.length-1))?.focus();};}
 function fieldHTML(label,id,val,opts={}){if(opts.options)return `<label class="field"><span class="field-label">${E(label)}</span><select id="${id}">${opts.options.map(o=>`<option value="${E(o[0])}" ${o[0]===val?'selected':''}>${E(o[1])}</option>`).join('')}</select></label>`;return `<label class="field"><span class="field-label">${E(label)}</span><input id="${id}" type="text" value="${E(val)}" maxlength="${opts.limit||55}"></label>`;}
-function renderInspector(){const el=$('#inspector');if(!selection){el.innerHTML=`<div class="empty-inspector"><svg width="64" height="64" viewBox="0 0 64 64" fill="none"><rect x="8" y="12" width="48" height="37" rx="7" stroke="currentColor" stroke-width="2"/><rect x="17" y="22" width="13" height="9" rx="2" stroke="currentColor" stroke-width="2"/><rect x="36" y="32" width="11" height="9" rx="2" stroke="currentColor" stroke-width="2"/><path d="M30 26h12v6M32 51v5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><strong>Element auswählen</strong><p>Baustein, Verbindung oder Standort anklicken, um Eigenschaften zu bearbeiten. Standorte und Subnetze über die Symbolleiste hinzufügen.</p></div>`;return;}
+function renderInspector(){const el=$('#inspector');document.body.classList.toggle('has-selection',!!selection);if(!selection){el.innerHTML=`<div class="empty-inspector"><svg width="64" height="64" viewBox="0 0 64 64" fill="none"><rect x="8" y="12" width="48" height="37" rx="7" stroke="currentColor" stroke-width="2"/><rect x="17" y="22" width="13" height="9" rx="2" stroke="currentColor" stroke-width="2"/><rect x="36" y="32" width="11" height="9" rx="2" stroke="currentColor" stroke-width="2"/><path d="M30 26h12v6M32 51v5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><strong>Element auswählen</strong><p>Baustein, Verbindung oder Standort anklicken, um Eigenschaften zu bearbeiten. Standorte und Subnetze über die Symbolleiste hinzufügen.</p></div>`;return;}
 if(selection.type==='node'){
  const n=state.nodes.find(o=>o.id===selection.id);if(!n){selection=null;renderInspector();return;}
+ const up=state.nodes.find(h=>h.id===n.parentId),orderList=up&&canHold(up,n.kind)?siblingsOf(up,n.netId):[],orderSibs=orderList.length>1?orderList:null,orderIx=orderList.indexOf(n);
  const hosts=state.nodes.filter(h=>canHold(h,n.kind)&&h.id!==n.id&&h.site===n.site),canNest=Object.values(CONTAINS).some(k=>k.includes(n.kind)),inGuest=['app','db'].includes(n.kind),host=state.nodes.find(h=>h.id===n.parentId);
  let extra='';
- if(canNest)extra=fieldHTML(inGuest?'VM / Container':'Host','f-parent',n.parentId||'',{options:[['',inGuest?'Keine VM (frei im Standort)':'Kein Host (frei im Standort)'],...hosts.map(h=>{const up=state.nodes.find(o=>o.id===h.parentId);return[h.id,h.name+(up?' · '+up.name:'')];})]});
+ if(canNest)extra=fieldHTML(inGuest?'Gerät':'Host','f-parent',n.parentId||'',{options:[['',inGuest?'Kein Gerät (frei im Standort)':'Kein Host (frei im Standort)'],...hosts.map(h=>{const up=state.nodes.find(o=>o.id===h.parentId);return[h.id,h.name+(up?' · '+up.name:'')];})]});
  if(canNest&&host?.nets?.length)extra+=fieldHTML('Subnetz im Host','f-hostnet',n.netId||'',{options:[['','Direkt im Host'],...host.nets.map(t=>[t.id,t.name+(t.cidr?' · '+t.cidr:'')])]});
- if(n.kind==='server'){const count=state.nodes.filter(c=>c.parentId===n.id).length;extra=fieldHTML('Erreichbar über','f-mgmt',n.mgmtNetId||'',{options:[['','Nicht angegeben'],...state.subnets.filter(sn=>sn.site===n.site).map(sn=>[sn.id,'Standort: '+sn.name+(sn.cidr?' · '+sn.cidr:'')]),...(n.nets||[]).map(t=>[t.id,'Host: '+t.name+(t.cidr?' · '+t.cidr:'')])]})+fieldHTML('Management-IP','f-mgmtip',n.mgmtIp||'',{limit:45})+`<div class="help"><strong>${count} ${count===1?'Gast':'Gäste'} im Host</strong>Ziehe VMs, Container, Firewalls, Router oder Switches direkt auf diesen Host oder in eines seiner Subnetze. Die Gäste werden darin gruppiert und beim Verschieben mitgenommen.</div><div class="inspector-actions"><button id="addHostNet" class="btn">＋ Subnetz im Host</button></div>`;}
- if(n.kind==='vm'||n.kind==='lxc'){const count=state.nodes.filter(c=>c.parentId===n.id).length;extra+=`<div class="help"><strong>${count} ${count===1?'Dienst':'Dienste'} in ${n.kind==='vm'?'der VM':'dem Container'}</strong>Ziehe Anwendungen oder Storage / DB direkt hierauf. Sie werden darin gruppiert und beim Verschieben mitgenommen.</div>`;}
+ if(n.kind==='server'){extra=fieldHTML('Erreichbar über','f-mgmt',n.mgmtNetId||'',{options:[['','Nicht angegeben'],...state.subnets.filter(sn=>sn.site===n.site).map(sn=>[sn.id,'Standort: '+sn.name+(sn.cidr?' · '+sn.cidr:'')]),...(n.nets||[]).map(t=>[t.id,'Host: '+t.name+(t.cidr?' · '+t.cidr:'')])]})+fieldHTML('Management-IP','f-mgmtip',n.mgmtIp||'',{limit:45})+`<div class="help"><strong>${hostContent(n.id)} im Host</strong>Ziehe VMs, Container, Firewalls, Router, Switches, Anwendungen oder Storage / DB direkt auf diesen Host oder in eines seiner Subnetze. Die Gäste werden darin gruppiert und beim Verschieben mitgenommen.</div><div class="inspector-actions"><button id="addHostNet" class="btn">＋ Subnetz im Host</button></div>`;}
+ if(CONTAINS[n.kind]&&n.kind!=='server'){const count=state.nodes.filter(c=>c.parentId===n.id).length,where={vm:'der VM',lxc:'dem Container',firewall:'der Firewall',router:'dem Router',switch:'dem Switch'}[n.kind];extra+=`<div class="help"><strong>${count} ${count===1?'Dienst':'Dienste'} in ${where}</strong>Ziehe Anwendungen oder Storage / DB direkt hierauf. Sie werden darin gruppiert und beim Verschieben mitgenommen.</div>`;}
  if(GATEWAY_KINDS.includes(n.kind)){const served=state.nodes.flatMap(h=>(h.nets||[]).filter(t=>t.gatewayId===n.id&&gatewayOf(t,h)).map(t=>`${t.name} (${h.name})`));if(served.length)extra+=`<div class="help"><strong>Gateway für ${served.length} ${served.length===1?'Subnetz':'Subnetze'}</strong>${served.map(E).join('<br>')}</div>`;}
- el.innerHTML=`<div class="selection-meta"><span class="pill">${n.parentId?'GAST':'BAUSTEIN'}</span><span class="status">${E(n.id.slice(0,10))}</span></div><h2>Eigenschaften</h2><p class="inspector-description">Name, Typ und Zuordnung bearbeiten.</p>${fieldHTML('Name','f-name',n.name,{limit:44})}${fieldHTML('Untertitel','f-detail',n.detail,{limit:55})}${fieldHTML('Typ','f-kind',n.kind,{options:Object.entries(TYPES).map(([k,v])=>[k,v.label])})}${fieldHTML('Standort','f-site',n.site,{options:state.sites.map(s=>[s.id,s.name])})}${n.parentId?'<p class="side-desc">Subnetz wird vom Host übernommen.</p>':fieldHTML('Subnetz','f-subnet',n.subnetId||'',{options:[['','Ohne Subnetz'],...state.subnets.filter(sn=>sn.site===n.site).map(sn=>[sn.id,sn.name+(sn.cidr?' · '+sn.cidr:'')])]})}${extra}<div class="inspector-actions"><button id="duplicate" class="btn">Duplizieren</button><button id="delete" class="btn danger">Baustein löschen</button></div>`;
- wireText('#f-name',v=>n.name=v);wireText('#f-detail',v=>n.detail=v);
+ el.innerHTML=`<div class="selection-meta"><span class="pill">${n.parentId?'GAST':'BAUSTEIN'}</span><span class="status">${E(n.id.slice(0,10))}</span></div><h2>Eigenschaften</h2><p class="inspector-description">Name, Typ und Zuordnung bearbeiten.</p>${fieldHTML('Name','f-name',n.name,{limit:44})}${fieldHTML('Untertitel','f-detail',n.detail,{limit:55})}${ipFieldsHTML(n)}${fieldHTML('Typ','f-kind',n.kind,{options:Object.entries(TYPES).map(([k,v])=>[k,v.label])})}${fieldHTML('Standort','f-site',n.site,{options:state.sites.map(s=>[s.id,s.name])})}${n.parentId?'<p class="side-desc">Subnetz wird vom Host übernommen.</p>':fieldHTML('Subnetz','f-subnet',n.subnetId||'',{options:[['','Ohne Subnetz'],...state.subnets.filter(sn=>sn.site===n.site).map(sn=>[sn.id,sn.name+(sn.cidr?' · '+sn.cidr:'')])]})}${extra}<div class="inspector-actions">${n.w&&!n.parentId?'<button id="resetWidth" class="btn">Breite zurücksetzen</button>':''}${orderSibs?`<div class="order-actions"><button id="moveUp" class="btn" ${orderIx<=0?'disabled':''}>↑ Nach oben</button><button id="moveDown" class="btn" ${orderIx>=orderSibs.length-1?'disabled':''}>↓ Nach unten</button></div>`:''}<button id="duplicate" class="btn">Duplizieren</button><button id="delete" class="btn danger">Baustein löschen</button></div>`;
+ wireText('#f-name',v=>n.name=v);wireText('#f-detail',v=>n.detail=v);wireIpFields(n);if($('#resetWidth'))$('#resetWidth').onclick=()=>mutate(()=>{delete n.w;});if(orderSibs){$('#moveUp').onclick=()=>moveSibling(n,-1);$('#moveDown').onclick=()=>moveSibling(n,1);}
  wireSelect('#f-kind',v=>{n.kind=v;if(!canHold(host,v))adopt(n,null);if(v==='server')n.nets=n.nets||[];else delete n.nets;for(const c of state.nodes)if(c.parentId===n.id){if(!canHold(n,c.kind))c.parentId=null;if(v!=='server')c.netId=null;}});
  wireSelect('#f-site',v=>{n.site=v;n.parentId=null;n.netId=null;n.subnetId=null;clampLocal(n);for(const c of descendants(n.id)){c.site=v;c.subnetId=null;}});
  if(!n.parentId)wireSelect('#f-subnet',v=>{n.subnetId=v||null;for(const c of descendants(n.id))c.subnetId=n.subnetId;});
  if(canNest)wireSelect('#f-parent',v=>adopt(n,state.nodes.find(o=>o.id===v)||null));
  if(canNest&&host?.nets?.length)wireSelect('#f-hostnet',v=>{n.netId=v||null;resolveOverlaps(host.id);});
  if(n.kind==='server'){$('#addHostNet').onclick=()=>addHostNet(n.id);wireSelect('#f-mgmt',v=>{n.mgmtNetId=v||null;resolveOverlaps(n.id);});wireText('#f-mgmtip',v=>{n.mgmtIp=v;resolveOverlaps(n.id);});}
- $('#duplicate').onclick=()=>{mutate(()=>{const map={},nn={...n,id:uid(),...(n.nets?{nets:n.nets.map(t=>({...t,id:map[t.id]='hn-'+uid()}))}:{}),parentId:n.parentId||null,x:clamp(n.x+26,15,SITE_W-NW-15),y:n.y+26};if(map[nn.mgmtNetId])nn.mgmtNetId=map[nn.mgmtNetId];state.nodes.push(nn);if(nn.parentId)resolveOverlaps(nn.parentId);selection={type:'node',id:nn.id};});};$('#delete').onclick=deleteSelected;
+ $('#duplicate').onclick=()=>{mutate(()=>{const map={},nn={...n,id:uid(),...(n.ips?{ips:n.ips.map(a=>({...a}))}:{}),...(n.nets?{nets:n.nets.map(t=>({...t,id:map[t.id]='hn-'+uid()}))}:{}),parentId:n.parentId||null,x:clamp(n.x+26,15,siteWidth(n.site)-NW-15),y:n.y+26};if(map[nn.mgmtNetId])nn.mgmtNetId=map[nn.mgmtNetId];state.nodes.push(nn);if(nn.parentId)resolveOverlaps(nn.parentId);selection={type:'node',id:nn.id};});};$('#delete').onclick=deleteSelected;
 }else if(selection.type==='link'){
  const l=state.links.find(o=>o.id===selection.id);if(!l){selection=null;renderInspector();return;}const a=state.nodes.find(n=>n.id===l.from),b=state.nodes.find(n=>n.id===l.to);
  el.innerHTML=`<div class="selection-meta"><span class="pill">VERBINDUNG</span></div><h2>Verbindung</h2><p class="inspector-description">${E(a?.name||'?')} ↔ ${E(b?.name||'?')}</p>${fieldHTML('Beschriftung','f-label',l.label,{limit:45})}${fieldHTML('Linienstil','f-style',l.style,{options:[['standard','Normal'],['vpn','VPN / Tunnel (gestrichelt)']]})}<div class="inspector-actions"><button id="delete" class="btn danger">Verbindung löschen</button></div>`;
@@ -295,22 +341,24 @@ if(selection.type==='node'){
  const count=state.nodes.filter(n=>n.subnetId===sn.id).length;
  el.innerHTML=`<div class="selection-meta"><span class="pill">SUBNETZ</span></div><h2>Subnetz bearbeiten</h2><p class="inspector-description">Eigener Netzwerkbereich innerhalb eines Standorts.</p>${fieldHTML('Name','f-name',sn.name,{limit:40})}${fieldHTML('CIDR / Beschreibung','f-cidr',sn.cidr,{limit:44})}${fieldHTML('Standort','f-site',sn.site,{options:state.sites.map(s=>[s.id,s.name])})}<p class="side-desc">${count} zugeordnete Bausteine · Ziehen an der Titelleiste, Größe unten rechts ändern.</p><div class="inspector-actions"><button id="deleteSubnet" class="btn danger">Subnetz entfernen</button></div><p class="side-desc">Beim Entfernen bleiben die enthaltenen Bausteine erhalten.</p>`;
  wireText('#f-name',v=>sn.name=v);wireText('#f-cidr',v=>sn.cidr=v);
- wireSelect('#f-site',v=>{sn.site=v;sn.x=clamp(sn.x,12,SITE_W-sn.w-12);for(const n of state.nodes)if(n.subnetId===sn.id)n.site=v;});
+ wireSelect('#f-site',v=>{sn.site=v;sn.w=Math.min(sn.w,siteWidth(v)-24);sn.x=clamp(sn.x,12,siteWidth(v)-sn.w-12);for(const n of state.nodes)if(n.subnetId===sn.id)n.site=v;});
  $('#deleteSubnet').onclick=()=>removeSubnet(sn.id);
 }else if(selection.type==='hostnet'){
  const hit=hostNet(selection.id);if(!hit){selection=null;renderInspector();return;}const {host,net}=hit;
  const count=state.nodes.filter(n=>n.parentId===host.id&&n.netId===net.id).length;
- el.innerHTML=`<div class="selection-meta"><span class="pill">HOST-SUBNETZ</span></div><h2>Subnetz im Host</h2><p class="inspector-description">Netzwerk innerhalb von „${E(host.name)}“.</p>${fieldHTML('Name','f-name',net.name,{limit:40})}${fieldHTML('CIDR / Beschreibung','f-cidr',net.cidr,{limit:44})}${fieldHTML('Gateway','f-gateway',gatewayOf(net,host)?.id||'',{options:[['','Kein Gateway'],...state.nodes.filter(g=>GATEWAY_KINDS.includes(g.kind)&&g.site===host.site).map(g=>{const up=state.nodes.find(o=>o.id===g.parentId);return[g.id,g.name+(up?' · in '+up.name:'')];})]})}<p class="side-desc">${count} ${count===1?'Gast':'Gäste'} in diesem Subnetz · VMs/LXC auf den Bereich ziehen, um sie zuzuordnen.</p><div class="inspector-actions"><button id="selectHost" class="btn">Host auswählen</button><button id="deleteHostNet" class="btn danger">Subnetz entfernen</button></div><p class="side-desc">Beim Entfernen bleiben die Gäste direkt im Host erhalten.</p>`;
+ el.innerHTML=`<div class="selection-meta"><span class="pill">HOST-SUBNETZ</span></div><h2>Subnetz im Host</h2><p class="inspector-description">Netzwerk innerhalb von „${E(host.name)}“.</p>${fieldHTML('Name','f-name',net.name,{limit:40})}${fieldHTML('CIDR / Beschreibung','f-cidr',net.cidr,{limit:44})}${fieldHTML('Gateway','f-gateway',gatewayOf(net,host)?.id||'',{options:[['','Kein Gateway'],...state.nodes.filter(g=>GATEWAY_KINDS.includes(g.kind)&&g.site===host.site).map(g=>{const up=state.nodes.find(o=>o.id===g.parentId);return[g.id,g.name+(up?' · in '+up.name:'')];})]})}<p class="side-desc">${count} ${count===1?'Gast':'Gäste'} in diesem Subnetz · Gäste auf den Bereich ziehen, um sie zuzuordnen.</p><div class="inspector-actions"><button id="selectHost" class="btn">Host auswählen</button><button id="deleteHostNet" class="btn danger">Subnetz entfernen</button></div><p class="side-desc">Beim Entfernen bleiben die Gäste direkt im Host erhalten.</p>`;
  wireText('#f-name',v=>net.name=v);wireText('#f-cidr',v=>net.cidr=v);wireSelect('#f-gateway',v=>{net.gatewayId=v||null;resolveOverlaps(host.id);});
  $('#selectHost').onclick=()=>{selection={type:'node',id:host.id};render();};$('#deleteHostNet').onclick=()=>removeHostNet(net.id);
 }else if(selection.type==='site'){
  const site=state.sites.find(s=>s.id===selection.id);if(!site){selection=null;renderInspector();return;}
  const count=state.nodes.filter(n=>n.site===site.id).length;
- el.innerHTML=`<div class="selection-meta"><span class="pill">STANDORT</span></div><h2>Standort bearbeiten</h2><p class="inspector-description">Name, Beschreibung und Verwaltung des Standortes.</p>${fieldHTML('Name','f-name',site.name,{limit:36})}${fieldHTML('Beschreibung','f-detail',site.sub,{limit:44})}<p class="side-desc">${count} Bausteine an diesem Standort</p><div class="inspector-actions"><button id="deleteSite" class="btn danger" ${state.sites.length<=1?'disabled':''}>Standort entfernen</button></div>${state.sites.length<=1?'<p class="side-desc">Mindestens ein Standort muss bestehen bleiben.</p>':''}`;
+ el.innerHTML=`<div class="selection-meta"><span class="pill">STANDORT</span></div><h2>Standort bearbeiten</h2><p class="inspector-description">Name, Beschreibung und Verwaltung des Standortes.</p>${fieldHTML('Name','f-name',site.name,{limit:36})}${fieldHTML('Beschreibung','f-detail',site.sub,{limit:44})}<p class="side-desc">${count} Bausteine an diesem Standort · Größe unten rechts ändern.</p><div class="inspector-actions">${site.w||site.h?'<button id="resetSiteSize" class="btn">Größe zurücksetzen</button>':''}<button id="deleteSite" class="btn danger" ${state.sites.length<=1?'disabled':''}>Standort entfernen</button></div>${state.sites.length<=1?'<p class="side-desc">Mindestens ein Standort muss bestehen bleiben.</p>':''}`;
  wireText('#f-name',v=>site.name=v);wireText('#f-detail',v=>site.sub=v);$('#deleteSite').onclick=()=>removeSite(site.id);
+ if($('#resetSiteSize'))$('#resetSiteSize').onclick=()=>mutate(()=>{delete site.h;const m=minSiteW(site.id);if(m>SITE_W)site.w=m;else delete site.w;});
  }
 }
-function wireText(selector,setter){const el=$(selector);el.addEventListener('focus',()=>{fieldSnapshot=snapshot();});el.addEventListener('input',()=>{setter(el.value);persist();renderBoard();$('#docTitle').value=state.title;});el.addEventListener('blur',()=>{if(fieldSnapshot&&fieldSnapshot!==snapshot())history(fieldSnapshot);fieldSnapshot=null;render();});}
+function wireText(selector,setter){const el=$(selector);el.addEventListener('focus',()=>{fieldSnapshot=snapshot();});el.addEventListener('input',()=>{setter(el.value);persist();renderBoard();$('#docTitle').value=state.title;});// No inspector rebuild on blur: it would replace the field or button the user is just clicking.
+ el.addEventListener('blur',()=>{if(fieldSnapshot&&fieldSnapshot!==snapshot())history(fieldSnapshot);fieldSnapshot=null;renderBoard();$('#undoBtn').disabled=!undo.length;$('#redoBtn').disabled=!redo.length;});}
 function wireSelect(selector,setter){$(selector).addEventListener('change',e=>mutate(()=>setter(e.target.value)));}
 function deleteSelected(){if(!selection)return;if(selection.type==='site'){removeSite(selection.id);return;}if(selection.type==='hostnet'){removeHostNet(selection.id);return;}if(selection.type==='node'){const n=state.nodes.find(o=>o.id===selection.id);const guests=n?descendants(n.id).length:0;if(guests&&!confirm(`„${n.name}“ und ${guests} enthaltene Bausteine samt Verbindungen löschen? (Mit Strg+Z rückgängig.)`))return;}mutate(()=>{
  if(selection.type==='node'){
@@ -326,7 +374,7 @@ function removeSite(id){const s=state.sites.find(t=>t.id===id);if(!s||state.site
 function addSubnet(){
  const siteId=(selection?.type==='site'?selection.id:selection?.type==='node'?state.nodes.find(n=>n.id===selection.id)?.site:selection?.type==='subnet'?state.subnets.find(sn=>sn.id===selection.id)?.site:null)||state.sites[0]?.id;
  if(!siteId)return;const current=state.subnets.filter(sn=>sn.site===siteId),y=120+current.length*275;
- mutate(()=>{const sn={id:'sn-'+uid(),site:siteId,name:'Neues Subnetz',cidr:'',x:22,y,w:492,h:225};state.subnets.push(sn);selection={type:'subnet',id:sn.id};});
+ mutate(()=>{const sn={id:'sn-'+uid(),site:siteId,name:'Neues Subnetz',cidr:'',x:22,y,w:Math.min(492,siteWidth(siteId)-48),h:225};state.subnets.push(sn);selection={type:'subnet',id:sn.id};});
 }
 function removeSubnet(id){const sn=state.subnets.find(t=>t.id===id);if(!sn)return;
  const count=state.nodes.filter(n=>n.subnetId===id).length;
@@ -339,12 +387,30 @@ function addHostNet(hostId){const h=state.nodes.find(n=>n.id===hostId);if(!h||h.
 function removeHostNet(id){const hit=hostNet(id);if(!hit)return;
  mutate(()=>{hit.host.nets=hit.host.nets.filter(t=>t.id!==id);if(hit.host.mgmtNetId===id)hit.host.mgmtNetId=null;for(const n of state.nodes)if(n.netId===id)n.netId=null;selection={type:'node',id:hit.host.id};});
 }
+// Order inside a container: entries of one group (same host, same host subnet) are laid out in state.nodes order.
+function siblingsOf(host,netId,excludeId){return state.nodes.filter(c=>c.parentId===host.id&&canHold(host,c.kind)&&(c.netId||null)===(netId||null)&&c.id!==excludeId);}
+// Where a node dropped at pt would be inserted into host: before the first sibling whose centre lies below pt.
+// In a multi-column grid (row-major order) the pointer's column decides within a row.
+function insertionAt(n,host,pt){const netId=host.kind==='server'?hostNetAt(pt,host)?.id||null:null,sibs=siblingsOf(host,netId,n.id);if(!sibs.length)return null;
+ const r=nodeRect(host),L=layout(host,state,r.w),slot=c=>L.slots[c.id];
+ const before=sibs.find(c=>{const s=slot(c);if(!s)return false;const top=r.y+s.y,bottom=top+s.h;return pt.y<top||(pt.y<=bottom&&(s.cols>1?pt.x<r.x+s.x+s.w/2:pt.y<top+s.h/2));})||null,ref=slot(before||sibs.at(-1));if(!ref)return null;
+ if(ref.cols>1)return{before,sibs,vertical:true,x:r.x+(before?ref.x-4.5:ref.x+ref.w+4.5),y:r.y+ref.y,h:ref.h};
+ return{before,sibs,x:r.x+ref.x,w:ref.w,y:r.y+(before?ref.y-3:ref.y+ref.h+3)};}
+function reorder(n,ins){if(!ins)return;state.nodes.splice(state.nodes.indexOf(n),1);const anchor=ins.before||ins.sibs.at(-1);state.nodes.splice(state.nodes.indexOf(anchor)+(ins.before?0:1),0,n);}
+function moveSibling(n,dir){const host=state.nodes.find(h=>h.id===n.parentId);if(!host)return;const sibs=siblingsOf(host,n.netId),i=sibs.indexOf(n),other=sibs[i+dir];if(!other)return;
+ mutate(()=>{const a=state.nodes.indexOf(n),b=state.nodes.indexOf(other);[state.nodes[a],state.nodes[b]]=[state.nodes[b],state.nodes[a]];});}
+// Smallest width a site may get: its subnets and free-standing cards must still fit.
+function minSiteW(id){let m=SITE_MIN;for(const sn of state.subnets)if(sn.site===id)m=Math.max(m,sn.x+sn.w+12);for(const n of state.nodes)if(n.site===id&&!n.parentId)m=Math.max(m,n.x+nodeSize(n).w+15);return m;}
+function siteGrip(s){const k=COARSE?60:34;return `<g data-site-resize="${E(s.id)}" style="cursor:nwse-resize"><path d="M${s.x+s.w-27} ${s.y+s.h-11}l16 -16 M${s.x+s.w-19} ${s.y+s.h-11}l8 -8" fill="none" stroke="${s.accent}" stroke-width="2.6" stroke-linecap="round" opacity=".75"/><rect x="${s.x+s.w-k}" y="${s.y+s.h-k}" width="${k}" height="${k}" fill="transparent"/></g>`;}
+// Width grip on the right edge of a selected top-level container card (coordinates relative to the card).
+function widthGrip(n,r){const k=COARSE?22:12,cy=Math.min(r.h/2,120);return `<g data-node-resize="${E(n.id)}" style="cursor:ew-resize"><rect x="${r.w-5}" y="${cy-18}" width="10" height="36" rx="5" fill="#fff" stroke="#4489e4" stroke-width="1.5"/><path d="M${r.w-1.6} ${cy-7}v14M${r.w+1.6} ${cy-7}v14" stroke="#4489e4" stroke-width="1.3" stroke-linecap="round"/><rect x="${r.w-k}" y="${cy-(COARSE?40:26)}" width="${2*k}" height="${COARSE?80:52}" fill="transparent"/></g>`;}
+function dropMarker(){const m=!drag?.moved?null:drag.insert;if(m?.vertical)return `<g pointer-events="none"><rect x="${m.x-1.5}" y="${m.y}" width="3" height="${m.h}" rx="1.5" fill="#2563eb"/><circle cx="${m.x}" cy="${m.y}" r="4" fill="#fff" stroke="#2563eb" stroke-width="2"/><circle cx="${m.x}" cy="${m.y+m.h}" r="4" fill="#fff" stroke="#2563eb" stroke-width="2"/></g>`;return m?`<g pointer-events="none"><rect x="${m.x}" y="${m.y-1.5}" width="${m.w}" height="3" rx="1.5" fill="#2563eb"/><circle cx="${m.x}" cy="${m.y}" r="4" fill="#fff" stroke="#2563eb" stroke-width="2"/><circle cx="${m.x+m.w}" cy="${m.y}" r="4" fill="#fff" stroke="#2563eb" stroke-width="2"/></g>`:'';}
 function hostNetAt(pt,host){const r=nodeRect(host);return layout(host,state,r.w).boxes.find(b=>pt.x>=r.x+b.x&&pt.x<=r.x+b.x+b.w&&pt.y>=r.y+b.y&&pt.y<=r.y+b.y+b.h)?.net||null;}
 function subnetAt(pt,siteId){const site=siteFor(siteId);if(!site)return null;
  const x=pt.x-site.x,y=pt.y-site.y;
  return [...state.subnets].reverse().find(sn=>sn.site===siteId&&x>=sn.x&&x<=sn.x+sn.w&&y>=sn.y&&y<=sn.y+sn.h)||null;
 }
-function clampLocal(n){const d=nodeSize(n);n.x=clamp(n.x,15,SITE_W-d.w-15);n.y=clamp(n.y,88,3000);}
+function clampLocal(n){const d=nodeSize(n);n.x=clamp(n.x,15,siteWidth(n.site)-d.w-15);n.y=clamp(n.y,88,3000);}
 // Put n into a container (or free it with parent=null); nested descendants follow site and subnet.
 function adopt(n,parent,pt){
  n.parentId=parent?.id||null;n.netId=parent?.kind==='server'&&pt?hostNetAt(pt,parent)?.id||null:null;
@@ -372,56 +438,103 @@ function createNode(kind,pt){const s=getSite(pt);if(!s){toast('Lege zuerst einen
  state.nodes.push(n);const host=containerAt(pt,kind,n.id);if(host)adopt(n,host,pt);selection={type:'node',id:n.id};});}
 function findSpace(){const s=rects()[0];if(!s)return{x:60,y:205};const used=state.nodes.filter(n=>n.site===s.id&&!n.parentId).length;const x=s.x+40+(used%2)*246,y=s.y+104+Math.floor(used/2)*110;return{x,y};}
 function inCanvas(e){const b=$('#board').getBoundingClientRect();return e.clientX>=b.left&&e.clientX<=b.right&&e.clientY>=b.top&&e.clientY<=b.bottom;}
-function onPaletteDown(e,kind){if(e.button!==0)return;const origin={x:e.clientX,y:e.clientY};let moving=false,ghost=null;const target=e.currentTarget;target.setPointerCapture(e.pointerId);
-const move=ev=>{if(!moving&&Math.hypot(ev.clientX-origin.x,ev.clientY-origin.y)>7){moving=true;ghost=document.createElement('div');ghost.className='floating-ghost';ghost.textContent=TYPES[kind].label;document.body.appendChild(ghost);}if(ghost){ghost.style.left=ev.clientX+'px';ghost.style.top=ev.clientY+'px';}};
-const end=ev=>{target.removeEventListener('pointermove',move);target.removeEventListener('pointerup',end);target.removeEventListener('pointercancel',cancel);ghost?.remove();if(moving){if(inCanvas(ev))createNode(kind,pos(ev));else toast('Ziehe einen Baustein auf die Zeichenfläche.');}else{const p=findSpace(kind);createNode(kind,{x:p.x+NW/2,y:p.y+NH/2});}};
-const cancel=()=>{ghost?.remove();target.removeEventListener('pointermove',move);target.removeEventListener('pointerup',end);target.removeEventListener('pointercancel',cancel);};
-target.addEventListener('pointermove',move);target.addEventListener('pointerup',end);target.addEventListener('pointercancel',cancel);}
+// Touch: a tap adds the element, a swipe scrolls the palette strip, a long press lifts the element for dragging onto the board.
+function onPaletteDown(e,kind){if(e.button!==0)return;const touch=e.pointerType==='touch',origin={x:e.clientX,y:e.clientY},target=e.currentTarget,strip=target.parentElement,sl=strip.scrollLeft;let moving=false,scrolling=false,armed=!touch,ghost=null;target.setPointerCapture(e.pointerId);
+const timer=touch?setTimeout(()=>{armed=true;target.classList.add('lifted');navigator.vibrate?.(12);},LONG_PRESS):null;
+const move=ev=>{const dx=ev.clientX-origin.x;if(scrolling){strip.scrollLeft=sl-dx;return;}if(!moving&&Math.hypot(dx,ev.clientY-origin.y)>(touch?SLOP:7)){if(!armed){clearTimeout(timer);scrolling=true;strip.scrollLeft=sl-dx;return;}moving=true;ghost=document.createElement('div');ghost.className='floating-ghost';ghost.textContent=TYPES[kind].label;document.body.appendChild(ghost);}if(ghost){ghost.style.left=ev.clientX+'px';ghost.style.top=ev.clientY+'px';}};
+const finish=()=>{clearTimeout(timer);target.classList.remove('lifted');ghost?.remove();target.removeEventListener('pointermove',move);target.removeEventListener('pointerup',end);target.removeEventListener('pointercancel',finish);};
+const end=ev=>{finish();if(scrolling)return;if(moving){if(inCanvas(ev))createNode(kind,pos(ev));else toast('Ziehe einen Baustein auf die Zeichenfläche.');}else{const p=findSpace(kind);createNode(kind,{x:p.x+NW/2,y:p.y+NH/2});}};
+target.addEventListener('pointermove',move);target.addEventListener('pointerup',end);target.addEventListener('pointercancel',finish);}
 function paletteInit(){const el=$('#palette');for(const [kind,t] of Object.entries(TYPES)){const tile=document.createElement('div');tile.className='palette-item';tile.tabIndex=0;tile.setAttribute('role','button');tile.setAttribute('aria-label',t.label+' hinzufügen');tile.innerHTML=`<span class="mini-icon" style="--accent:${t.color};--tint:${t.tint}">${icon(kind,t.color,19)}</span><span><strong>${E(t.label)}</strong><small>${E(t.hint)}</small></span>`;tile.addEventListener('pointerdown',e=>onPaletteDown(e,kind));tile.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();const p=findSpace(kind);createNode(kind,{x:p.x+NW/2,y:p.y+NH/2});}});el.appendChild(tile);}}
-function onBoardDown(e){if(e.button!==0)return;
+// Touch on the board: a tap selects, one finger pans, a long press lifts a node or subnet for dragging,
+// two fingers zoom and pan. Mouse and pen keep the direct desktop behaviour.
+const LONG_PRESS=380,SLOP=9,touches=new Map();let press=null,pinch=null;
+function touchMid(){const[a,b]=[...touches.values()];return{x:(a.x+b.x)/2,y:(a.y+b.y)/2,d:Math.hypot(a.x-b.x,a.y-b.y)||1};}
+function abortDrag(){siteDrag=null;widthDrag=null;if(drag){state=JSON.parse(drag.before);drag=null;}if(subnetDrag){state=JSON.parse(subnetDrag.before);subnetDrag=null;}document.body.classList.remove('dragging');}
+function onBoardDown(e){if(e.pointerType!=='touch'){if(e.button===0)boardPress(e);return;}
+ touches.set(e.pointerId,{x:e.clientX,y:e.clientY});$('#board').setPointerCapture(e.pointerId);
+ if(touches.size===2){if(press)clearTimeout(press.timer);press=null;pan=null;abortDrag();pinch={...touchMid(),z:zoom};render();return;}
+ if(touches.size>2||pinch)return;
+ if(e.target.closest('[data-subnet-resize],[data-site-resize],[data-node-resize]')){press={id:e.pointerId,fired:true};boardPress(e);return;}
+ const liftable=mode!=='connect'&&!e.target.closest('[data-hostnet]')&&!!e.target.closest('[data-node],[data-subnet-handle]');
+ press={id:e.pointerId,ev:e,x:e.clientX,y:e.clientY,moved:false,fired:false,timer:liftable?setTimeout(lift,LONG_PRESS):null};
+ const wrap=$('#board').parentElement;pan={x:e.clientX,y:e.clientY,sl:wrap.scrollLeft,st:wrap.scrollTop};}
+function lift(){if(!press||press.moved)return;const wrap=$('#board').parentElement;if(pan){wrap.scrollLeft=pan.sl;wrap.scrollTop=pan.st;pan=null;}
+ press.fired=true;document.body.classList.add('dragging');navigator.vibrate?.(12);boardPress(press.ev);}
+function onBoardMove(e){if(e.pointerType!=='touch'){boardMove(e);return;}
+ const t=touches.get(e.pointerId);if(!t)return;t.x=e.clientX;t.y=e.clientY;
+ if(pinch){if(touches.size<2)return;const m=touchMid(),wrap=$('#board').parentElement;setZoom(pinch.z*m.d/pinch.d,m);wrap.scrollLeft-=m.x-pinch.x;wrap.scrollTop-=m.y-pinch.y;pinch.x=m.x;pinch.y=m.y;return;}
+ if(!press||e.pointerId!==press.id)return;
+ if(!press.fired&&!press.moved&&Math.hypot(e.clientX-press.x,e.clientY-press.y)>SLOP){press.moved=true;clearTimeout(press.timer);}
+ boardMove(e);}
+function onBoardUp(e){if(e.pointerType!=='touch'){boardUp(e);return;}
+ touches.delete(e.pointerId);if(pinch){if(!touches.size)pinch=null;return;}
+ if(!press||e.pointerId!==press.id)return;const p=press;press=null;clearTimeout(p.timer);document.body.classList.remove('dragging');
+ if(p.fired){boardUp(e);return;}
+ pan=null;if(!p.moved)boardPress(p.ev,false);}
+function onBoardCancel(e){touches.delete(e.pointerId);if(press?.id===e.pointerId){clearTimeout(press.timer);press=null;}if(!touches.size)pinch=null;pan=null;abortDrag();render();}
+// interactive=false (a touch tap) only selects; true also starts dragging or panning.
+function boardPress(e,interactive=true){
+ const srEl=e.target.closest('[data-site-resize]'),nrEl=e.target.closest('[data-node-resize]');
+ if(srEl){const id=srEl.getAttribute('data-site-resize'),s=siteFor(id);selection={type:'site',id};
+  if(interactive&&s){const inv=$('#board').getScreenCTM()?.inverse();siteDrag={id,inv,startPt:pos(e),ow:s.w,oh:s.h,min:minSiteW(id),before:snapshot(),moved:false,preview:null};$('#board').setPointerCapture(e.pointerId);}render();return;}
+ if(nrEl){const id=nrEl.getAttribute('data-node-resize'),n=state.nodes.find(t=>t.id===id);selection={type:'node',id};
+  if(interactive&&n){widthDrag={id,startPt:pos(e),ow:cardW(n),max:siteWidth(n.site)-n.x-15,before:snapshot(),moved:false,w:null};$('#board').setPointerCapture(e.pointerId);}render();return;}
  const hnEl=e.target.closest('[data-hostnet]');
  if(hnEl){if(mode==='connect'){connectClick(hnEl.getAttribute('data-host'));return;}selection={type:'hostnet',id:hnEl.getAttribute('data-hostnet')};render();return;}
  const nEl=e.target.closest('[data-node]'),lEl=e.target.closest('[data-link]'),snEl=e.target.closest('[data-subnet]'),sEl=e.target.closest('[data-site]');
- if(nEl){const id=nEl.getAttribute('data-node');if(mode==='connect'){connectClick(id);return;}selection={type:'node',id};renderInspector();renderBoard();const n=state.nodes.find(t=>t.id===id),pt=pos(e),r=nodeRect(n);drag={id,startPt:pt,ox:r.x,oy:r.y,w:r.w,h:r.h,before:snapshot(),moved:false,preview:null};$('#board').setPointerCapture(e.pointerId);
+ if(nEl){const id=nEl.getAttribute('data-node');if(mode==='connect'){connectClick(id);return;}selection={type:'node',id};renderInspector();renderBoard();if(interactive){const n=state.nodes.find(t=>t.id===id),pt=pos(e),r=nodeRect(n);drag={id,startPt:pt,ox:r.x,oy:r.y,w:r.w,h:r.h,before:snapshot(),moved:false,preview:null};$('#board').setPointerCapture(e.pointerId);}
  }else if(lEl){selection={type:'link',id:lEl.getAttribute('data-link')};render();}
  else if(snEl){const id=snEl.getAttribute('data-subnet');selection={type:'subnet',id};const sn=state.subnets.find(t=>t.id===id),pt=pos(e);
  const dragMode=e.target.closest('[data-subnet-resize]')?'resize':e.target.closest('[data-subnet-handle]')?'move':null;
- if(dragMode&&sn){subnetDrag={id,site:sn.site,mode:dragMode,startPt:pt,ox:sn.x,oy:sn.y,ow:sn.w,oh:sn.h,before:snapshot(),moved:false,preview:null};$('#board').setPointerCapture(e.pointerId);}
+ if(interactive&&dragMode&&sn){subnetDrag={id,site:sn.site,mode:dragMode,startPt:pt,ox:sn.x,oy:sn.y,ow:sn.w,oh:sn.h,before:snapshot(),moved:false,preview:null};$('#board').setPointerCapture(e.pointerId);}
  render();
  }else{selection=sEl?{type:'site',id:sEl.getAttribute('data-site')}:null;render();
   // Dragging the background pans a zoomed-in board.
-  const wrap=$('#board').parentElement;pan={x:e.clientX,y:e.clientY,sl:wrap.scrollLeft,st:wrap.scrollTop};$('#board').setPointerCapture(e.pointerId);}}
-function onBoardMove(e){
+  if(interactive){const wrap=$('#board').parentElement;pan={x:e.clientX,y:e.clientY,sl:wrap.scrollLeft,st:wrap.scrollTop};$('#board').setPointerCapture(e.pointerId);}}}
+function boardMove(e){
  if(pan){const wrap=$('#board').parentElement;wrap.scrollLeft=pan.sl-(e.clientX-pan.x);wrap.scrollTop=pan.st-(e.clientY-pan.y);return;}
+ if(siteDrag){const d=siteDrag,pt=d.inv?new DOMPoint(e.clientX,e.clientY).matrixTransform(d.inv):pos(e),dx=pt.x-d.startPt.x,dy=pt.y-d.startPt.y;if(Math.abs(dx)+Math.abs(dy)>2)d.moved=true;
+  if(d.moved){d.preview={w:clamp(Math.round(d.ow+dx),d.min,1600),h:clamp(Math.round(d.oh+dy),SITE_MIN,4000)};renderBoard();}return;}
+ if(widthDrag){const d=widthDrag,dx=pos(e).x-d.startPt.x;if(Math.abs(dx)>2)d.moved=true;
+  if(d.moved){d.w=clamp(Math.round(d.ow+dx),CARD_W,Math.max(CARD_W,d.max));renderBoard();}return;}
  if(subnetDrag){const d=subnetDrag,pt=pos(e),dx=pt.x-d.startPt.x,dy=pt.y-d.startPt.y;
   if(Math.abs(dx)+Math.abs(dy)>2)d.moved=true;
-  if(d.moved){if(d.mode==='move')d.preview={x:clamp(Math.round(d.ox+dx),12,SITE_W-d.ow-12),y:clamp(Math.round(d.oy+dy),80,3000),w:d.ow,h:d.oh};
-   else d.preview={x:d.ox,y:d.oy,w:clamp(Math.round(d.ow+dx),265,SITE_W-d.ox-12),h:clamp(Math.round(d.oh+dy),165,1500)};
+  if(d.moved){if(d.mode==='move')d.preview={x:clamp(Math.round(d.ox+dx),12,siteWidth(d.site)-d.ow-12),y:clamp(Math.round(d.oy+dy),80,3000),w:d.ow,h:d.oh};
+   else d.preview={x:d.ox,y:d.oy,w:clamp(Math.round(d.ow+dx),265,siteWidth(d.site)-d.ox-12),h:clamp(Math.round(d.oh+dy),165,1500)};
    renderBoard();}return;
  }
  if(!drag)return;const n=state.nodes.find(t=>t.id===drag.id);if(!n)return;const pt=pos(e),dx=pt.x-drag.startPt.x,dy=pt.y-drag.startPt.y;if(Math.abs(dx)+Math.abs(dy)>2)drag.moved=true;
- if(drag.moved){drag.preview={x:Math.round(drag.ox+dx),y:Math.max(93,Math.round(drag.oy+dy)),w:drag.w,h:drag.h};renderBoard();}}
-function onBoardUp(e){
+ if(drag.moved){drag.preview={x:Math.round(drag.ox+dx),y:Math.max(93,Math.round(drag.oy+dy)),w:drag.w,h:drag.h};const host=containerAt(pt,n.kind,n.id);drag.insert=host?insertionAt(n,host,pt):null;renderBoard();}}
+function boardUp(e){
  if(pan){pan=null;return;}
+ if(siteDrag){const d=siteDrag;siteDrag=null;const st=state.sites.find(s=>s.id===d.id);if(d.moved&&st){st.w=d.preview.w;st.h=d.preview.h;}
+  if(d.before!==snapshot()){history(d.before);persist();}render();return;}
+ if(widthDrag){const d=widthDrag;widthDrag=null;const n=state.nodes.find(t=>t.id===d.id);if(d.moved&&n){if(d.w>CARD_W)n.w=d.w;else delete n.w;resolveOverlaps(n.id);}
+  if(d.before!==snapshot()){history(d.before);persist();}render();return;}
  if(subnetDrag){const d=subnetDrag;subnetDrag=null;if(!d.moved){render();return;}
   const sn=state.subnets.find(t=>t.id===d.id);if(!sn)return;
   if(d.mode==='resize'){sn.w=d.preview.w;sn.h=d.preview.h;}
   else{const dx=d.preview.x-d.ox,dy=d.preview.y-d.oy;sn.x=d.preview.x;sn.y=d.preview.y;
-   for(const n of state.nodes)if(n.subnetId===sn.id&&!n.parentId){n.x=clamp(n.x+dx,15,SITE_W-nodeSize(n).w-15);n.y=clamp(n.y+dy,88,3000);}
+   for(const n of state.nodes)if(n.subnetId===sn.id&&!n.parentId){n.x=clamp(n.x+dx,15,siteWidth(n.site)-nodeSize(n).w-15);n.y=clamp(n.y+dy,88,3000);}
   }
   if(d.before!==snapshot()){history(d.before);persist();}render();return;
  }
  if(!drag)return;const d=drag;drag=null;const n=state.nodes.find(t=>t.id===d.id);if(!n||!d.moved){render();return;}
  const p=pos(e),host=containerAt(p,n.kind,n.id);
- if(host)adopt(n,host,p);
- else{const s=getSite(p);if(s){n.site=s.id;n.subnetId=subnetAt(p,s.id)?.id||null;adopt(n,null);const dims=nodeSize(n);n.x=clamp(Math.round(d.preview.x-s.x),15,SITE_W-dims.w-15);n.y=clamp(Math.round(d.preview.y-s.y),88,3000);}}
+ if(host){const ins=insertionAt(n,host,p);adopt(n,host,p);reorder(n,ins);}
+ else{const s=getSite(p);if(s){n.site=s.id;n.subnetId=subnetAt(p,s.id)?.id||null;adopt(n,null);const dims=nodeSize(n);n.x=clamp(Math.round(d.preview.x-s.x),15,s.w-dims.w-15);n.y=clamp(Math.round(d.preview.y-s.y),88,3000);}}
  if(d.before!==snapshot()){history(d.before);persist();}render();}
 function download(blob,file){const u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=file;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),2000);}
 function filename(ext){const name=(state.title||'infrastruktur').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9äöüß]+/g,'-').replace(/^-|-$/g,'').slice(0,54)||'infrastruktur';return name+'.'+ext;}
 function exportSVG(){const{w,h}=boardSize();return `<svg xmlns="${NS}" xmlns:xlink="http://www.w3.org/1999/xlink" width="${Math.round(w*1.33)}" height="${Math.round(h*1.33)}" viewBox="0 0 ${w} ${h}">${boardMarkup(true)}</svg>`;}
 function exportPNG(){const blob=new Blob([exportSVG()],{type:'image/svg+xml;charset=utf-8'}),url=URL.createObjectURL(blob),img=new Image();img.onload=()=>{const canvas=document.createElement('canvas');const{w,h}=boardSize();canvas.width=w*2;canvas.height=h*2;const ctx=canvas.getContext('2d');ctx.drawImage(img,0,0,canvas.width,canvas.height);URL.revokeObjectURL(url);canvas.toBlob(b=>{if(b)download(b,filename('png'));else toast('PNG konnte nicht erstellt werden.');},'image/png');};img.onerror=()=>{URL.revokeObjectURL(url);toast('Der PNG-Export ist fehlgeschlagen.');};img.src=url;}
 function toast(msg){const el=$('#toast');el.textContent=msg;el.classList.add('show');clearTimeout(toaster);toaster=setTimeout(()=>el.classList.remove('show'),2800);}
-$('#board').addEventListener('pointerdown',onBoardDown);$('#board').addEventListener('pointermove',onBoardMove);$('#board').addEventListener('pointerup',onBoardUp);$('#board').addEventListener('pointercancel',()=>{pan=null;if(drag){const d=drag;drag=null;state=JSON.parse(d.before);}if(subnetDrag){const d=subnetDrag;subnetDrag=null;state=JSON.parse(d.before);}render();});
+$('#board').addEventListener('pointerdown',onBoardDown);$('#board').addEventListener('pointermove',onBoardMove);$('#board').addEventListener('pointerup',onBoardUp);$('#board').addEventListener('pointercancel',onBoardCancel);
+$('#board').addEventListener('contextmenu',e=>{if(touches.size||press)e.preventDefault();});$('#palette').addEventListener('contextmenu',e=>e.preventDefault());
+const setMenu=open=>{$('header').classList.toggle('menu-open',open);$('#menuBtn').setAttribute('aria-expanded',String(open));};
+$('#menuBtn').onclick=()=>setMenu(!$('header').classList.contains('menu-open'));$('#headerActions').addEventListener('click',e=>{if(e.target.closest('button'))setMenu(false);});document.addEventListener('pointerdown',e=>{if(!e.target.closest('#headerActions,#menuBtn'))setMenu(false);});
+$('#menuNewBtn').onclick=()=>$('#newBtn').click();$('#menuDemoBtn').onclick=()=>$('#resetBtn').click();$('#sheetClose').onclick=()=>{selection=null;render();};
 $('#addSiteBtn').onclick=addSite;$('#addSubnetBtn').onclick=addSubnet;$('#newBtn').onclick=()=>{if(confirm('Das aktuelle Diagramm durch ein leeres Diagramm ersetzen?')){history();state=blank();selection=null;mode='select';linkFrom=null;persist();render();}};$('#connectBtn').onclick=()=>setMode(mode==='connect'?'select':'connect');$('#undoBtn').onclick=()=>rewind('undo');$('#redoBtn').onclick=()=>rewind('redo');
 $('#resetBtn').onclick=()=>{if(confirm('Das aktuelle Diagramm durch die neutrale Demo ersetzen?')){history();state=valid(starter());selection=null;mode='select';linkFrom=null;persist();render();}};
 $('#docTitle').addEventListener('focus',e=>fieldSnapshot=snapshot());$('#docTitle').addEventListener('input',e=>{state.title=e.target.value;persist();renderBoard();});$('#docTitle').addEventListener('blur',()=>{if(fieldSnapshot&&fieldSnapshot!==snapshot())history(fieldSnapshot);fieldSnapshot=null;render();});
