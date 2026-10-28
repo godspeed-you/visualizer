@@ -20,7 +20,6 @@ header{position:relative;background:#fff;border-bottom:1px solid var(--line);dis
 /* Inspector: a panel that slides in over the canvas while something is selected, so the canvas keeps its size. */
 .inspector{position:absolute;top:12px;right:12px;bottom:12px;width:300px;z-index:6;padding:0 18px 20px;border:1px solid var(--line);border-radius:16px;box-shadow:0 18px 50px #1b3c7026;transform:translateX(calc(100% + 30px));visibility:hidden;transition:transform .22s ease,visibility .22s}body.has-selection .inspector{transform:none;visibility:visible}
 .sheet-close{display:flex;position:sticky;top:0;z-index:1;align-items:center;justify-content:space-between;width:calc(100% + 36px);height:46px;margin:0 -18px 14px;padding:0 18px;border:0;border-bottom:1px solid var(--line);background:#fff;color:#6d8098;font-weight:700;font-size:12px}
-.boardwrap{transition:left .22s ease}
 /* View controls float over the canvas, bottom right; they move aside for the inspector. */
 .view-controls{position:absolute;right:20px;bottom:20px;z-index:4;display:flex;gap:8px;align-items:center;transition:right .22s ease}body.has-selection .view-controls{right:336px}
 .vc-group{display:flex;gap:2px;padding:3px;background:#fffffff2;border:1px solid #e3eaf1;border-radius:12px;box-shadow:0 6px 20px #1b3c7018}.vc-group .btn{border-color:transparent;background:transparent;min-height:32px;padding:0 9px}.vc-group .btn.icononly{width:32px;padding:0}.vc-group .btn:hover:not(:disabled){background:#f2f6fc}
@@ -28,12 +27,13 @@ header{position:relative;background:#fff;border-bottom:1px solid var(--line);dis
 .palette{display:grid;gap:8px}.palette-item{border:1px solid #e7edf4;border-radius:12px;padding:10px 11px;display:flex;align-items:center;gap:11px;background:#fff;touch-action:none;user-select:none;cursor:grab;transition:border-color .15s,background .15s,box-shadow .15s}.palette-item:hover{background:#f8fbff;border-color:#bcd1ed;box-shadow:0 5px 15px #1b3c7010}.palette-item:active{cursor:grabbing}.palette-item strong{font-size:12px;font-weight:650}.palette-item small{font-size:10px;color:#8894a5;display:block;line-height:1.4}.mini-icon{width:34px;height:34px;flex:0 0 34px;display:grid;place-items:center;border-radius:10px;color:var(--accent);background:var(--tint)}.mini-icon svg{width:19px;height:19px}
 .divider{height:1px;background:var(--line);margin:23px 0}.help{background:#f5f8fc;border:1px solid #e9eff7;padding:13px;border-radius:12px;color:#7a889a;font-size:11px;line-height:1.65}.help strong{color:#45586f;font-size:12px;display:block;margin-bottom:4px}.shortcut{padding:1px 5px;border-radius:4px;border:1px solid #d7e0eb;background:#fff;color:#66768c;white-space:nowrap;font-size:10px}
 .center{position:relative;min-width:0;min-height:0;display:flex;flex-direction:column;overflow:hidden}.zoom-level{min-width:58px;padding:0 6px;font-variant-numeric:tabular-nums}
-.stage{flex:1;min-height:0;position:relative;overflow:auto;background:#edf3fa;display:flex;align-items:flex-start;justify-content:flex-start;padding:23px}.boardwrap{margin:0 auto;flex:none;width:100%;min-width:780px;aspect-ratio:1200/760;position:relative;background:#fff;border-radius:17px;box-shadow:0 16px 52px #2c52751b,0 2px 10px #2c52750a;overflow:auto;display:flex}.board{display:block;flex:none;margin:auto;width:100%;height:100%;touch-action:none;user-select:none}.stage-footer{position:absolute;left:35px;bottom:32px;pointer-events:none;background:#fffffff0;border:1px solid #e9eff7;border-radius:8px;padding:6px 10px;font-size:10px;color:#8c99a8;box-shadow:0 2px 9px #1b3c7010}
+.stage{flex:1;min-height:0;position:relative;overflow:hidden;background:#fff}.boardwrap{position:absolute;inset:0}.board{display:block;width:100%;height:100%;touch-action:none;user-select:none}.board.space{cursor:grab}.board.panning,.board.space.panning{cursor:grabbing}.stage-footer{position:absolute;left:35px;bottom:32px;pointer-events:none;background:#fffffff0;border:1px solid #e9eff7;border-radius:8px;padding:6px 10px;font-size:10px;color:#8c99a8;box-shadow:0 2px 9px #1b3c7010}
 .inspector h2{margin:0 5px 7px;font-size:17px;letter-spacing:-.035em}.inspector .inspector-description{margin:0 5px 24px;font-size:12px;color:#8290a2}.field{display:block;margin-bottom:16px}.field-label{font-size:11px;font-weight:700;color:#64758a;display:block;margin:0 0 6px}.field input,.field select{border:1px solid #dce5f0;border-radius:9px;padding:10px 11px;width:100%;background:#fff;color:#304358;min-width:0;font-size:13px}.field input:focus,.field select:focus{border-color:#7faeef;box-shadow:0 0 0 3px #e6f1ff;outline:0}.inspector-actions{display:grid;gap:9px;margin-top:22px}.empty-inspector{margin-top:65px;text-align:center;color:#8190a2;padding:5px}.empty-inspector svg{color:#a8bbcf;margin-bottom:12px}.empty-inspector strong{display:block;color:#50647c;font-size:14px;margin-bottom:7px}.empty-inspector p{line-height:1.65;font-size:12px}.pill{font-size:10px;padding:3px 7px;border-radius:6px;background:#edf4ff;color:#5577a4;font-weight:700}.selection-meta{display:flex;align-items:center;justify-content:space-between;margin:0 5px 20px}.status{font-size:11px;color:#8291a3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.btn.layer{gap:6px}.btn.layer.off{opacity:.5;text-decoration:line-through}.btn.layer i{display:inline-block;width:16px;height:0;border-top:2.4px solid #94a9bf}.btn.layer i.lk-wifi{border-top:3px dotted #1f9aa8}.btn.layer i.lk-tunnel{border-top:2.4px dashed #357db4}.btn.layer i.lk-service{border-top:1.9px solid #8a63c9;position:relative}.btn.layer i.lk-service::after{content:'';position:absolute;right:-2px;top:-4.6px;border:3.6px solid transparent;border-left:5px solid #8a63c9}
 .order-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}.ip-list{display:grid;gap:6px;margin-bottom:8px}.ip-row{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) 34px;gap:5px}.ip-row input{border:1px solid #dce5f0;border-radius:9px;padding:8px 9px;width:100%;min-width:0;background:#fff;color:#304358;font-size:12.5px}.ip-row input:focus{border-color:#7faeef;box-shadow:0 0 0 3px #e6f1ff;outline:0}.ip-remove{border:1px solid #f2d3d7;border-radius:9px;background:#fff;color:#b42339;padding:0}.ip-remove:hover{background:#fff2f2}
 .floating-ghost{position:fixed;z-index:1000;pointer-events:none;opacity:.88;transform:translate(-50%,-50%);box-shadow:0 10px 30px #22364b3f;width:166px;background:#fff;border:1px solid #a6c6ee;border-radius:12px;padding:13px;font-size:13px;font-weight:700;text-align:center}.toast{position:fixed;bottom:21px;left:50%;transform:translateX(-50%);background:#24364d;color:#fff;padding:10px 16px;border-radius:9px;box-shadow:0 10px 30px #15243430;font-size:12px;z-index:12;pointer-events:none;opacity:0;transition:opacity .15s}.toast.show{opacity:1}
 @media(max-width:1150px){.workspace{grid-template-columns:185px minmax(0,1fr)}.sidebar{padding:20px 12px}.btn.layer span{display:none}.brand small{display:none}header{padding:0 14px;gap:10px}.actions{gap:4px}.actions .btn{padding:0 8px}}
-.menu-toggle{display:none}.actions .file-extra{order:-1}
+.menu-toggle{display:none}.actions .file-extra{order:-1}.actions .mobile-only{display:none}.order-tools{margin-top:7px}
+.findings{display:grid;gap:7px}.finding{display:flex;gap:9px;align-items:flex-start;text-align:left;border:1px solid var(--line);border-radius:10px;background:#fff;padding:9px 11px;font-size:12px;line-height:1.45;color:#3d4f64}.finding:hover{background:#f5f8fc}.finding span{flex:none;font-size:13px}.finding.warn{border-color:#f1d9b5;background:#fffaf2}.finding.warn span{color:#b7791f}.finding.info span{color:#5577a4}
 .board,.palette-item{-webkit-touch-callout:none;-webkit-user-select:none}
 .palette-item.lifted{border-color:#8fb4ea;background:#f2f7ff;box-shadow:0 8px 22px #1b3c7026}
 @media(pointer:coarse){.btn{min-height:44px}.btn.icononly{width:44px}.document-name,.field input,.field select{font-size:16px}.ip-row{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) 44px}.ip-remove{min-height:44px}}
@@ -41,10 +41,10 @@ header{position:relative;background:#fff;border-bottom:1px solid var(--line);dis
 @media(max-width:850px){html,body{overflow:hidden}.app{height:100vh;height:100dvh;min-height:0;display:flex;flex-direction:column}
 header{flex:none;min-height:56px;padding:8px 10px;gap:8px}.brand>div:last-child,.doc .status{display:none}.doc{max-width:none;align-items:stretch}.brand-mark{width:34px;height:34px}.document-name{max-width:none;min-width:0;text-align:left;font-size:16px;padding:7px 8px}
 .menu-toggle{display:inline-flex;font-size:18px}.actions{display:none;position:absolute;top:calc(100% + 6px);right:10px;z-index:8;flex-direction:column;align-items:stretch;gap:6px;min-width:200px;padding:8px;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 18px 44px #1b3c7030}header.menu-open .actions{display:flex}.actions .btn{justify-content:flex-start;padding:0 14px}
-.workspace{flex:1;min-height:0;display:flex;flex-direction:column}.sidebar{flex:none;padding:8px 10px;border:0;border-bottom:1px solid var(--line);overflow:visible}.sidebar .kicker,.sidebar .side-desc,.sidebar .divider,.sidebar .help{display:none}.sidetools{display:flex;gap:7px;margin-bottom:8px}.sidetools .btn{flex:1;justify-content:center;padding:0 6px;font-size:12px}.palette{display:flex;gap:7px;overflow-x:auto;scrollbar-width:none}.palette-item{padding:6px 9px;flex:0 0 136px;gap:7px}.palette-item small{display:none}.mini-icon{width:30px;height:30px;flex-basis:30px}
-.center{flex:1;min-height:0}.view-controls,body.has-selection .view-controls{right:16px;bottom:16px}.btn.layer span{display:none}.stage{padding:10px}.boardwrap{margin:auto;min-width:0}.stage-footer{display:none}
+.workspace{flex:1;min-height:0;display:flex;flex-direction:column}.sidebar{flex:none;padding:8px 10px;border:0;border-bottom:1px solid var(--line);overflow:visible}.sidebar .kicker,.sidebar .side-desc,.sidebar .divider,.sidebar .help{display:none}.sidetools{display:flex;gap:7px;margin-bottom:8px}.order-tools{display:none}.actions .mobile-only{display:inline-flex}.sidetools .btn{flex:1;justify-content:center;padding:0 6px;font-size:12px}.palette{display:flex;gap:7px;overflow-x:auto;scrollbar-width:none}.palette-item{padding:6px 9px;flex:0 0 136px;gap:7px}.palette-item small{display:none}.mini-icon{width:30px;height:30px;flex-basis:30px}
+.center{flex:1;min-height:0}.view-controls,body.has-selection .view-controls{right:16px;bottom:16px}.btn.layer span{display:none}.stage{padding:0}.stage-footer{display:none}
 .inspector{position:fixed;top:auto;width:auto;left:0;right:0;bottom:0;z-index:6;max-height:55vh;max-height:55dvh;border:0;border-radius:18px 18px 0 0;box-shadow:0 -12px 40px #1b3c7030;padding:0 18px calc(20px + env(safe-area-inset-bottom));transform:translateY(105%);visibility:hidden;transition:transform .2s ease,visibility .2s}body.has-selection .inspector{transform:none;visibility:visible}body.dragging .inspector{transform:translateY(105%);visibility:hidden}}
-@media print{header,.sidebar,.inspector,.view-controls,.stage-footer{display:none}.board{width:100%!important;height:100%!important}.app,.workspace,.center,.stage{display:block;height:auto;min-height:0;padding:0}.boardwrap{width:100%;box-shadow:none;border-radius:0}}
+@media print{header,.sidebar,.inspector,.view-controls,.stage-footer{display:none}.board{width:100%!important;height:100%!important}.app,.workspace,.center,.stage{display:block;height:auto;min-height:0;padding:0}.boardwrap{position:static}}
 </style>
 </head>
 <body>
@@ -53,25 +53,26 @@ header{flex:none;min-height:56px;padding:8px 10px;gap:8px}.brand>div:last-child,
     <div class="brand"><div class="brand-mark"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="2.5" y="3.5" width="8" height="6" rx="1.6"/><rect x="13.5" y="3.5" width="8" height="6" rx="1.6"/><rect x="8" y="15" width="8" height="6" rx="1.6"/><path d="M6.5 9.5v2.3h11V9.5M12 11.8V15"/></svg></div><div><strong>Infra Canvas</strong><small>Infrastruktur einfach visualisieren.</small></div></div>
     <div class="doc"><input id="docTitle" class="document-name" aria-label="Diagrammtitel" value="Beispiel-Infrastruktur" maxlength="70"><span id="status" class="status">Alle Änderungen werden lokal gespeichert</span></div>
     <div class="history"><button class="btn icononly" id="undoBtn" title="Rückgängig (Strg+Z)" aria-label="Rückgängig">↶</button><button class="btn icononly" id="redoBtn" title="Wiederherstellen (Strg+Y)" aria-label="Wiederherstellen">↷</button></div>
-    <div class="actions" id="headerActions"><button class="btn" id="importBtn" title="Diagramm aus JSON laden">Öffnen</button><button class="btn" id="jsonBtn" title="Diagramm als editierbare JSON-Datei speichern">JSON</button><button class="btn" id="svgBtn" title="Vektorgrafik exportieren">SVG</button><button class="btn primary" id="pngBtn" title="Bild als PNG exportieren">PNG ↓</button><button class="btn file-extra" id="newBtn" title="Leeres Diagramm erstellen">Neu</button><button class="btn file-extra" id="resetBtn" title="Neutrale Demo wiederherstellen">Demo</button></div>
+    <div class="actions" id="headerActions"><button class="btn" id="importBtn" title="Diagramm aus JSON laden">Öffnen</button><button class="btn" id="jsonBtn" title="Diagramm als editierbare JSON-Datei speichern">JSON</button><button class="btn" id="svgBtn" title="Vektorgrafik exportieren">SVG</button><button class="btn primary" id="pngBtn" title="Bild als PNG exportieren">PNG ↓</button><button class="btn mobile-only" data-proxy="autoLayoutBtn">Automatisch anordnen</button><button class="btn mobile-only" data-proxy="tidyBtn">Aufräumen</button><button class="btn mobile-only" data-proxy="checkBtn">Prüfen</button><button class="btn file-extra" id="newBtn" title="Leeres Diagramm erstellen">Neu</button><button class="btn file-extra" id="resetBtn" title="Neutrale Demo wiederherstellen">Demo</button></div>
     <button class="btn icononly menu-toggle" id="menuBtn" aria-label="Menü" aria-expanded="false" aria-controls="headerActions">⋯</button>
   </header>
   <main class="workspace">
     <aside class="sidebar">
       <h2 class="kicker">Werkzeuge</h2>
       <div class="sidetools"><button class="btn" id="connectBtn" title="Zwei Bausteine durch Anklicken verbinden">⤳ &nbsp;Verbinden</button><button class="btn" id="addSiteBtn" title="Neuen Standort anlegen">＋ Standort</button><button class="btn" id="addSubnetBtn" title="Neues Subnetz anlegen">＋ Subnetz</button></div>
+      <div class="sidetools order-tools"><button class="btn" id="autoLayoutBtn" title="Alle Standorte automatisch anordnen (Strg+Z macht es rückgängig)">⊞ &nbsp;Automatisch anordnen</button><button class="btn" id="tidyBtn" title="Inaktive Gäste nach hinten, Leitungen zusammenführen, Überlappungen auflösen, Größen anpassen">✦ &nbsp;Aufräumen</button><button class="btn" id="checkBtn" title="Diagramm auf Unstimmigkeiten prüfen">✓ &nbsp;Prüfen</button></div>
       <div class="divider"></div>
       <h2 class="kicker">Bausteine</h2><p class="side-desc">Auf die Zeichenfläche ziehen oder antippen, um einen Baustein hinzuzufügen.</p>
       <div class="palette" id="palette"></div>
       <div class="divider"></div>
       <h2 class="kicker">Bedienung</h2>
-      <div class="help"><strong>So funktioniert's</strong>Bausteine positionieren, <b>VM/LXC</b>, Firewalls, Router und Switches in Hosts (oder deren Subnetze), <b>Anwendungen</b> und <b>Storage</b> in jedes Gerät ziehen und <b>Subnetze</b> als Bereiche anlegen. Ein Subnetz an der Titelleiste verschieben oder an der Ecke vergrößern. Einträge in einem Host oder einer VM lassen sich durch Ziehen umsortieren. Mehrere Elemente mit Umschalt-/Strg-Klick auswählen und <b>gruppieren</b> – eine Gruppe richtet ihre Elemente bündig aus und wird an ihrer Kopfzeile verschoben. Standorte unten rechts vergrößern, ausgewählte Hosts am rechten Rand verbreitern – breite Hosts zeigen ihre Einträge mehrspaltig. <b>Verbinden</b> erstellt Leitungen; bei Switches und Routern lässt sich im Inspector der Port der Verbindung wählen. Mehrere Verbindungen zu einem Ziel lassen sich zu einer Leitung zusammenführen. Verbindungen sind <b>physisch</b>, <b>WLAN</b>, <b>Tunnel</b> oder <b>Dienst</b>; unten rechts lässt sich jede Art ausblenden.<br><br><span class="shortcut">Entf</span> Löschen &nbsp; <span class="shortcut">Esc</span> Abbrechen<br><span class="shortcut">Strg Z</span> Rückgängig<br><span class="shortcut">Strg</span> + Mausrad Zoomen<br>Leere Fläche ziehen: Ansicht verschieben<br><br><b>Touch:</b> Antippen wählt aus, lange drücken verschiebt, zwei Finger zoomen.</div>
+      <div class="help"><strong>So funktioniert's</strong>Bausteine positionieren, <b>VM/LXC</b>, Firewalls, Router und Switches in Hosts (oder deren Subnetze), <b>Anwendungen</b> und <b>Storage</b> in jedes Gerät ziehen und <b>Subnetze</b> als Bereiche anlegen. Ein Subnetz an der Titelleiste verschieben oder an der Ecke vergrößern. Einträge in einem Host oder einer VM lassen sich durch Ziehen umsortieren. <b>Automatisch anordnen</b> ordnet jeden Standort von seiner zentralen Komponente aus; <b>Aufräumen</b> schafft Ordnung ohne Umbau; <b>Prüfen</b> findet Unstimmigkeiten. Mehrere Elemente mit Umschalt-/Strg-Klick auswählen und <b>gruppieren</b> – eine Gruppe richtet ihre Elemente bündig aus und wird an ihrer Kopfzeile verschoben. Standorte unten rechts vergrößern, ausgewählte Hosts am rechten Rand verbreitern – breite Hosts zeigen ihre Einträge mehrspaltig. <b>Verbinden</b> erstellt Leitungen; bei Switches und Routern lässt sich im Inspector der Port der Verbindung wählen. Mehrere Verbindungen zu einem Ziel lassen sich zu einer Leitung zusammenführen. Verbindungen sind <b>physisch</b>, <b>WLAN</b>, <b>Tunnel</b> oder <b>Dienst</b>; unten rechts lässt sich jede Art ausblenden.<br><br><span class="shortcut">Entf</span> Löschen &nbsp; <span class="shortcut">Esc</span> Abbrechen<br><span class="shortcut">Strg Z</span> Rückgängig<br><span class="shortcut">Strg</span> + Mausrad Zoomen<br>Leere Fläche ziehen, Mausrad oder Leertaste + Ziehen: Ansicht verschieben<br>Standort an der Kopfzeile verschieben<br><br><b>Touch:</b> Antippen wählt aus, lange drücken verschiebt, zwei Finger zoomen.</div>
     </aside>
     <section class="center" aria-label="Diagrammeditor">
       <div class="stage" id="stage"><div class="boardwrap"><svg id="board" class="board" viewBox="0 0 1200 760" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Editierbares Infrastrukturdiagramm"></svg></div></div><div class="stage-footer" id="stageFooter">Ziehen, auswählen, verbinden · 100 % lokal</div>
       <div class="view-controls" aria-label="Ansicht">
         <div class="vc-group layers" role="group" aria-label="Ebenen"><button class="btn layer" data-kind="physical" title="Physische Verbindungen ein-/ausblenden"><i class="lk-physical"></i><span>Physisch</span></button><button class="btn layer" data-kind="wifi" title="WLAN-Verbindungen ein-/ausblenden"><i class="lk-wifi"></i><span>WLAN</span></button><button class="btn layer" data-kind="tunnel" title="Tunnel / VPN ein-/ausblenden"><i class="lk-tunnel"></i><span>Tunnel</span></button><button class="btn layer" data-kind="service" title="Dienstabhängigkeiten ein-/ausblenden"><i class="lk-service"></i><span>Dienste</span></button></div>
-        <div class="vc-group" role="group" aria-label="Zoom"><button class="btn icononly" id="zoomOutBtn" title="Herauszoomen (Strg −)">−</button><button class="btn zoom-level" id="zoomResetBtn" title="Auf Fläche einpassen (Strg 0)">100 %</button><button class="btn icononly" id="zoomInBtn" title="Hineinzoomen (Strg +)">＋</button></div>
+        <div class="vc-group" role="group" aria-label="Zoom"><button class="btn icononly" id="zoomOutBtn" title="Herauszoomen (Strg −)">−</button><button class="btn zoom-level" id="zoomResetBtn" title="Alles anzeigen (Strg 0)">100 %</button><button class="btn icononly" id="zoomInBtn" title="Hineinzoomen (Strg +)">＋</button></div>
       </div>
       <aside class="inspector" aria-label="Eigenschaften"><button class="sheet-close" id="sheetClose" type="button" aria-label="Eigenschaften schließen"><span>Schließen</span><span aria-hidden="true">✕</span></button><div id="inspector"></div></aside>
     </section>
@@ -164,7 +165,7 @@ const nodeInfo=n=>[ipSummary(n),portUsage(n)].filter(Boolean).join(' · ');
 const leafH=n=>NH+(nodeInfo(n)?14:0);
 // Optional sizes: a site may have its own width/height (`w`, `h`), a top-level container card its own width (`w`).
 const CARD_W=236,COL_MIN=200,SITE_MIN=300;
-let siteDrag=null,widthDrag=null,groupDrag=null; // declared before valid() runs on startup
+let siteDrag=null,widthDrag=null,groupDrag=null,siteMove=null; // declared before valid() runs on startup
 const siteWidth=(id,doc=state)=>{const st=doc.sites.find(s=>s.id===id);return siteDrag?.moved&&siteDrag.id===id?siteDrag.preview.w:st?.w||SITE_W;};
 const cardW=n=>widthDrag?.moved&&widthDrag.id===n.id?widthDrag.w:Math.max(CARD_W,n.w||CARD_W);
 function mgmtLabel(host,doc=state){return host.kind==='server'?[mgmtNet(host,doc)?.name,host.mgmtIp].filter(Boolean).join(' · '):'';}
@@ -189,7 +190,8 @@ function nodeSize(n,doc=state){
  const w=cardW(n),L=layout(n,doc,w);return L.expanded?{w,h:L.h}:{w:NW,h:leafH(n)};
 }
 function hostNet(id,doc=state){for(const h of doc.nodes)for(const net of h.nets||[])if(net.id===id)return{host:h,net};return null;}
-function rects(doc=state){
+// Former fixed arrangement (two sites per row); only used once to give older diagrams their site positions.
+function legacyRects(doc){
  let currentY=98;const out=[];
  // Two sites per row. A site without its own height stretches to the row height; one with `h` keeps it (content still enlarges it).
  for(let i=0;i<doc.sites.length;i+=2){
@@ -203,7 +205,23 @@ function rects(doc=state){
  }
  return out;
 }
-function boardSize(doc=state){const layouts=rects(doc);return{w:layouts.length===1?layouts[0].w+80:Math.max(BASE_W,...layouts.map(r=>r.x+r.w+38)),h:Math.max(760,layouts.length?Math.max(...layouts.map(r=>r.y+r.h))+39:760)};}
+// Sites stand freely on the infinite canvas (`x`, `y`); height follows the content, `h` is a minimum.
+function rects(doc=state){return doc.sites.map((st,i)=>{const pv=siteDrag?.moved&&siteDrag.id===st.id?siteDrag.preview:null,mv=siteMove?.moved&&siteMove.id===st.id?siteMove:null,own=pv?.h??st.h;let needed=own??SITE_H;
+ for(const sn of (doc.subnets||[]))if(sn.site===st.id)needed=Math.max(needed,sn.y+sn.h+25);
+ for(const n of doc.nodes){if(n.site!==st.id||n.parentId)continue;const d=nodeSize(n,doc);needed=Math.max(needed,n.y+d.h+22);}
+ return{...st,...THEMES[i%THEMES.length],x:(st.x??38)+(mv?mv.dx:0),y:(st.y??98)+(mv?mv.dy:0),w:siteWidth(st.id,doc),h:needed};});}
+// Older diagrams have no site positions: place them as the former two-per-row arrangement showed them (same heights).
+function ensureSitePositions(){const missing=state.sites.filter(st=>!Number.isFinite(st.x)||!Number.isFinite(st.y));if(!missing.length)return;
+ const L=legacyRects(state);for(const st of missing){const r=L.find(t=>t.id===st.id);st.x=r.x;st.y=r.y;}
+ const R=rects();for(const st of missing){const was=L.find(t=>t.id===st.id).h,now=R.find(t=>t.id===st.id).h;if(was>now)st.h=was;}}
+// Sites must not overlap: a later one (left to right, top to bottom) moves right or down, whichever is shorter.
+function resolveSiteOverlaps(){for(let pass=0;pass<30;pass++){const L=rects().sort((a,b)=>a.x-b.x||a.y-b.y);let moved=false;
+ for(let i=0;i<L.length&&!moved;i++)for(let j=i+1;j<L.length&&!moved;j++){const a=L[i],b=L[j];if(a.x<b.x+b.w+20&&b.x<a.x+a.w+20&&a.y<b.y+b.h+20&&b.y<a.y+a.h+20){
+  const st=state.sites.find(t=>t.id===b.id),dx=a.x+a.w+44-b.x,dy=a.y+a.h+44-b.y;if(dy>0&&dy<dx)st.y+=dy;else st.x+=dx;moved=true;}}
+ if(!moved)return;}}
+// Bounding box of all content with margins (title above) – for "show all" and for exports.
+function contentBox(doc=state){const L=rects(doc);if(!L.length)return{x:0,y:0,w:BASE_W,h:760};const minX=Math.min(...L.map(r=>r.x)),minY=Math.min(...L.map(r=>r.y)),maxX=Math.max(...L.map(r=>r.x+r.w)),maxY=Math.max(...L.map(r=>r.y+r.h)),x=minX-38,y=minY-98;
+ return{x,y,w:L.length===1?L[0].w+80:Math.max(BASE_W,maxX+38-x),h:Math.max(760,maxY+39-y)};}
 function siteFor(id,doc=state){return rects(doc).find(s=>s.id===id);}
 // Kinds of connections: physical cabling (L1/2), network tunnels such as VPNs (L3) and service dependencies (L7).
 // `style` is still written ('vpn' for tunnels) so older versions show the files sensibly.
@@ -232,7 +250,7 @@ const visibleLinks=()=>state.links.filter(l=>!hiddenKinds.has(l.kind));
 function valid(raw){
  if(!raw||!Array.isArray(raw.nodes)||!Array.isArray(raw.links))throw Error('Kein gültiges Infra-Canvas-Diagramm.');
  const inputSites=Array.isArray(raw.sites)&&raw.sites.length?raw.sites:DEFAULT_SITES;
- const sites=[],siteIDs=new Set();for(const st of inputSites.slice(0,18)){if(!st||typeof st!=='object')continue;const id=String(st.id||uid()).slice(0,40);if(siteIDs.has(id))continue;sites.push({id,name:String(st.name||'Standort').slice(0,36),sub:String(st.sub||'').slice(0,44)});const sw=Number(st.w),sh=Number(st.h);if(Number.isFinite(sw))sites.at(-1).w=clamp(Math.round(sw),SITE_MIN,1600);if(Number.isFinite(sh))sites.at(-1).h=clamp(Math.round(sh),SITE_MIN,4000);siteIDs.add(id);}
+ const sites=[],siteIDs=new Set();for(const st of inputSites.slice(0,18)){if(!st||typeof st!=='object')continue;const id=String(st.id||uid()).slice(0,40);if(siteIDs.has(id))continue;sites.push({id,name:String(st.name||'Standort').slice(0,36),sub:String(st.sub||'').slice(0,44)});const sw=Number(st.w),sh=Number(st.h),sx=Number(st.x),sy=Number(st.y);if(Number.isFinite(sx)&&Number.isFinite(sy)){sites.at(-1).x=clamp(Math.round(sx),-100000,100000);sites.at(-1).y=clamp(Math.round(sy),-100000,100000);}if(Number.isFinite(sw))sites.at(-1).w=clamp(Math.round(sw),SITE_MIN,1600);if(Number.isFinite(sh))sites.at(-1).h=clamp(Math.round(sh),SITE_MIN,4000);siteIDs.add(id);}
  if(!sites.length)sites.push(clone(DEFAULT_SITES[0]));
  const doc={version:3,title:String(raw.title||'Neues Diagramm').slice(0,70),sites,subnets:[],groups:[],nodes:[],links:[]};
  const groupIDs=new Set();if(Array.isArray(raw.groups))for(const g of raw.groups.slice(0,200)){if(!g||typeof g!=='object')continue;const id=String(g.id||'grp-'+uid()).slice(0,40);if(groupIDs.has(id)||!siteIDs.has(String(g.site)))continue;groupIDs.add(id);
@@ -246,7 +264,7 @@ function valid(raw){
   const sw=sites.find(st=>st.id===site).w||SITE_W;
   doc.subnets.push({id,site,name:String(sn.name||'Subnetz').slice(0,40),cidr:String(sn.cidr||'').slice(0,44),
    x:clamp(Number.isFinite(x)?x:22,12,sw-277),y:clamp(Number.isFinite(y)?y:112,82,3000),
-   w:clamp(Number.isFinite(w)?w:490,265,sw-24),h:clamp(Number.isFinite(h)?h:240,165,1500)});
+   w:clamp(Number.isFinite(w)?w:490,265,sw-24),h:clamp(Number.isFinite(h)?h:240,165,4000)});
   const net=doc.subnets.at(-1);net.x=clamp(net.x,12,sw-net.w-12);subnetIDs.add(id);
  }
  const ids=new Set(),netIDs=new Set();
@@ -285,8 +303,8 @@ function valid(raw){
  return doc;
 }
 let state;try{state=valid(JSON.parse(localStorage.getItem(KEY)||'null'));}catch{state=valid(starter());}
-let zoom=1, pan=null, selection=null, mode='select', linkFrom=null, drag=null, subnetDrag=null, undo=[],redo=[],fieldSnapshot=null,toaster;
-const persist=()=>{normalizeGroups();try{localStorage.setItem(KEY,JSON.stringify(state));}catch{};$('#status').textContent='Lokal gespeichert';};
+let cam={x:0,y:0,z:1},camReady=false,spaceDown=false, pan=null, selection=null, mode='select', linkFrom=null, drag=null, subnetDrag=null, undo=[],redo=[],fieldSnapshot=null,toaster;
+const persist=()=>{normalizeGroups();resolveSiteOverlaps();try{localStorage.setItem(KEY,JSON.stringify(state));}catch{};$('#status').textContent='Lokal gespeichert';};
 const snapshot=()=>JSON.stringify(state);
 function history(before){const now=before??snapshot();if(undo.at(-1)!==now)undo.push(now);if(undo.length>60)undo.shift();redo=[];}
 function mutate(fn,{record=true,refresh=true}={}){if(record)history();fn();persist();if(refresh)render();else renderBoard();}
@@ -369,12 +387,12 @@ function linkGeometry(a,b,fa=.5,fb=.5){
  return{d:`M ${p1.x} ${p1.y} C ${c1.x} ${c1.y} ${c2.x} ${c2.y} ${p2.x} ${p2.y}`,middle,at};
 }
 function boardMarkup(exporting=false){
- const {w,h}=boardSize(),layouts=rects();
+ const B=contentBox(),{w,h}=B,layouts=rects(),at=B.x||B.y?`x="${B.x}" y="${B.y}" `:'';
  const defs=`<defs><marker id="arr" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M0 0.8L10 5L0 9.2z" fill="#8a63c9"/></marker><marker id="arr-sel" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M0 0.8L10 5L0 9.2z" fill="#2563eb"/></marker><pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1" fill="#dce6f0" opacity=".78"/></pattern><filter id="node-shadow" x="-18%" y="-35%" width="145%" height="190%"><feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#43698b" flood-opacity=".11"/></filter><filter id="site-shadow" x="-10%" y="-10%" width="125%" height="125%"><feDropShadow dx="0" dy="2" stdDeviation="5" flood-color="#728ca5" flood-opacity=".07"/></filter></defs>`;
- let out=defs+`<rect width="${w}" height="${h}" fill="#ffffff"/><rect width="${w}" height="${h}" fill="url(#dots)"/>`;
- out+=`<text x="45" y="48" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" fill="#253951" font-weight="700" font-size="22" letter-spacing="-.4">${E(textShort(state.title,65))}</text><text x="${w-42}" y="47" text-anchor="end" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" fill="#98a7b9" font-size="12">INFRASTRUCTURE MAP</text>`;
+ let out=defs+(exporting?`<rect ${at}width="${w}" height="${h}" fill="#ffffff"/><rect ${at}width="${w}" height="${h}" fill="url(#dots)"/>`:'<rect id="bg-fill" fill="#ffffff"/><rect id="bg-dots" fill="url(#dots)"/>');
+ out+=`<text x="${B.x+45}" y="${B.y+48}" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" fill="#253951" font-weight="700" font-size="22" letter-spacing="-.4">${E(textShort(state.title,65))}</text><text x="${B.x+w-42}" y="${B.y+47}" text-anchor="end" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif" fill="#98a7b9" font-size="12">INFRASTRUCTURE MAP</text>`;
  for(let s of layouts){const selected=!exporting&&selection?.type==='site'&&selection.id===s.id;
- out+=`<g data-site="${E(s.id)}" style="cursor:pointer"><rect x="${s.x}" y="${s.y}" width="${s.w}" height="${s.h}" rx="19" fill="${s.fill}" stroke="${selected?'#4489e4':s.stroke}" stroke-width="${selected?3:1.4}" filter="url(#site-shadow)"/><rect x="${s.x+22}" y="${s.y+18}" width="6" height="32" rx="3" fill="${s.accent}"/><text x="${s.x+39}" y="${s.y+35}" font-size="19" font-weight="750" fill="#22354c" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif">${E(textShort(s.name,33))}</text><text x="${s.x+40}" y="${s.y+53}" font-size="11.5" fill="#8798ac" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif">${E(textShort(s.sub,38))}</text><rect x="${s.x+s.w-93}" y="${s.y+20}" width="69" height="26" rx="13" fill="${s.tag}"/><text x="${s.x+s.w-58.5}" y="${s.y+37.5}" font-size="10" font-weight="750" fill="${s.accent}" text-anchor="middle" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif">STANDORT</text></g>`;
+ out+=`<g data-site="${E(s.id)}" style="cursor:pointer"><rect x="${s.x}" y="${s.y}" width="${s.w}" height="${s.h}" rx="19" fill="${s.fill}" stroke="${selected?'#4489e4':s.stroke}" stroke-width="${selected?3:1.4}" filter="url(#site-shadow)"/><rect x="${s.x+22}" y="${s.y+18}" width="6" height="32" rx="3" fill="${s.accent}"/><text x="${s.x+39}" y="${s.y+35}" font-size="19" font-weight="750" fill="#22354c" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif">${E(textShort(s.name,33))}</text><text x="${s.x+40}" y="${s.y+53}" font-size="11.5" fill="#8798ac" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif">${E(textShort(s.sub,38))}</text><rect x="${s.x+s.w-93}" y="${s.y+20}" width="69" height="26" rx="13" fill="${s.tag}"/><text x="${s.x+s.w-58.5}" y="${s.y+37.5}" font-size="10" font-weight="750" fill="${s.accent}" text-anchor="middle" font-family="Inter,ui-sans-serif,system-ui,Arial,sans-serif">STANDORT</text>${exporting?'':`<rect data-site-handle="${E(s.id)}" x="${s.x}" y="${s.y}" width="${s.w}" height="64" rx="19" fill="transparent" style="cursor:grab"/>`}</g>`;
  }
  for(const sn of state.subnets){
   const site=siteFor(sn.site);if(!site)continue;
@@ -416,19 +434,21 @@ function boardMarkup(exporting=false){
  if(!exporting)for(const s of layouts)out+=siteGrip(s);
  return out;
 }
-// Fit the board into the visible stage: as large as width and height allow (max. 2x), but tall diagrams never below 1:1 – those scroll.
-// On narrow screens the card fills the whole stage and the diagram is fitted inside it, so zooming uses the full screen.
-// The user's zoom only scales the content inside the card; a zoomed-in board scrolls within it.
-function fitBoard(){const stage=$('#stage'),wrap=$('#board').parentElement,{w,h}=boardSize(),cs=getComputedStyle(stage);
- const iw=stage.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight),ih=stage.clientHeight-parseFloat(cs.paddingTop)-parseFloat(cs.paddingBottom),byW=iw/w,byH=ih/h;let fit;
- if(NARROW.matches){fit=Math.min(byW,byH);wrap.style.aspectRatio='auto';wrap.style.minWidth='0';wrap.style.width=Math.floor(iw)+'px';wrap.style.height=Math.floor(ih)+'px';}
- else{fit=clamp(Math.min(byW,byH),Math.min(1,byW),2);wrap.style.aspectRatio=`${w}/${h}`;wrap.style.height='';wrap.style.width=Math.floor(w*fit)+'px';wrap.style.minWidth=(w===620?620:780)+'px';}
- const scale=fit*zoom,svg=$('#board'),cw=wrap.clientWidth,ch=wrap.clientHeight;svg.style.width=zoom===1?'':cw*zoom+'px';svg.style.height=zoom===1?'':ch*zoom+'px';
- $('#zoomResetBtn').textContent=Math.round(scale*100)+' %';$('#zoomOutBtn').disabled=zoom<=.25;$('#zoomInBtn').disabled=zoom>=4;}
-// Change the zoom; with an anchor (screen point) the board point under it stays in place.
-function setZoom(z,anchor){const svg=$('#board'),wrap=svg.parentElement,before=svg.getBoundingClientRect();zoom=clamp(z,.25,4);fitBoard();
- if(anchor){const after=svg.getBoundingClientRect();wrap.scrollLeft+=after.left+(anchor.x-before.left)/before.width*after.width-anchor.x;wrap.scrollTop+=after.top+(anchor.y-before.top)/before.height*after.height-anchor.y;}}
-function renderBoard(){normalizeGroups();const svg=$('#board'),{w,h}=boardSize(),wrap=svg.parentElement;svg.setAttribute('viewBox',`0 0 ${w} ${h}`);fitBoard();svg.innerHTML=boardMarkup()+dropMarker();}
+// Infinite canvas: a camera (board point x/y at the top left, scale z = screen pixels per board unit) maps the board onto the stage.
+const ZMIN=.1,ZMAX=4;
+function applyCamera(){const svg=$('#board'),vw=(svg.clientWidth||1)/cam.z,vh=(svg.clientHeight||1)/cam.z;svg.setAttribute('viewBox',`${cam.x} ${cam.y} ${vw} ${vh}`);
+ for(const id of ['bg-fill','bg-dots']){const r=document.getElementById(id);if(r){r.setAttribute('x',cam.x);r.setAttribute('y',cam.y);r.setAttribute('width',vw);r.setAttribute('height',vh);}}
+ $('#zoomResetBtn').textContent=Math.round(cam.z*100)+' %';$('#zoomOutBtn').disabled=cam.z<=ZMIN;$('#zoomInBtn').disabled=cam.z>=ZMAX;}
+// Show everything: as large as it fits (at most 150 %), centred.
+function fitView(){const svg=$('#board'),w=svg.clientWidth,h=svg.clientHeight;if(!w||!h)return;const b=contentBox();cam.z=clamp(Math.min(w/b.w,h/b.h),ZMIN,1.5);cam.x=b.x+b.w/2-w/cam.z/2;cam.y=b.y+b.h/2-h/cam.z/2;applyCamera();}
+// Zoom around a screen point (default: the middle of the stage); the board point under it stays in place.
+function setZoom(z,anchor){const r=$('#board').getBoundingClientRect(),ax=(anchor?anchor.x:r.left+r.width/2)-r.left,ay=(anchor?anchor.y:r.top+r.height/2)-r.top,bx=cam.x+ax/cam.z,by=cam.y+ay/cam.z;
+ cam.z=clamp(z,ZMIN,ZMAX);cam.x=bx-ax/cam.z;cam.y=by-ay/cam.z;applyCamera();}
+// Move the view by screen pixels (content follows the pointer).
+function panBy(dx,dy){cam.x-=dx/cam.z;cam.y-=dy/cam.z;applyCamera();}
+function animatePan(dx,dy){const t0=performance.now(),x0=cam.x,y0=cam.y;const step=t=>{const k=Math.min(1,(t-t0)/220),e=1-Math.pow(1-k,3);cam.x=x0-dx*e/cam.z;cam.y=y0-dy*e/cam.z;applyCamera();if(k<1)requestAnimationFrame(step);};requestAnimationFrame(step);}
+function startPan(e){pan={x:e.clientX,y:e.clientY,cx:cam.x,cy:cam.y};$('#board').setPointerCapture(e.pointerId);$('#board').classList.add('panning');}
+function renderBoard(){normalizeGroups();const svg=$('#board');svg.innerHTML=boardMarkup()+dropMarker();if(!camReady&&svg.clientWidth){camReady=true;fitView();}else applyCamera();}
 function render(){renderBoard();renderInspector();$('#docTitle').value=state.title;$('#connectBtn').classList.toggle('active',mode==='connect');$('#connectBtn').textContent=mode==='connect'?(linkFrom?'Ziel wählen · Esc':'Start wählen · Esc'):'⤳  Verbinden';$('#undoBtn').disabled=!undo.length;$('#redoBtn').disabled=!redo.length;$('#stageFooter').textContent=mode==='connect'?'Klicke zwei Bausteine an, um sie zu verbinden.':'Bausteine und Subnetze ziehen · 100 % lokal';}
 function ipFieldsHTML(n){const ips=n.ips||[];return `<div class="field"><span class="field-label">IP-Adressen</span>${ips.length?`<div class="ip-list">${ips.map((a,i)=>`<div class="ip-row"><input id="f-ip-${i}" type="text" value="${E(a.addr)}" maxlength="45" placeholder="10.0.0.5/24" aria-label="IP-Adresse ${i+1}" spellcheck="false" autocapitalize="off" autocomplete="off"><input id="f-iplabel-${i}" type="text" value="${E(a.label)}" maxlength="24" placeholder="Bezeichnung" aria-label="Bezeichnung der IP-Adresse ${i+1}" autocomplete="off"><button type="button" class="ip-remove" data-ip="${i}" title="Entfernen" aria-label="IP-Adresse ${i+1} entfernen">✕</button></div>`).join('')}</div>`:''}${ips.length<16?'<button type="button" id="addIp" class="btn">＋ IP-Adresse</button>':''}</div>`;}
 function wireIpFields(n){(n.ips||[]).forEach((a,i)=>{wireText('#f-ip-'+i,v=>{a.addr=v;resolveOverlaps(n.id);});wireText('#f-iplabel-'+i,v=>a.label=v);});
@@ -457,13 +477,13 @@ function portFieldHTML(l,node,key){if(!hasPorts(node))return'';
  if(cur>node.ports)opts.push([String(cur),`Port ${cur} (außerhalb)`]);
  return fieldHTML(`Port an „${node.name}“`,'f-'+key,cur?String(cur):'',{options:opts});}
 function fieldHTML(label,id,val,opts={}){if(opts.options)return `<label class="field"><span class="field-label">${E(label)}</span><select id="${id}">${opts.options.map(o=>`<option value="${E(o[0])}" ${o[0]===val?'selected':''} ${o[2]?'disabled':''}>${E(o[1])}</option>`).join('')}</select></label>`;return `<label class="field"><span class="field-label">${E(label)}</span><input id="${id}" type="text" value="${E(val)}" maxlength="${opts.limit||55}"${opts.placeholder?` placeholder="${E(opts.placeholder)}"`:''}${opts.suggest?` list="${id}-list" autocomplete="off"`:''}>${opts.suggest?`<datalist id="${id}-list">${opts.suggest.map(v=>`<option value="${E(v)}">`).join('')}</datalist>`:''}</label>`;}
-// Desktop: slide the board left when the selected element would lie under the inspector panel; back when nothing is selected.
+// Keep the selected element visible: pan it out from under the inspector panel (or above the bottom sheet on phones).
 let revealedKey=null;
-function revealSelection(){const key=selection?selection.type+':'+selection.id:null;if(key===revealedKey)return;revealedKey=key;const wrap=$('#board').parentElement;
- if(!key||NARROW.matches){wrap.style.left='';return;}if(selection.type==='site')return;
- requestAnimationFrame(()=>{if(drag||subnetDrag||siteDrag||widthDrag||groupDrag||pan||!selection)return;const attr={node:'data-node',link:'data-link',subnet:'data-subnet',hostnet:'data-hostnet'}[selection.type],el=attr&&document.querySelector(`[${attr}="${CSS.escape(selection.id)}"]`);if(!el)return;
-  const center=$('.center').getBoundingClientRect(),panel=$('.inspector'),limit=center.right-12-panel.offsetWidth-24,shifted=-(parseFloat(getComputedStyle(wrap).left)||0),r=el.getBoundingClientRect(),right=r.right+shifted,left=r.left+shifted;
-  if(right<=limit){wrap.style.left='';return;}const shift=Math.min(right-limit,Math.max(0,left-center.left-24),panel.offsetWidth+36);wrap.style.left=shift>0?-shift+'px':'';});}
+function revealSelection(){const key=selection?selection.type+':'+selection.id:null;if(key===revealedKey)return;revealedKey=key;if(!key||selection.type==='site')return;
+ requestAnimationFrame(()=>requestAnimationFrame(()=>{if(drag||subnetDrag||siteDrag||widthDrag||groupDrag||siteMove||pan||!selection)return;const attr={node:'data-node',link:'data-link',subnet:'data-subnet',hostnet:'data-hostnet'}[selection.type],el=attr&&document.querySelector(`[${attr}="${CSS.escape(selection.id)}"]`);if(!el)return;
+  const r=el.getBoundingClientRect(),stage=$('#stage').getBoundingClientRect(),panel=$('.inspector');
+  if(NARROW.matches){const limit=innerHeight-panel.offsetHeight-16;if(r.bottom>limit&&r.height<limit-stage.top)animatePan(0,-Math.min(r.bottom-limit,r.top-stage.top-16));return;}
+  const limit=stage.right-12-panel.offsetWidth-24;if(r.right>limit&&r.width<limit-stage.left)animatePan(-Math.min(r.right-limit,r.left-stage.left-24),0);}));}
 function renderInspector(){const el=$('#inspector');document.body.classList.toggle('has-selection',!!selection);revealSelection();if(!selection){el.innerHTML=`<div class="empty-inspector"><svg width="64" height="64" viewBox="0 0 64 64" fill="none"><rect x="8" y="12" width="48" height="37" rx="7" stroke="currentColor" stroke-width="2"/><rect x="17" y="22" width="13" height="9" rx="2" stroke="currentColor" stroke-width="2"/><rect x="36" y="32" width="11" height="9" rx="2" stroke="currentColor" stroke-width="2"/><path d="M30 26h12v6M32 51v5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><strong>Element auswählen</strong><p>Baustein, Verbindung oder Standort anklicken, um Eigenschaften zu bearbeiten. Standorte und Subnetze über die Symbolleiste hinzufügen.</p></div>`;return;}
 if(selection.type==='node'){
  const n=state.nodes.find(o=>o.id===selection.id);if(!n){selection=null;renderInspector();return;}
@@ -517,25 +537,29 @@ if(selection.type==='node'){
  el.innerHTML=`<div class="selection-meta"><span class="pill">HOST-SUBNETZ</span></div><h2>Subnetz im Host</h2><p class="inspector-description">Netzwerk innerhalb von „${E(host.name)}“.</p>${fieldHTML('Name','f-name',net.name,{limit:40})}${fieldHTML('CIDR / Beschreibung','f-cidr',net.cidr,{limit:44})}${fieldHTML('Gateway','f-gateway',gatewayOf(net,host)?.id||'',{options:[['','Kein Gateway'],...state.nodes.filter(g=>GATEWAY_KINDS.includes(g.kind)&&g.site===host.site).map(g=>{const up=state.nodes.find(o=>o.id===g.parentId);return[g.id,g.name+(up?' · in '+up.name:'')];})]})}<p class="side-desc">${count} ${count===1?'Gast':'Gäste'} in diesem Subnetz · Gäste auf den Bereich ziehen, um sie zuzuordnen.</p><div class="inspector-actions"><button id="selectHost" class="btn">Host auswählen</button><button id="deleteHostNet" class="btn danger">Subnetz entfernen</button></div><p class="side-desc">Beim Entfernen bleiben die Gäste direkt im Host erhalten.</p>`;
  wireText('#f-name',v=>net.name=v);wireText('#f-cidr',v=>net.cidr=v);wireSelect('#f-gateway',v=>{net.gatewayId=v||null;resolveOverlaps(host.id);});
  $('#selectHost').onclick=()=>{selection={type:'node',id:host.id};render();};$('#deleteHostNet').onclick=()=>removeHostNet(net.id);
+}else if(selection.type==='check'){
+ const list=checkDiagram();
+ el.innerHTML=`<div class="selection-meta"><span class="pill">PRÜFUNG</span></div><h2>Prüfen</h2><p class="inspector-description">${list.length?`${list.length} ${list.length===1?'Hinweis':'Hinweise'} – antippen, um das Element zu zeigen.`:'Keine Auffälligkeiten gefunden.'}</p><div class="findings">${list.map((f,i)=>`<button class="finding ${f.level}" data-i="${i}"><span>${f.level==='warn'?'⚠':'ℹ'}</span>${E(f.text)}</button>`).join('')}</div>`;
+ for(const b of el.querySelectorAll('.finding'))b.onclick=()=>{selection=list[Number(b.dataset.i)].ref;render();};
 }else if(selection.type==='site'){
  const site=state.sites.find(s=>s.id===selection.id);if(!site){selection=null;renderInspector();return;}
  const count=state.nodes.filter(n=>n.site===site.id).length;
- el.innerHTML=`<div class="selection-meta"><span class="pill">STANDORT</span></div><h2>Standort bearbeiten</h2><p class="inspector-description">Name, Beschreibung und Verwaltung des Standortes.</p>${fieldHTML('Name','f-name',site.name,{limit:36})}${fieldHTML('Beschreibung','f-detail',site.sub,{limit:44})}<p class="side-desc">${count} Bausteine an diesem Standort · Größe unten rechts ändern.</p><div class="inspector-actions">${site.w||site.h?'<button id="resetSiteSize" class="btn">Größe zurücksetzen</button>':''}<button id="deleteSite" class="btn danger" ${state.sites.length<=1?'disabled':''}>Standort entfernen</button></div>${state.sites.length<=1?'<p class="side-desc">Mindestens ein Standort muss bestehen bleiben.</p>':''}`;
- wireText('#f-name',v=>site.name=v);wireText('#f-detail',v=>site.sub=v);$('#deleteSite').onclick=()=>removeSite(site.id);
+ el.innerHTML=`<div class="selection-meta"><span class="pill">STANDORT</span></div><h2>Standort bearbeiten</h2><p class="inspector-description">Name, Beschreibung und Verwaltung des Standortes.</p>${fieldHTML('Name','f-name',site.name,{limit:36})}${fieldHTML('Beschreibung','f-detail',site.sub,{limit:44})}<p class="side-desc">${count} Bausteine an diesem Standort · Größe unten rechts ändern.</p><div class="inspector-actions"><button id="layoutSite" class="btn">Standort automatisch anordnen</button>${site.w||site.h?'<button id="resetSiteSize" class="btn">Größe zurücksetzen</button>':''}<button id="deleteSite" class="btn danger" ${state.sites.length<=1?'disabled':''}>Standort entfernen</button></div>${state.sites.length<=1?'<p class="side-desc">Mindestens ein Standort muss bestehen bleiben.</p>':''}`;
+ wireText('#f-name',v=>site.name=v);wireText('#f-detail',v=>site.sub=v);$('#deleteSite').onclick=()=>removeSite(site.id);$('#layoutSite').onclick=()=>{mutate(()=>autoLayout(site.id));toast('Standort angeordnet – Strg+Z macht es rückgängig.');};
  if($('#resetSiteSize'))$('#resetSiteSize').onclick=()=>mutate(()=>{delete site.h;const m=minSiteW(site.id);if(m>SITE_W)site.w=m;else delete site.w;});
  }
 }
 function wireText(selector,setter){const el=$(selector);el.addEventListener('focus',()=>{fieldSnapshot=snapshot();});el.addEventListener('input',()=>{setter(el.value);persist();renderBoard();$('#docTitle').value=state.title;});// No inspector rebuild on blur: it would replace the field or button the user is just clicking.
  el.addEventListener('blur',()=>{if(fieldSnapshot&&fieldSnapshot!==snapshot())history(fieldSnapshot);fieldSnapshot=null;renderBoard();$('#undoBtn').disabled=!undo.length;$('#redoBtn').disabled=!redo.length;});}
 function wireSelect(selector,setter){$(selector).addEventListener('change',e=>mutate(()=>setter(e.target.value)));}
-function deleteSelected(){if(!selection)return;if(selection.type==='group'){mutate(()=>{dissolveGroup(selection.id);selection=null;});return;}if(selection.type==='multi')return;if(selection.type==='site'){removeSite(selection.id);return;}if(selection.type==='hostnet'){removeHostNet(selection.id);return;}if(selection.type==='node'){const n=state.nodes.find(o=>o.id===selection.id);const guests=n?descendants(n.id).length:0;if(guests&&!confirm(`„${n.name}“ und ${guests} enthaltene Bausteine samt Verbindungen löschen? (Mit Strg+Z rückgängig.)`))return;}mutate(()=>{
+function deleteSelected(){if(!selection||selection.type==='check')return;if(selection.type==='group'){mutate(()=>{dissolveGroup(selection.id);selection=null;});return;}if(selection.type==='multi')return;if(selection.type==='site'){removeSite(selection.id);return;}if(selection.type==='hostnet'){removeHostNet(selection.id);return;}if(selection.type==='node'){const n=state.nodes.find(o=>o.id===selection.id);const guests=n?descendants(n.id).length:0;if(guests&&!confirm(`„${n.name}“ und ${guests} enthaltene Bausteine samt Verbindungen löschen? (Mit Strg+Z rückgängig.)`))return;}mutate(()=>{
  if(selection.type==='node'){
   const id=selection.id,children=descendants(id).map(n=>n.id),deleted=new Set([id,...children]);
   state.nodes=state.nodes.filter(n=>!deleted.has(n.id));state.links=state.links.filter(l=>!deleted.has(l.from)&&!deleted.has(l.to));
  }else if(selection.type==='link')state.links=state.links.filter(l=>l.id!==selection.id);
  selection=null;
 });}
-function addSite(){if(state.sites.length>=18){toast('Maximal 18 Standorte.');return;}const value=prompt('Name des neuen Standorts:', 'Neuer Standort');if(value===null)return;const name=value.trim().slice(0,36);if(!name){toast('Bitte einen Namen angeben.');return;}mutate(()=>{const s={id:'site-'+uid(),name,sub:''};state.sites.push(s);selection={type:'site',id:s.id};});const st=siteFor(selection.id);const stage=$('#stage');if(st)stage.scrollTop=stage.scrollHeight;}
+function addSite(){if(state.sites.length>=18){toast('Maximal 18 Standorte.');return;}const value=prompt('Name des neuen Standorts:', 'Neuer Standort');if(value===null)return;const name=value.trim().slice(0,36);if(!name){toast('Bitte einen Namen angeben.');return;}mutate(()=>{const L=rects(),s={id:'site-'+uid(),name,sub:'',x:L.length?Math.max(...L.map(r=>r.x+r.w))+44:38,y:L.length?Math.min(...L.map(r=>r.y)):98};state.sites.push(s);selection={type:'site',id:s.id};});fitView();}
 function removeSite(id){const s=state.sites.find(t=>t.id===id);if(!s||state.sites.length<=1)return;const deleted=state.nodes.filter(n=>n.site===id),deletedIds=new Set(deleted.map(n=>n.id));
  const msg=deleted.length?`Standort „${s.name}“ inklusive ${deleted.length} Bausteinen und ihren Verbindungen unwiderruflich aus dem Diagramm entfernen? (Mit Strg+Z rückgängig.)`:`Standort „${s.name}“ entfernen?`;
  if(!confirm(msg))return;mutate(()=>{state.sites=state.sites.filter(t=>t.id!==id);state.subnets=state.subnets.filter(sn=>sn.site!==id);state.nodes=state.nodes.filter(n=>!deletedIds.has(n.id));state.links=state.links.filter(l=>!deletedIds.has(l.from)&&!deletedIds.has(l.to));selection=null;});}
@@ -575,7 +599,7 @@ function widthGrip(n,r){const k=COARSE?22:12,cy=Math.min(r.h/2,120);return `<g d
 // Groups: free-standing cards of one site with `groupId`; the group (`state.groups`: id, site, name, layout, x, y) places
 // its members aligned from its anchor x/y – one column, one row, or a grid – in document order. Positions are derived.
 const groupMembers=g=>state.nodes.filter(n=>n.groupId===g.id&&!n.parentId&&n.site===g.site);
-function normalizeGroups(){if(!state.groups)state.groups=[];
+function normalizeGroups(){ensureSitePositions();if(!state.groups)state.groups=[];
  for(const n of state.nodes)if(n.groupId&&(n.parentId||!state.groups.some(g=>g.id===n.groupId&&g.site===n.site)))delete n.groupId;
  state.groups=state.groups.filter(g=>groupMembers(g).length);
  for(const g of state.groups){const ms=groupMembers(g),k=g.layout==='row'?ms.length:g.layout==='grid3'?3:g.layout==='grid2'?2:1,dims=ms.map(n=>nodeSize(n)),colW=[];
@@ -602,6 +626,93 @@ function pushAside(g){normalizeGroups();const ms=groupMembers(g);if(!ms.length)r
 function dissolveGroup(id){for(const n of state.nodes)if(n.groupId===id)delete n.groupId;state.groups=state.groups.filter(g=>g.id!==id);}
 function toggleMulti(id){const cur=selection?.type==='multi'?[...selection.ids]:selection?.type==='node'&&!state.nodes.find(n=>n.id===selection.id)?.parentId?[selection.id]:[],i=cur.indexOf(id);
  if(i>=0)cur.splice(i,1);else cur.push(id);selection=cur.length>1?{type:'multi',ids:cur}:cur.length?{type:'node',id:cur[0]}:null;render();}
+// ---------- Tidy up, check and automatic layout: deterministic rules, no external services.
+// A "unit" is a free-standing card or a whole group of a site; layout moves units, nested entries follow their container.
+function groupBox(g){const ms=groupMembers(g),k=g.layout==='row'?ms.length:g.layout==='grid3'?3:g.layout==='grid2'?2:1,colW=[],rowH=[];
+ ms.forEach((n,i)=>{const d=nodeSize(n);colW[i%k]=Math.max(colW[i%k]||0,d.w);rowH[Math.floor(i/k)]=Math.max(rowH[Math.floor(i/k)]||0,d.h);});
+ const sum=a=>a.reduce((x,y)=>x+y,0);return{w:sum(colW)+(colW.length-1)*GROUP_GAP+2*GROUP_PAD,h:sum(rowH)+(rowH.length-1)*GROUP_GAP+2*GROUP_PAD+GROUP_HEAD};}
+function siteUnits(siteId){const out=new Map();
+ for(const n of state.nodes){if(n.site!==siteId||n.parentId)continue;const g=n.groupId&&state.groups.find(t=>t.id===n.groupId);
+  if(g){if(out.has('g:'+g.id))continue;const ms=groupMembers(g);out.set('g:'+g.id,{key:'g:'+g.id,g,nodes:ms,subnet:ms[0].subnetId||null,ox:g.x-GROUP_PAD,oy:g.y-GROUP_PAD-GROUP_HEAD,...groupBox(g)});}
+  else out.set('n:'+n.id,{key:'n:'+n.id,n,nodes:[n],subnet:n.subnetId||null,ox:n.x,oy:n.y,...nodeSize(n)});}
+ return[...out.values()];}
+function unitKeyOf(n){let r=n;for(let d=0;r?.parentId&&d<6;d++)r=state.nodes.find(h=>h.id===r.parentId);if(!r)return null;return r.groupId&&state.groups.some(g=>g.id===r.groupId)?'g:'+r.groupId:'n:'+r.id;}
+function unitEdges(){const out=[];for(const l of state.links){const a=state.nodes.find(n=>n.id===l.from),b=state.nodes.find(n=>n.id===l.to);if(!a||!b)continue;const ka=unitKeyOf(a),kb=unitKeyOf(b);if(ka&&kb&&ka!==kb)out.push({a:ka,b:kb,kind:l.kind});}return out;}
+function placeUnit(u,x,y){x=Math.round(x);y=Math.round(y);if(u.g){u.g.x=x+GROUP_PAD;u.g.y=y+GROUP_PAD+GROUP_HEAD;}else{u.n.x=x;u.n.y=y;}u.ox=x;u.oy=y;}
+// Layout of one region (a subnet or the free area of a site), coordinates relative to its top left:
+// the unit with most cable/WLAN links is the hub; its WLAN neighbours stand in side columns, cabled ones in layers below,
+// each layer ordered by the position of what it is connected to; unconnected units follow in rows.
+function layoutRegion(units,edges){const U=new Map(units.map(u=>[u.key,u])),GX=44,GY=64,SIDE=80,COLGAP=28,byOrig=(a,b)=>a.oy-b.oy||a.ox-b.ox;
+ const topo=edges.filter(e=>(e.kind==='physical'||e.kind==='wifi')&&U.has(e.a)&&U.has(e.b)),any=edges.filter(e=>U.has(e.a)&&U.has(e.b));
+ const nb=(k,list)=>list.filter(e=>e.a===k||e.b===k).map(e=>({k:e.a===k?e.b:e.a,kind:e.kind}));
+ const seen=new Set(),layers=[],left=[],right=[];
+ if(topo.length){const score=u=>nb(u.key,topo).length*10+(u.n&&['router','firewall'].includes(u.n.kind)?5:0);
+  const root=[...U.values()].sort((a,b)=>score(b)-score(a)||byOrig(a,b))[0];seen.add(root.key);layers.push([root]);const wifi=[],cab=[];
+  for(const x of nb(root.key,topo)){if(seen.has(x.k))continue;seen.add(x.k);(x.kind==='wifi'?wifi:cab).push(U.get(x.k));}
+  let hl=0,hr=0;for(const u of wifi.sort((a,b)=>b.h-a.h)){if(hl<=hr){left.push(u);hl+=u.h+COLGAP;}else{right.push(u);hr+=u.h+COLGAP;}}left.sort(byOrig);right.sort(byOrig);
+  let layer=cab;while(layer.length){layers.push(layer);const next=[];for(const u of layer)for(const x of nb(u.key,topo))if(!seen.has(x.k)){seen.add(x.k);next.push(U.get(x.k));}layer=next;}}
+ // Remaining units in an order that keeps linked ones together.
+ const rest=[],pool=[...U.values()].filter(u=>!seen.has(u.key)).sort(byOrig);
+ while(pool.length){const q=[pool.shift()];while(q.length){const u=q.shift();rest.push(u);for(const x of nb(u.key,any)){const i=pool.findIndex(p=>p.key===x.k);if(i>=0)q.push(pool.splice(i,1)[0]);}}}
+ if(rest.length)layers.push(rest);
+ // Row width: at least 1400, else what a landscape arrangement of the total card area needs.
+ const maxW=Math.max(1400,...units.map(u=>u.w),Math.sqrt(units.reduce((a,u)=>a+u.w*u.h,0))*1.6),pos=new Map(),rows=[];
+ for(const layer of layers){const bary=u=>{const xs=nb(u.key,any).map(x=>pos.get(x.k)).filter(Boolean).map(p=>p.x+p.w/2);return xs.length?xs.reduce((a,b)=>a+b,0)/xs.length:null;};
+  const ordered=layer===rest?layer:[...layer].sort((a,b)=>(bary(a)??1e9)-(bary(b)??1e9)||byOrig(a,b));let row=[],w=0;
+  const flush=()=>{if(!row.length)return;let x=-w/2;for(const u of row){pos.set(u.key,{x,w:u.w});x+=u.w+GX;}rows.push(row);row=[];w=0;};
+  for(const u of ordered){if(row.length&&w+GX+u.w>maxW)flush();w+=(row.length?GX:0)+u.w;row.push(u);}flush();}
+ const centerL=Math.min(0,...[...pos.values()].map(p=>p.x)),centerR=Math.max(0,...[...pos.values()].map(p=>p.x+p.w)),Lw=Math.max(0,...left.map(u=>u.w)),Rw=Math.max(0,...right.map(u=>u.w));
+ const cx=(Lw?Lw+SIDE:0)-centerL,out=new Map();let y=0;
+ for(const row of rows){const rh=Math.max(...row.map(u=>u.h));for(const u of row){const p=pos.get(u.key);out.set(u.key,{x:cx+p.x,y});}y+=rh+GY;}
+ // The right column starts below the hub's row, keeping the way to regions further right free.
+ const centerH=Math.max(0,y-GY);let yl=0,yr=rows.length&&layers.length&&layers[0]!==rest?Math.max(...rows[0].map(u=>u.h))+GY:0;for(const u of left){out.set(u.key,{x:Lw-u.w,y:yl});yl+=u.h+COLGAP;}
+ const rx=cx+centerR+SIDE;for(const u of right){out.set(u.key,{x:rx,y:yr});yr+=u.h+COLGAP;}
+ const w=Math.max(cx+centerR,right.length?rx+Rw:0),h=Math.max(centerH,yl-COLGAP,yr-COLGAP,0);return{pos:out,w,h};}
+// Arrange one site: each subnet is a region (largest first, left to right); further regions line up with what they link to.
+function autoLayoutSite(siteId){const st=state.sites.find(t=>t.id===siteId);if(!st)return;normalizeGroups();
+ const units=siteUnits(siteId),edges=unitEdges(),subs=state.subnets.filter(t=>t.site===siteId),PAD=24,HEAD=51+24;
+ const regions=[...subs.map(sn=>({sn,units:units.filter(u=>u.subnet===sn.id)})),{sn:null,units:units.filter(u=>!subs.some(sn=>sn.id===u.subnet))}].filter(r=>r.sn||r.units.length);
+ regions.sort((a,b)=>b.units.length-a.units.length);const done=new Map();let x=24;
+ for(const r of regions){const L=layoutRegion(r.units,edges),head=r.sn?HEAD:0,pad=r.sn?PAD:0;let top=r.sn?82:96;
+  const partner=edges.filter(e=>r.units.some(u=>u.key===e.a)&&done.has(e.b)||r.units.some(u=>u.key===e.b)&&done.has(e.a)).map(e=>done.get(done.has(e.a)?e.a:e.b));
+  if(partner.length)top=Math.max(top,Math.min(...partner)-head-pad);
+  for(const u of r.units){const p=L.pos.get(u.key);placeUnit(u,x+pad+p.x,top+head+p.y);done.set(u.key,u.oy);}
+  const rw=Math.max(r.sn?265:0,L.w+2*pad);if(r.sn)Object.assign(r.sn,{x,y:top,w:rw,h:Math.max(165,L.h+head+pad)});x+=rw+36;}
+ normalizeGroups();for(const u of units)for(const n of u.nodes){n.subnetId=u.subnet&&subs.some(sn=>sn.id===u.subnet)?u.subnet:null;for(const k of descendants(n.id))k.subnetId=n.subnetId;}
+ delete st.h;const w=Math.max(SITE_MIN,x-36+12);if(w>SITE_W)st.w=w;else delete st.w;}
+function autoLayout(siteId){for(const st of state.sites)if(!siteId||st.id===siteId)autoLayoutSite(st.id);if(siteId)return;
+ // All sites: side by side, wrapping into further rows beyond a comfortable width.
+ const L=rects(),ws=L.map(r=>r.w).sort((a,b)=>b-a),maxRow=Math.max(2800,(ws[0]||0)+(ws[1]||0)+44);let x=38,y=98,rowH=0;for(const r of L){if(x>38&&x+r.w>38+maxRow){x=38;y+=rowH+44;rowH=0;}const st=state.sites.find(t=>t.id===r.id);st.x=x;st.y=y;x+=r.w+44;rowH=Math.max(rowH,r.h);}}
+// Tidy up: inactive guests last, merge fan-ins, resolve overlaps, fit subnets and sites to their content.
+function tidyUp(){const report={moved:0,merged:0,freed:0};normalizeGroups();
+ for(const h of state.nodes.filter(t=>CONTAINS[t.kind])){const kids=state.nodes.filter(c=>c.parentId===h.id);if(!kids.some(c=>c.inactive))continue;
+  const sorted=[...kids.filter(c=>!c.inactive),...kids.filter(c=>c.inactive)];if(sorted.every((c,i)=>c===kids[i]))continue;
+  const slots=kids.map(c=>state.nodes.indexOf(c)).sort((a,b)=>a-b);slots.forEach((ix,i)=>state.nodes[ix]=sorted[i]);report.moved++;}
+ const fan=new Map();for(const l of state.links){if(l.kind!=='wifi'&&l.kind!=='service')continue;const a=state.nodes.find(n=>n.id===l.from),b=state.nodes.find(n=>n.id===l.to);if(!a||!b)continue;const [sa,sb]=linkSides(a,b);
+  for(const [node,side,end] of [[a,sa,'from'],[b,sb,'to']]){const k=node.id+'|'+side+'|'+l.kind;if(!fan.has(k))fan.set(k,[]);fan.get(k).push({l,end});}}
+ // Merge where at least three such links meet – counting those already merged at this very end.
+ for(const list of [...fan.values()].sort((x,y)=>y.length-x.length)){const open=list.filter(e=>!e.l.bundle);if(open.length&&list.filter(e=>!e.l.bundle||e.l.bundle===e.end).length>=3){for(const e of open)if(!e.l.bundle)e.l.bundle=e.end;report.merged++;}}
+ for(const st of state.sites){const units=siteUnits(st.id).sort((a,b)=>a.oy-b.oy||a.ox-b.ox),placed=[];
+  for(const u of units){let moved=true;while(moved){moved=false;for(const v of placed)if(u.ox<v.ox+v.w&&u.ox+u.w>v.ox&&u.oy<v.oy+v.h&&u.oy+u.h>v.oy){placeUnit(u,u.ox,v.oy+v.h+24);moved=true;report.freed++;}}placed.push(u);}
+  normalizeGroups();
+  for(const sn of state.subnets.filter(t=>t.site===st.id)){const us=siteUnits(st.id).filter(u=>u.subnet===sn.id);if(!us.length)continue;
+   const L=Math.min(...us.map(u=>u.ox)),T=Math.min(...us.map(u=>u.oy)),R=Math.max(...us.map(u=>u.ox+u.w)),B=Math.max(...us.map(u=>u.oy+u.h));
+   Object.assign(sn,{x:Math.max(12,L-24),y:Math.max(82,T-75),w:Math.max(265,R-Math.max(12,L-24)+24),h:Math.max(165,B-Math.max(82,T-75)+24)});}
+  delete st.h;const w=minSiteW(st.id);if(w>SITE_W)st.w=w;else delete st.w;}
+ return report;}
+// Checks: findings with the elements they concern.
+function lev(a,b){const d=Array.from({length:a.length+1},(_,i)=>[i]);for(let j=1;j<=b.length;j++)d[0][j]=j;for(let i=1;i<=a.length;i++)for(let j=1;j<=b.length;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return d[a.length][b.length];}
+function checkDiagram(){const out=[],nm=id=>state.nodes.find(n=>n.id===id)?.name||'?',ip=v=>String(v||'').trim().split('/')[0];
+ const byIp=new Map();for(const n of state.nodes){for(const a of [...(n.ips||[]).map(t=>t.addr),n.mgmtIp])if(ip(a)){if(!byIp.has(ip(a)))byIp.set(ip(a),new Set());byIp.get(ip(a)).add(n.id);}}
+ for(const [a,ids] of byIp)if(ids.size>1)out.push({level:'warn',text:`IP ${a} mehrfach vergeben: ${[...ids].map(nm).join(', ')}`,ref:{type:'node',id:[...ids][0]}});
+ const IPV4=/\b(?:\d{1,3}\.){3}\d{1,3}\b/;for(const n of state.nodes)if(!ipAddrs(n).length&&IPV4.test(n.detail||''))out.push({level:'info',text:`IP im Untertitel statt im IP-Feld: ${n.name} (${n.detail.match(IPV4)[0]})`,ref:{type:'node',id:n.id}});
+ const linked=new Set(state.links.flatMap(l=>[l.from,l.to]));
+ for(const n of state.nodes){const free=!n.parentId,net=hasPorts(n);if(!free&&!net)continue;if([n,...(free?descendants(n.id):[])].some(c=>linked.has(c.id)))continue;out.push({level:'info',text:`Ohne Verbindung: ${n.name}`,ref:{type:'node',id:n.id}});}
+ const VIRTUAL=['vm','lxc','app','db'];for(const l of state.links)if((l.kind==='physical'||l.kind==='wifi')){const v=[l.from,l.to].map(id=>state.nodes.find(n=>n.id===id)).find(n=>VIRTUAL.includes(n?.kind));if(v)out.push({level:'warn',text:`${l.kind==='wifi'?'WLAN':'Kabel'} an virtuellem Element „${v.name}“: ${nm(l.from)} ↔ ${nm(l.to)}${l.label?` („${l.label}“)`:''} – eher Dienst oder Tunnel?`,ref:{type:'link',id:l.id}});}
+ const ssids=new Map();for(const l of state.links)if(l.kind==='wifi'&&l.ssid){if(!ssids.has(l.ssid))ssids.set(l.ssid,[]);ssids.get(l.ssid).push(l);}
+ const names=[...ssids.keys()];for(let i=0;i<names.length;i++)for(let j=i+1;j<names.length;j++){const a=names[i],b=names[j];if(Math.min(a.length,b.length)>=5&&lev(a.toLowerCase(),b.toLowerCase())<=2){const rare=ssids.get(a).length<=ssids.get(b).length?a:b;out.push({level:'warn',text:`Ähnliche SSIDs „${a}“ und „${b}“ – Tippfehler?`,ref:{type:'link',id:ssids.get(rare)[0].id}});}}
+ for(const n of state.nodes){if(!hasPorts(n))continue;const seen=new Map();for(const l of state.links){if(l.kind!=='physical')continue;const p=linkPort(l,n.id);if(!p)continue;if(n.ports&&p>n.ports)out.push({level:'warn',text:`Port ${p} an „${n.name}“ liegt außerhalb der ${n.ports} Ports`,ref:{type:'link',id:l.id}});if(seen.has(p))out.push({level:'warn',text:`Port ${p} an „${n.name}“ doppelt belegt`,ref:{type:'link',id:l.id}});seen.set(p,l.id);}}
+ return out.sort((a,b)=>(a.level==='warn'?0:1)-(b.level==='warn'?0:1));}
 function dropMarker(){const m=!drag?.moved?null:drag.insert;if(m?.vertical)return `<g pointer-events="none"><rect x="${m.x-1.5}" y="${m.y}" width="3" height="${m.h}" rx="1.5" fill="#2563eb"/><circle cx="${m.x}" cy="${m.y}" r="4" fill="#fff" stroke="#2563eb" stroke-width="2"/><circle cx="${m.x}" cy="${m.y+m.h}" r="4" fill="#fff" stroke="#2563eb" stroke-width="2"/></g>`;return m?`<g pointer-events="none"><rect x="${m.x}" y="${m.y-1.5}" width="${m.w}" height="3" rx="1.5" fill="#2563eb"/><circle cx="${m.x}" cy="${m.y}" r="4" fill="#fff" stroke="#2563eb" stroke-width="2"/><circle cx="${m.x+m.w}" cy="${m.y}" r="4" fill="#fff" stroke="#2563eb" stroke-width="2"/></g>`:'';}
 function hostNetAt(pt,host){const r=nodeRect(host);return layout(host,state,r.w).boxes.find(b=>pt.x>=r.x+b.x&&pt.x<=r.x+b.x+b.w&&pt.y>=r.y+b.y&&pt.y<=r.y+b.y+b.h)?.net||null;}
 function subnetAt(pt,siteId){const site=siteFor(siteId);if(!site)return null;
@@ -634,7 +745,8 @@ function containerAt(pt,kind,excludeId){return state.nodes.filter(h=>canHold(h,k
 function createNode(kind,pt){const s=getSite(pt);if(!s){toast('Lege zuerst einen Standort an.');return;}
  mutate(()=>{const n={id:uid(),kind,name:TYPES[kind].label.split(' / ')[0],detail:TYPES[kind].hint,site:s.id,subnetId:subnetAt(pt,s.id)?.id||null,x:pt.x-s.x-NW/2,y:pt.y-s.y-NH/2,parentId:null,netId:null};if(kind==='server')Object.assign(n,{nets:[],mgmtNetId:null,mgmtIp:''});clampLocal(n);
  state.nodes.push(n);const host=containerAt(pt,kind,n.id);if(host)adopt(n,host,pt);selection={type:'node',id:n.id};});}
-function findSpace(){const s=rects()[0];if(!s)return{x:60,y:205};const used=state.nodes.filter(n=>n.site===s.id&&!n.parentId).length;const x=s.x+40+(used%2)*246,y=s.y+104+Math.floor(used/2)*110;return{x,y};}
+// Tapping a palette entry places it in the middle of the view (slightly offset per tap, so new cards do not stack exactly).
+let taps=0;function findSpace(){const svg=$('#board'),k=taps++%6;return{x:cam.x+svg.clientWidth/cam.z/2-NW/2+k*22,y:cam.y+svg.clientHeight/cam.z/2-NH/2+k*22};}
 function inCanvas(e){const b=$('#board').getBoundingClientRect();return e.clientX>=b.left&&e.clientX<=b.right&&e.clientY>=b.top&&e.clientY<=b.bottom;}
 // Touch: a tap adds the element, a swipe scrolls the palette strip, a long press lifts the element for dragging onto the board.
 function onPaletteDown(e,kind){if(e.button!==0)return;const touch=e.pointerType==='touch',origin={x:e.clientX,y:e.clientY},target=e.currentTarget,strip=target.parentElement,sl=strip.scrollLeft;let moving=false,scrolling=false,armed=!touch,ghost=null;target.setPointerCapture(e.pointerId);
@@ -648,20 +760,20 @@ function paletteInit(){const el=$('#palette');for(const [kind,t] of Object.entri
 // two fingers zoom and pan. Mouse and pen keep the direct desktop behaviour.
 const LONG_PRESS=380,SLOP=9,touches=new Map();let press=null,pinch=null;
 function touchMid(){const[a,b]=[...touches.values()];return{x:(a.x+b.x)/2,y:(a.y+b.y)/2,d:Math.hypot(a.x-b.x,a.y-b.y)||1};}
-function abortDrag(){siteDrag=null;widthDrag=null;groupDrag=null;if(drag){state=JSON.parse(drag.before);drag=null;}if(subnetDrag){state=JSON.parse(subnetDrag.before);subnetDrag=null;}document.body.classList.remove('dragging');}
-function onBoardDown(e){if(e.pointerType!=='touch'){if(e.button===0)boardPress(e);return;}
+function abortDrag(){siteDrag=null;widthDrag=null;groupDrag=null;siteMove=null;$('#board').classList.remove('panning');if(drag){state=JSON.parse(drag.before);drag=null;}if(subnetDrag){state=JSON.parse(subnetDrag.before);subnetDrag=null;}document.body.classList.remove('dragging');}
+function onBoardDown(e){if(e.pointerType!=='touch'){if(e.button===1||(e.button===0&&spaceDown)){e.preventDefault();startPan(e);return;}if(e.button===0)boardPress(e);return;}
  touches.set(e.pointerId,{x:e.clientX,y:e.clientY});$('#board').setPointerCapture(e.pointerId);
- if(touches.size===2){if(press)clearTimeout(press.timer);press=null;pan=null;abortDrag();pinch={...touchMid(),z:zoom};render();return;}
+ if(touches.size===2){if(press)clearTimeout(press.timer);press=null;pan=null;abortDrag();pinch={...touchMid(),z:cam.z};render();return;}
  if(touches.size>2||pinch)return;
  if(e.target.closest('[data-subnet-resize],[data-site-resize],[data-node-resize]')){press={id:e.pointerId,fired:true};boardPress(e);return;}
- const liftable=mode!=='connect'&&!e.target.closest('[data-hostnet]')&&!!e.target.closest('[data-node],[data-subnet-handle],[data-group-handle]');
+ const liftable=mode!=='connect'&&!e.target.closest('[data-hostnet]')&&!!e.target.closest('[data-node],[data-subnet-handle],[data-group-handle],[data-site-handle]');
  press={id:e.pointerId,ev:e,x:e.clientX,y:e.clientY,moved:false,fired:false,timer:liftable?setTimeout(lift,LONG_PRESS):null};
- const wrap=$('#board').parentElement;pan={x:e.clientX,y:e.clientY,sl:wrap.scrollLeft,st:wrap.scrollTop};}
-function lift(){if(!press||press.moved)return;const wrap=$('#board').parentElement;if(pan){wrap.scrollLeft=pan.sl;wrap.scrollTop=pan.st;pan=null;}
+ pan={x:e.clientX,y:e.clientY,cx:cam.x,cy:cam.y};}
+function lift(){if(!press||press.moved)return;if(pan){cam.x=pan.cx;cam.y=pan.cy;applyCamera();pan=null;}
  press.fired=true;document.body.classList.add('dragging');navigator.vibrate?.(12);boardPress(press.ev);}
 function onBoardMove(e){if(e.pointerType!=='touch'){boardMove(e);return;}
  const t=touches.get(e.pointerId);if(!t)return;t.x=e.clientX;t.y=e.clientY;
- if(pinch){if(touches.size<2)return;const m=touchMid(),wrap=$('#board').parentElement;setZoom(pinch.z*m.d/pinch.d,m);wrap.scrollLeft-=m.x-pinch.x;wrap.scrollTop-=m.y-pinch.y;pinch.x=m.x;pinch.y=m.y;return;}
+ if(pinch){if(touches.size<2)return;const m=touchMid();setZoom(pinch.z*m.d/pinch.d,m);panBy(m.x-pinch.x,m.y-pinch.y);pinch.x=m.x;pinch.y=m.y;return;}
  if(!press||e.pointerId!==press.id)return;
  if(!press.fired&&!press.moved&&Math.hypot(e.clientX-press.x,e.clientY-press.y)>SLOP){press.moved=true;clearTimeout(press.timer);}
  boardMove(e);}
@@ -691,10 +803,11 @@ function boardPress(e,interactive=true){
  if(interactive&&dragMode&&sn){subnetDrag={id,site:sn.site,mode:dragMode,startPt:pt,ox:sn.x,oy:sn.y,ow:sn.w,oh:sn.h,before:snapshot(),moved:false,preview:null};$('#board').setPointerCapture(e.pointerId);}
  render();
  }else{selection=sEl?{type:'site',id:sEl.getAttribute('data-site')}:null;render();
-  // Dragging the background pans a zoomed-in board.
-  if(interactive){const wrap=$('#board').parentElement;pan={x:e.clientX,y:e.clientY,sl:wrap.scrollLeft,st:wrap.scrollTop};$('#board').setPointerCapture(e.pointerId);}}}
+  // A site moves at its header strip; dragging anywhere else on the background pans the view.
+  if(interactive){const sh=e.target.closest('[data-site-handle]');if(sh&&mode!=='connect'){const st=state.sites.find(t=>t.id===sh.getAttribute('data-site-handle'));siteMove={id:st.id,startPt:pos(e),dx:0,dy:0,before:snapshot(),moved:false};$('#board').setPointerCapture(e.pointerId);}else startPan(e);}}}
 function boardMove(e){
- if(pan){const wrap=$('#board').parentElement;wrap.scrollLeft=pan.sl-(e.clientX-pan.x);wrap.scrollTop=pan.st-(e.clientY-pan.y);return;}
+ if(pan){cam.x=pan.cx-(e.clientX-pan.x)/cam.z;cam.y=pan.cy-(e.clientY-pan.y)/cam.z;applyCamera();return;}
+ if(siteMove){const d=siteMove,pt=pos(e);d.dx=Math.round(pt.x-d.startPt.x);d.dy=Math.round(pt.y-d.startPt.y);if(Math.abs(d.dx)+Math.abs(d.dy)>2)d.moved=true;if(d.moved)renderBoard();return;}
  if(groupDrag){const d=groupDrag,pt=pos(e);d.dx=pt.x-d.startPt.x;d.dy=pt.y-d.startPt.y;if(Math.abs(d.dx)+Math.abs(d.dy)>2)d.moved=true;if(d.moved)renderBoard();return;}
  if(siteDrag){const d=siteDrag,pt=d.inv?new DOMPoint(e.clientX,e.clientY).matrixTransform(d.inv):pos(e),dx=pt.x-d.startPt.x,dy=pt.y-d.startPt.y;if(Math.abs(dx)+Math.abs(dy)>2)d.moved=true;
   if(d.moved){d.preview={w:clamp(Math.round(d.ow+dx),d.min,1600),h:clamp(Math.round(d.oh+dy),SITE_MIN,4000)};renderBoard();}return;}
@@ -703,13 +816,14 @@ function boardMove(e){
  if(subnetDrag){const d=subnetDrag,pt=pos(e),dx=pt.x-d.startPt.x,dy=pt.y-d.startPt.y;
   if(Math.abs(dx)+Math.abs(dy)>2)d.moved=true;
   if(d.moved){if(d.mode==='move')d.preview={x:clamp(Math.round(d.ox+dx),12,siteWidth(d.site)-d.ow-12),y:clamp(Math.round(d.oy+dy),80,3000),w:d.ow,h:d.oh};
-   else d.preview={x:d.ox,y:d.oy,w:clamp(Math.round(d.ow+dx),265,siteWidth(d.site)-d.ox-12),h:clamp(Math.round(d.oh+dy),165,1500)};
+   else d.preview={x:d.ox,y:d.oy,w:clamp(Math.round(d.ow+dx),265,siteWidth(d.site)-d.ox-12),h:clamp(Math.round(d.oh+dy),165,4000)};
    renderBoard();}return;
  }
  if(!drag)return;const n=state.nodes.find(t=>t.id===drag.id);if(!n)return;const pt=pos(e),dx=pt.x-drag.startPt.x,dy=pt.y-drag.startPt.y;if(Math.abs(dx)+Math.abs(dy)>2)drag.moved=true;
  if(drag.moved){drag.preview={x:Math.round(drag.ox+dx),y:Math.max(93,Math.round(drag.oy+dy)),w:drag.w,h:drag.h};const host=containerAt(pt,n.kind,n.id);drag.insert=host?insertionAt(n,host,pt):null;renderBoard();}}
 function boardUp(e){
- if(pan){pan=null;return;}
+ if(pan){pan=null;$('#board').classList.remove('panning');return;}
+ if(siteMove){const d=siteMove;siteMove=null;const st=state.sites.find(t=>t.id===d.id);if(d.moved&&st){st.x+=d.dx;st.y+=d.dy;resolveSiteOverlaps();}if(d.before!==snapshot()){history(d.before);persist();}render();return;}
  if(groupDrag){const d=groupDrag;groupDrag=null;const g=state.groups.find(t=>t.id===d.id);
   if(d.moved&&g){g.x=Math.round(d.ox+d.dx);g.y=Math.max(120,Math.round(d.oy+d.dy));normalizeGroups();const ms=groupMembers(g),right=Math.max(...ms.map(n=>n.x+nodeSize(n).w));
    g.x=clamp(g.x,15,Math.max(15,g.x+siteWidth(g.site)-15-right));normalizeGroups();const s=siteFor(g.site);
@@ -736,8 +850,8 @@ function boardUp(e){
  if(d.before!==snapshot()){history(d.before);persist();}render();}
 function download(blob,file){const u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=file;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),2000);}
 function filename(ext){const name=(state.title||'infrastruktur').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9äöüß]+/g,'-').replace(/^-|-$/g,'').slice(0,54)||'infrastruktur';return name+'.'+ext;}
-function exportSVG(){const{w,h}=boardSize();return `<svg xmlns="${NS}" xmlns:xlink="http://www.w3.org/1999/xlink" width="${Math.round(w*1.33)}" height="${Math.round(h*1.33)}" viewBox="0 0 ${w} ${h}">${boardMarkup(true)}</svg>`;}
-function exportPNG(){const blob=new Blob([exportSVG()],{type:'image/svg+xml;charset=utf-8'}),url=URL.createObjectURL(blob),img=new Image();img.onload=()=>{const canvas=document.createElement('canvas');const{w,h}=boardSize();canvas.width=w*2;canvas.height=h*2;const ctx=canvas.getContext('2d');ctx.drawImage(img,0,0,canvas.width,canvas.height);URL.revokeObjectURL(url);canvas.toBlob(b=>{if(b)download(b,filename('png'));else toast('PNG konnte nicht erstellt werden.');},'image/png');};img.onerror=()=>{URL.revokeObjectURL(url);toast('Der PNG-Export ist fehlgeschlagen.');};img.src=url;}
+function exportSVG(){const{x,y,w,h}=contentBox();return `<svg xmlns="${NS}" xmlns:xlink="http://www.w3.org/1999/xlink" width="${Math.round(w*1.33)}" height="${Math.round(h*1.33)}" viewBox="${x} ${y} ${w} ${h}">${boardMarkup(true)}</svg>`;}
+function exportPNG(){const blob=new Blob([exportSVG()],{type:'image/svg+xml;charset=utf-8'}),url=URL.createObjectURL(blob),img=new Image();img.onload=()=>{const canvas=document.createElement('canvas');const{w,h}=contentBox();canvas.width=w*2;canvas.height=h*2;const ctx=canvas.getContext('2d');ctx.drawImage(img,0,0,canvas.width,canvas.height);URL.revokeObjectURL(url);canvas.toBlob(b=>{if(b)download(b,filename('png'));else toast('PNG konnte nicht erstellt werden.');},'image/png');};img.onerror=()=>{URL.revokeObjectURL(url);toast('Der PNG-Export ist fehlgeschlagen.');};img.src=url;}
 function toast(msg){const el=$('#toast');el.textContent=msg;el.classList.add('show');clearTimeout(toaster);toaster=setTimeout(()=>el.classList.remove('show'),2800);}
 $('#board').addEventListener('pointerdown',onBoardDown);$('#board').addEventListener('pointermove',onBoardMove);$('#board').addEventListener('pointerup',onBoardUp);$('#board').addEventListener('pointercancel',onBoardCancel);
 function saveLayers(){try{localStorage.setItem(KEY+'-hidden-kinds',JSON.stringify([...hiddenKinds]));}catch{}}
@@ -748,18 +862,26 @@ renderLayers();
 $('#board').addEventListener('contextmenu',e=>{if(touches.size||press)e.preventDefault();});$('#palette').addEventListener('contextmenu',e=>e.preventDefault());
 const setMenu=open=>{$('header').classList.toggle('menu-open',open);$('#menuBtn').setAttribute('aria-expanded',String(open));};
 $('#menuBtn').onclick=()=>setMenu(!$('header').classList.contains('menu-open'));$('#headerActions').addEventListener('click',e=>{if(e.target.closest('button'))setMenu(false);});document.addEventListener('pointerdown',e=>{if(!e.target.closest('#headerActions,#menuBtn'))setMenu(false);});
+$('#autoLayoutBtn').onclick=()=>{mutate(()=>autoLayout());fitView();toast('Automatisch angeordnet – Strg+Z macht es rückgängig.');};
+$('#tidyBtn').onclick=()=>{let r;mutate(()=>{r=tidyUp();});toast(`Aufgeräumt: ${r.moved} ${r.moved===1?'Host':'Hosts'} umsortiert, ${r.merged} Leitungsbündel, ${r.freed} Überlappungen gelöst.`);};
+$('#checkBtn').onclick=()=>{selection={type:'check'};render();};
+for(const b of document.querySelectorAll('[data-proxy]'))b.addEventListener('click',()=>$('#'+b.dataset.proxy).click());
 $('#sheetClose').onclick=()=>{selection=null;render();};
-$('#addSiteBtn').onclick=addSite;$('#addSubnetBtn').onclick=addSubnet;$('#newBtn').onclick=()=>{if(confirm('Das aktuelle Diagramm durch ein leeres Diagramm ersetzen?')){history();state=blank();selection=null;mode='select';linkFrom=null;persist();render();}};$('#connectBtn').onclick=()=>setMode(mode==='connect'?'select':'connect');$('#undoBtn').onclick=()=>rewind('undo');$('#redoBtn').onclick=()=>rewind('redo');
-$('#resetBtn').onclick=()=>{if(confirm('Das aktuelle Diagramm durch die neutrale Demo ersetzen?')){history();state=valid(starter());selection=null;mode='select';linkFrom=null;persist();render();}};
+$('#addSiteBtn').onclick=addSite;$('#addSubnetBtn').onclick=addSubnet;$('#newBtn').onclick=()=>{if(confirm('Das aktuelle Diagramm durch ein leeres Diagramm ersetzen?')){history();state=blank();selection=null;mode='select';linkFrom=null;persist();render();fitView();}};$('#connectBtn').onclick=()=>setMode(mode==='connect'?'select':'connect');$('#undoBtn').onclick=()=>rewind('undo');$('#redoBtn').onclick=()=>rewind('redo');
+$('#resetBtn').onclick=()=>{if(confirm('Das aktuelle Diagramm durch die neutrale Demo ersetzen?')){history();state=valid(starter());selection=null;mode='select';linkFrom=null;persist();render();fitView();}};
 $('#docTitle').addEventListener('focus',e=>fieldSnapshot=snapshot());$('#docTitle').addEventListener('input',e=>{state.title=e.target.value;persist();renderBoard();});$('#docTitle').addEventListener('blur',()=>{if(fieldSnapshot&&fieldSnapshot!==snapshot())history(fieldSnapshot);fieldSnapshot=null;render();});
 $('#jsonBtn').onclick=()=>download(new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),filename('json'));
 $('#svgBtn').onclick=()=>download(new Blob([exportSVG()],{type:'image/svg+xml'}),filename('svg'));
 $('#pngBtn').onclick=exportPNG;
-$('#importBtn').onclick=()=>$('#fileInput').click();$('#fileInput').addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;try{const data=valid(JSON.parse(await f.text()));history();state=data;selection=null;mode='select';persist();render();toast('Diagramm geladen.');}catch(err){toast(err.message||'Datei konnte nicht geladen werden.');}e.target.value='';});
-$('#zoomInBtn').onclick=()=>setZoom(zoom*1.25);$('#zoomOutBtn').onclick=()=>setZoom(zoom/1.25);$('#zoomResetBtn').onclick=()=>setZoom(1);
-$('#stage').addEventListener('wheel',e=>{if(!(e.ctrlKey||e.metaKey))return;e.preventDefault();const dy=e.deltaMode===1?e.deltaY*33:e.deltaY;setZoom(zoom*Math.exp(-clamp(dy,-100,100)*.0025),{x:e.clientX,y:e.clientY});},{passive:false});
-window.addEventListener('keydown',e=>{const focused=document.activeElement,editing=focused?.matches('input,textarea,select,[contenteditable]');if((e.ctrlKey||e.metaKey)&&!editing&&['+','=','-','0'].includes(e.key)){e.preventDefault();setZoom(e.key==='0'?1:e.key==='-'?zoom/1.25:zoom*1.25);}else if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'&&!editing){e.preventDefault();rewind(e.shiftKey?'redo':'undo');}else if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='y'&&!editing){e.preventDefault();rewind('redo');}else if(e.key==='Escape'){if(mode==='connect')setMode('select');else{selection=null;render();}}else if((e.key==='Delete'||e.key==='Backspace')&&!editing&&selection){e.preventDefault();deleteSelected();}});
-paletteInit();render();new ResizeObserver(fitBoard).observe($('#stage'));
+$('#importBtn').onclick=()=>$('#fileInput').click();$('#fileInput').addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;try{const data=valid(JSON.parse(await f.text()));history();state=data;selection=null;mode='select';persist();render();fitView();toast('Diagramm geladen.');}catch(err){toast(err.message||'Datei konnte nicht geladen werden.');}e.target.value='';});
+$('#zoomInBtn').onclick=()=>setZoom(cam.z*1.25);$('#zoomOutBtn').onclick=()=>setZoom(cam.z/1.25);$('#zoomResetBtn').onclick=fitView;
+// Like Figma: scrolling pans (Shift: sideways), Ctrl/⌘ + scroll or a trackpad pinch zooms at the pointer.
+$('#stage').addEventListener('wheel',e=>{e.preventDefault();const k=e.deltaMode===1?33:e.deltaMode===2?400:1;if(e.ctrlKey||e.metaKey){setZoom(cam.z*Math.exp(-clamp(e.deltaY*k,-100,100)*.0025),{x:e.clientX,y:e.clientY});return;}let dx=e.deltaX*k,dy=e.deltaY*k;if(e.shiftKey&&!dx){dx=dy;dy=0;}panBy(-dx,-dy);},{passive:false});
+// Space + drag pans, as in Figma.
+window.addEventListener('keydown',e=>{if(e.code!=='Space'||e.repeat||document.activeElement?.matches('input,textarea,select,button,[contenteditable],[role=button]'))return;e.preventDefault();spaceDown=true;$('#board').classList.add('space');});
+window.addEventListener('keyup',e=>{if(e.code==='Space'){spaceDown=false;$('#board').classList.remove('space');}});
+window.addEventListener('keydown',e=>{const focused=document.activeElement,editing=focused?.matches('input,textarea,select,[contenteditable]');if((e.ctrlKey||e.metaKey)&&!editing&&['+','=','-','0'].includes(e.key)){e.preventDefault();if(e.key==='0')fitView();else setZoom(e.key==='-'?cam.z/1.25:cam.z*1.25);}else if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'&&!editing){e.preventDefault();rewind(e.shiftKey?'redo':'undo');}else if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='y'&&!editing){e.preventDefault();rewind('redo');}else if(e.key==='Escape'){if(mode==='connect')setMode('select');else{selection=null;render();}}else if((e.key==='Delete'||e.key==='Backspace')&&!editing&&selection){e.preventDefault();deleteSelected();}});
+paletteInit();render();new ResizeObserver(()=>{if(!camReady&&$('#board').clientWidth){camReady=true;fitView();}else applyCamera();}).observe($('#stage'));
 })();
 </script>
 </body>
